@@ -15,7 +15,7 @@ public class GenericsUtil {
 	 * @param clazz
 	 * @return
 	 */
-	public static <T> Class<T> getSuperClassGenricType(Class<T> clazz) {  
+	public static Class<?> getSuperClassGenricType(Class<?> clazz) {  
 		return getSuperClassGenricType(clazz,0);
 	}
 	
@@ -25,7 +25,7 @@ public class GenericsUtil {
 	 * @param genericIndex 泛型定义的index
 	 * @return
 	 */
-	public static Class getSuperClassGenricType(Class clazz, int genericIndex) {  
+	public static Class<?> getSuperClassGenricType(Class<?> clazz, int genericIndex) {  
 		  
         Type genType = clazz.getGenericSuperclass();  
   
@@ -41,7 +41,7 @@ public class GenericsUtil {
         if (!(params[genericIndex] instanceof Class)) {  
             return Object.class;  
         }  
-        return (Class) params[genericIndex];  
+        return (Class<?>) params[genericIndex];  
     }  
 	
 	/**
@@ -49,15 +49,15 @@ public class GenericsUtil {
 	 * @param clazz
 	 * @return
 	 */
-	public static Class getInterfaceGenricType(Class clazz) { 
+	public static Class<?> getInterfaceGenricType(Class<?> clazz) { 
 		return getInterfaceGenricType(clazz,0,0);
 	}
 	
-	public static Class getInterfaceGenricType(Class clazz, int interfaceIndex) { 
+	public static Class<?> getInterfaceGenricType(Class<?> clazz, int interfaceIndex) { 
 		return getInterfaceGenricType(clazz,interfaceIndex,0);
 	}
 	
-	public static Class getInterfaceGenricType(Class clazz, int interfaceIndex,int genericIndex) {  
+	public static Class<?> getInterfaceGenricType(Class<?> clazz, int interfaceIndex,int genericIndex) {  
 		  
         Type genType = clazz.getGenericInterfaces()[interfaceIndex];  
   
@@ -73,7 +73,7 @@ public class GenericsUtil {
         if (!(params[genericIndex] instanceof Class)) {  
             return Object.class;  
         }  
-        return (Class) params[genericIndex];  
+        return (Class<?>) params[genericIndex];  
     }  
 	
 }
