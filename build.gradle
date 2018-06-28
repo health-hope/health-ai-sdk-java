@@ -1,0 +1,50 @@
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'maven'
+
+
+//环境变量 测试:test,生产:prod
+ext.environment = "test"
+
+
+configurations.all {
+	    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+tasks.withType(Compile){
+    options.encoding = "UTF-8"
+}
+repositories {
+    maven {
+        url "http://101.200.80.167:8181/nexus/content/groups/public"
+    }
+ 
+}
+dependencies {
+	compile ('log4j:log4j:1.2.17')
+	compile ('org.slf4j:slf4j-api:1.7.5')
+	compile ('org.slf4j:slf4j-log4j12:1.7.5')
+	compile ('com.alibaba:fastjson:1.2.8')
+	compile ('net.sf.json-lib:json-lib:2.4:jdk15')
+    compile ('org.apache.httpcomponents:httpclient:4.5.2')
+	
+	
+    testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+    testCompile 'junit:junit:4.12'
+  	
+}
+
+task clearPj(type:Delete){
+   delete 'build','target'
+}
+
+processResources {
+    from('src/main/environment/'+environment) {
+        include '**/*'
+    }
+}
+
+task buildWar(dependsOn: [clearPj,war]) {
+	
+}
