@@ -1,5 +1,6 @@
 package com.jiankangyouyi.health.ai.api;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,7 +14,6 @@ import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 import com.jiankangyouyi.health.ai.api.util.RSAUtil;
 import com.jiankangyouyi.health.ai.api.util.UUIDUtil;
-import com.sun.jmx.snmp.Timestamp;
 
 public class DefaultHealthAiClient implements HealthAiClient{
 
@@ -24,10 +24,10 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	
 	private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE); 
 	
-	public DefaultHealthAiClient(String appId,String privateKey,String version,String serverUrl){
+	public DefaultHealthAiClient(String appId,String privateKey,Version version,String serverUrl){
 		this.appId = appId;
 		this.privateKey = privateKey;
-		this.version = version;
+		this.version = version.getValue();
 		this.serverUrl = serverUrl;
 	}
 	
@@ -36,7 +36,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 		req.setAppId(appId);
 		req.setVersion(version);
 		req.setNonceStr(UUIDUtil.getJavaUUID());
-		req.setTimestamp(sdf.format(new Timestamp()));
+		req.setTimestamp(sdf.format(new Timestamp(System.currentTimeMillis())));
 		String signString = createSignString(req.signFiledMap());
 		String sign = RSAUtil.signWithSHA256(signString, privateKey, HealthAiConstants.CHARSET_UTF8);
 		req.setSign(sign);
@@ -44,7 +44,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 		req.setReqData(reqDataJson);
 		String reqMessage = JsonUtil.toJson(req);
 		String serviceUrl = this.serverUrl + request.getApiUrl();
-		String rtn = HttpClientUtil.post(serviceUrl, reqMessage);
+		String rtn = HttpClientUtil.post(serviceUrl, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
 		if(rtn == null|| rtn.length()==0){
 			throw new RuntimeException("没有返回数据");
 		}
@@ -91,7 +91,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	 * @author ThinkPad
 	 *
 	 */
-	private class ServiceRequest{
+	public static class ServiceRequest{
 		/**
 		 * 随机字符串
 		 */
@@ -185,7 +185,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	 * @author ThinkPad
 	 *
 	 */
-	private class ServiceResponse{
+	public static class ServiceResponse{
 		
 		private String resData;
 		
@@ -225,6 +225,33 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	    	map_.put("sign",getSign());
 			return map_;
 	    }
+	}
+	
+	
+	/**
+	 * 版本号
+	 * @author yangsongbo
+	 *
+	 */
+	public static enum Version{
+		
+		VERSION_1_0("1.0"),
+		
+		VERSION_2_0("2.0");
+		
+		
+		private Version(String value){
+			this.value = value ;
+		}
+		
+		private String value;
+
+		public String getValue() {
+			return value;
+		}
+
+		
+		
 	}
 	
 }

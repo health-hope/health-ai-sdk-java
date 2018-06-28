@@ -32,6 +32,7 @@ dependencies {
 	
     testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
     testCompile 'junit:junit:4.12'
+  	testCompile 'commons-io:commons-io:2.4'
   	
 }
 
