@@ -77,7 +77,7 @@ public class HttpClientUtil {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(null, e);
 				}
 			}
 
@@ -85,7 +85,7 @@ public class HttpClientUtil {
 				try {
 					httpClient.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(null, e);
 				}
 			}
 		}
@@ -143,7 +143,7 @@ public class HttpClientUtil {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(null, e);
 				}
 			}
 
@@ -151,7 +151,7 @@ public class HttpClientUtil {
 				try {
 					httpClient.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(null, e);
 				}
 			}
 		}
@@ -190,7 +190,7 @@ public class HttpClientUtil {
 				try {
 					response.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(null, e);
 				}
 			}
 
@@ -198,7 +198,7 @@ public class HttpClientUtil {
 				try {
 					httpClient.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(null, e);
 				}
 			}
 		}
