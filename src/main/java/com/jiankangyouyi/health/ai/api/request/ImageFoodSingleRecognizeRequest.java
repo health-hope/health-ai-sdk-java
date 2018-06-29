@@ -67,4 +67,10 @@ public class ImageFoodSingleRecognizeRequest extends HealthAiRequest<ImageFoodSi
 		return "ImageSingleRecognizeReq [image=" + image + ", foodImageUrl=" + foodImageUrl + ", top=" + top + "]";
 	}
 
+	@Override
+	public void check() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -59,6 +59,12 @@ public class ImageStationeryRecognizeRequest extends HealthAiRequest<ImageStatio
 		return "ImageMultiRecognitionReq [image=" + image + ", officeImageUrl=" + officeImageUrl + "]";
 	}
 
+	@Override
+	public void check() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 	

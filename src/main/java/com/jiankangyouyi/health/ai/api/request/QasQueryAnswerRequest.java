@@ -45,4 +45,10 @@ public class QasQueryAnswerRequest extends HealthAiRequest<QasQueryAnswerRespons
 		return "QasQueryAnswerRequest [question=" + question + "]";
 	}
 
+	@Override
+	public void check() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

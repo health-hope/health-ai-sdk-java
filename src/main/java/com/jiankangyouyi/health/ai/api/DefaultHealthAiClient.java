@@ -32,6 +32,8 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	}
 	
 	public <T extends HealthAiResponse> T execute(HealthAiRequest<T> request){
+		//check input
+		request.check();
 		ServiceRequest req = new ServiceRequest();
 		req.setAppId(appId);
 		req.setVersion(version);

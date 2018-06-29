@@ -11,6 +11,8 @@ public abstract class HealthAiRequest<T extends HealthAiResponse> implements Ser
 
 	public abstract String getApiUrl();
 	
+	public abstract void check();
+	
 	@SuppressWarnings("unchecked")
 	public Class<T> getResponseClass(){
 		Class<T> entityClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];

@@ -64,6 +64,13 @@ public class ImageFoodMultiRecognizeRequest extends HealthAiRequest<ImageFoodMul
 		return "ImageMultiRecognitionReq [image=" + image + ", foodImageUrl=" + foodImageUrl + "]";
 	}
 
+
+	@Override
+	public void check() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

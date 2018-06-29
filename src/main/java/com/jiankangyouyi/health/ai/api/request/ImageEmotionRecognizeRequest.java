@@ -57,4 +57,10 @@ public class ImageEmotionRecognizeRequest extends HealthAiRequest<ImageEmotionRe
 		return "ImageEmotionRecognizeRequest [image=" + image + ", emotionImageUrl=" + emotionImageUrl + "]";
 	}
 
+	@Override
+	public void check() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
