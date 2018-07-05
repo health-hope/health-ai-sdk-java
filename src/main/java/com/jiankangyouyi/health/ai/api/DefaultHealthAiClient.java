@@ -93,6 +93,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	 * @author ThinkPad
 	 *
 	 */
+	@SuppressWarnings("unused")
 	private static class ServiceRequest{
 		/**
 		 * 随机字符串
@@ -187,6 +188,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	 * @author ThinkPad
 	 *
 	 */
+	@SuppressWarnings("unused")
 	private static class ServiceResponse{
 		
 		private String resData;

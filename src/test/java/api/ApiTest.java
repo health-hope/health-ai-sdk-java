@@ -9,11 +9,13 @@ import org.junit.Test;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
+import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageEmotionRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodSingleRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageStationeryRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
+import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
@@ -238,6 +240,28 @@ public class ApiTest {
 		// response json ：
 //		{"answer":"跑步能加速身体的新陈代谢，消耗多余的脂肪或碳水化合物，坚持跑步对减肥的作用很大。","curTime":"2018-06-28 22:42:54","retCode":"SUCCESS","retInfo":"处理成功","sn":"89e2a1ba7ae111e8aa9bac1f6b22e430"}
 
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	/**
+	 * 语音记录
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void dialogRecordTest() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		
+		DialogRecordRequest request = new DialogRecordRequest();
+		request.setText("我吃了三十颗米饭一碗紫菜汤");
+		DialogRecordResponse response = client.execute(request);
+		//{"curTime":"2018-07-05 16:55:50","result":[{"count":30,"intent":"RECORD_MEAL","itemName":"米饭","unit":"颗"},{"count":1,"intent":"RECORD_MEAL","itemName":"紫菜汤","unit":"碗"}],"retCode":"SUCCESS","sn":"5b3ddd165516106e19a8c4fa"}
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}
