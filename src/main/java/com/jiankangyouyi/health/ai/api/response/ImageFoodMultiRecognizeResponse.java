@@ -13,37 +13,25 @@ import com.jiankangyouyi.health.ai.api.HealthAiResponse;
  */
 public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 识别的食物列表
 	 */
 	private List<RecognizeMultiFood> recognitionFoodList;
-	
-	
 
 	public List<RecognizeMultiFood> getRecognitionFoodList() {
 		return recognitionFoodList;
 	}
 
-
-
 	public void setRecognitionFoodList(List<RecognizeMultiFood> recognitionFoodList) {
 		this.recognitionFoodList = recognitionFoodList;
 	}
 
-
-	
-	
-	
-	
 	@Override
 	public String toString() {
 		return "ImageMultiRecognitionRes [recognitionFoodList=" + recognitionFoodList + "]";
 	}
-
-
 
 	/**
 	 * 识别出的食物
@@ -56,12 +44,12 @@ public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 		 * 识别食物置信度
 		 */
 		private BigDecimal confidence;
-		
+
 		/**
 		 * 距离上边的距离百分比
 		 */
 		private BigDecimal topCoordinate;
-		
+
 		/**
 		 * 距离左边的距离百分比
 		 */
@@ -86,6 +74,11 @@ public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 		 * 食物单位
 		 */
 		private String unit;
+
+		/**
+		 * 功效
+		 */
+		private List<String> efficacys;
 
 		/**
 		 * 热量
@@ -286,7 +279,7 @@ public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 		 * 钾
 		 */
 		private BigDecimal potassium;
-		
+
 		/**
 		 * 镁
 		 */
@@ -441,6 +434,14 @@ public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 
 		public void setUnit(String unit) {
 			this.unit = unit;
+		}
+
+		public List<String> getEfficacys() {
+			return efficacys;
+		}
+
+		public void setEfficacys(List<String> efficacys) {
+			this.efficacys = efficacys;
 		}
 
 		public int getHeat() {
@@ -927,18 +928,18 @@ public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 		public String toString() {
 			return "RecognizeMultiFood [confidence=" + confidence + ", topCoordinate=" + topCoordinate
 					+ ", leftCoordinate=" + leftCoordinate + ", recognitionFoodNum=" + recognitionFoodNum + ", foodId="
-					+ foodId + ", foodName=" + foodName + ", unit=" + unit + ", heat=" + heat + ", heatKJ=" + heatKJ
-					+ ", protein=" + protein + ", fat=" + fat + ", carbohydrate=" + carbohydrate + ", moisture="
-					+ moisture + ", cholesterol=" + cholesterol + ", ediblePart=" + ediblePart + ", solkfloc="
-					+ solkfloc + ", vitaminB1=" + vitaminB1 + ", vitaminB2=" + vitaminB2 + ", vitaminC=" + vitaminC
-					+ ", vitaminB6=" + vitaminB6 + ", vitaminB12=" + vitaminB12 + ", vitaminB3=" + vitaminB3
-					+ ", vitaminB5=" + vitaminB5 + ", vitaminB9=" + vitaminB9 + ", vitaminA=" + vitaminA + ", vitaminD="
-					+ vitaminD + ", vitaminE=" + vitaminE + ", vitaminK=" + vitaminK + ", lysine=" + lysine
-					+ ", tryptophan=" + tryptophan + ", valine=" + valine + ", phenylalanine=" + phenylalanine
-					+ ", threonine=" + threonine + ", isoleucine=" + isoleucine + ", leucine=" + leucine
-					+ ", methionine=" + methionine + ", arginine=" + arginine + ", glutamic=" + glutamic
-					+ ", histidine=" + histidine + ", alanine=" + alanine + ", glycine=" + glycine + ", proline="
-					+ proline + ", serine=" + serine + ", aspartic=" + aspartic + ", calcium=" + calcium
+					+ foodId + ", foodName=" + foodName + ", unit=" + unit + ", efficacys=" + efficacys + ", heat="
+					+ heat + ", heatKJ=" + heatKJ + ", protein=" + protein + ", fat=" + fat + ", carbohydrate="
+					+ carbohydrate + ", moisture=" + moisture + ", cholesterol=" + cholesterol + ", ediblePart="
+					+ ediblePart + ", solkfloc=" + solkfloc + ", vitaminB1=" + vitaminB1 + ", vitaminB2=" + vitaminB2
+					+ ", vitaminC=" + vitaminC + ", vitaminB6=" + vitaminB6 + ", vitaminB12=" + vitaminB12
+					+ ", vitaminB3=" + vitaminB3 + ", vitaminB5=" + vitaminB5 + ", vitaminB9=" + vitaminB9
+					+ ", vitaminA=" + vitaminA + ", vitaminD=" + vitaminD + ", vitaminE=" + vitaminE + ", vitaminK="
+					+ vitaminK + ", lysine=" + lysine + ", tryptophan=" + tryptophan + ", valine=" + valine
+					+ ", phenylalanine=" + phenylalanine + ", threonine=" + threonine + ", isoleucine=" + isoleucine
+					+ ", leucine=" + leucine + ", methionine=" + methionine + ", arginine=" + arginine + ", glutamic="
+					+ glutamic + ", histidine=" + histidine + ", alanine=" + alanine + ", glycine=" + glycine
+					+ ", proline=" + proline + ", serine=" + serine + ", aspartic=" + aspartic + ", calcium=" + calcium
 					+ ", phosphorus=" + phosphorus + ", potassium=" + potassium + ", magnesium=" + magnesium
 					+ ", sodium=" + sodium + ", copper=" + copper + ", iron=" + iron + ", zinc=" + zinc + ", manganese="
 					+ manganese + ", iodine=" + iodine + ", chromium=" + chromium + ", fluorine=" + fluorine
@@ -949,12 +950,6 @@ public class ImageFoodMultiRecognizeResponse extends HealthAiResponse {
 					+ ", soyIsoflavone=" + soyIsoflavone + ", gi=" + gi + "]";
 		}
 
-		
-
 	}
-
-
-
-	
 
 }

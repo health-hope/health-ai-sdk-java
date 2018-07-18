@@ -64,6 +64,11 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 		 * 食物单位
 		 */
 		private String unit;
+		
+		/**
+		 * 功效
+		 */
+		private List<String> efficacys;
 
 		/**
 		 * 热量
@@ -395,6 +400,14 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 
 		public void setUnit(String unit) {
 			this.unit = unit;
+		}
+
+		public List<String> getEfficacys() {
+			return efficacys;
+		}
+
+		public void setEfficacys(List<String> efficacys) {
+			this.efficacys = efficacys;
 		}
 
 		public int getHeat() {
@@ -880,27 +893,29 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 		@Override
 		public String toString() {
 			return "RecognizeSingleFood [confidence=" + confidence + ", foodId=" + foodId + ", foodName=" + foodName
-					+ ", unit=" + unit + ", heat=" + heat + ", heatKJ=" + heatKJ + ", protein=" + protein + ", fat="
-					+ fat + ", carbohydrate=" + carbohydrate + ", moisture=" + moisture + ", cholesterol=" + cholesterol
-					+ ", ediblePart=" + ediblePart + ", solkfloc=" + solkfloc + ", vitaminB1=" + vitaminB1
-					+ ", vitaminB2=" + vitaminB2 + ", vitaminC=" + vitaminC + ", vitaminB6=" + vitaminB6
-					+ ", vitaminB12=" + vitaminB12 + ", vitaminB3=" + vitaminB3 + ", vitaminB5=" + vitaminB5
-					+ ", vitaminB9=" + vitaminB9 + ", vitaminA=" + vitaminA + ", vitaminD=" + vitaminD + ", vitaminE="
-					+ vitaminE + ", vitaminK=" + vitaminK + ", lysine=" + lysine + ", tryptophan=" + tryptophan
-					+ ", valine=" + valine + ", phenylalanine=" + phenylalanine + ", threonine=" + threonine
-					+ ", isoleucine=" + isoleucine + ", leucine=" + leucine + ", methionine=" + methionine
-					+ ", arginine=" + arginine + ", glutamic=" + glutamic + ", histidine=" + histidine + ", alanine="
-					+ alanine + ", glycine=" + glycine + ", proline=" + proline + ", serine=" + serine + ", aspartic="
-					+ aspartic + ", calcium=" + calcium + ", phosphorus=" + phosphorus + ", potassium=" + potassium
-					+ ", sodium=" + sodium + ", magnesium=" + magnesium + ", copper=" + copper + ", iron=" + iron
-					+ ", zinc=" + zinc + ", manganese=" + manganese + ", iodine=" + iodine + ", chromium=" + chromium
-					+ ", fluorine=" + fluorine + ", selenium=" + selenium + ", totalFattyAcid=" + totalFattyAcid
-					+ ", saturatedFattyAcid=" + saturatedFattyAcid + ", monounsaturatedFattyAcid="
-					+ monounsaturatedFattyAcid + ", polyunsaturatedFattyAcid=" + polyunsaturatedFattyAcid
-					+ ", mfaPercent=" + mfaPercent + ", pfaPercent=" + pfaPercent + ", sfaPercent=" + sfaPercent
-					+ ", carotene=" + carotene + ", soyIsoflavone=" + soyIsoflavone + ", gi=" + gi + "]";
+					+ ", unit=" + unit + ", efficacys=" + efficacys + ", heat=" + heat + ", heatKJ=" + heatKJ
+					+ ", protein=" + protein + ", fat=" + fat + ", carbohydrate=" + carbohydrate + ", moisture="
+					+ moisture + ", cholesterol=" + cholesterol + ", ediblePart=" + ediblePart + ", solkfloc="
+					+ solkfloc + ", vitaminB1=" + vitaminB1 + ", vitaminB2=" + vitaminB2 + ", vitaminC=" + vitaminC
+					+ ", vitaminB6=" + vitaminB6 + ", vitaminB12=" + vitaminB12 + ", vitaminB3=" + vitaminB3
+					+ ", vitaminB5=" + vitaminB5 + ", vitaminB9=" + vitaminB9 + ", vitaminA=" + vitaminA + ", vitaminD="
+					+ vitaminD + ", vitaminE=" + vitaminE + ", vitaminK=" + vitaminK + ", lysine=" + lysine
+					+ ", tryptophan=" + tryptophan + ", valine=" + valine + ", phenylalanine=" + phenylalanine
+					+ ", threonine=" + threonine + ", isoleucine=" + isoleucine + ", leucine=" + leucine
+					+ ", methionine=" + methionine + ", arginine=" + arginine + ", glutamic=" + glutamic
+					+ ", histidine=" + histidine + ", alanine=" + alanine + ", glycine=" + glycine + ", proline="
+					+ proline + ", serine=" + serine + ", aspartic=" + aspartic + ", calcium=" + calcium
+					+ ", phosphorus=" + phosphorus + ", potassium=" + potassium + ", sodium=" + sodium + ", magnesium="
+					+ magnesium + ", copper=" + copper + ", iron=" + iron + ", zinc=" + zinc + ", manganese="
+					+ manganese + ", iodine=" + iodine + ", chromium=" + chromium + ", fluorine=" + fluorine
+					+ ", selenium=" + selenium + ", totalFattyAcid=" + totalFattyAcid + ", saturatedFattyAcid="
+					+ saturatedFattyAcid + ", monounsaturatedFattyAcid=" + monounsaturatedFattyAcid
+					+ ", polyunsaturatedFattyAcid=" + polyunsaturatedFattyAcid + ", mfaPercent=" + mfaPercent
+					+ ", pfaPercent=" + pfaPercent + ", sfaPercent=" + sfaPercent + ", carotene=" + carotene
+					+ ", soyIsoflavone=" + soyIsoflavone + ", gi=" + gi + "]";
 		}
 
+		
 
 	}
 
