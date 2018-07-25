@@ -9,18 +9,21 @@ import org.junit.Test;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
+import com.jiankangyouyi.health.ai.api.PageInfo;
 import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageEmotionRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodSingleRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageStationeryRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
+import com.jiankangyouyi.health.ai.api.request.SearchFoodListRequest;
 import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageStationeryRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.QasQueryAnswerResponse;
+import com.jiankangyouyi.health.ai.api.response.SearchFoodListResponse;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
 public class ApiTest {
@@ -266,4 +269,26 @@ public class ApiTest {
 		System.out.println(JsonUtil.toJson(response));
 	}
 	
+	
+	/**
+	 * 查询食物列表
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void seachFoodList() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		
+		SearchFoodListRequest request = new SearchFoodListRequest();
+		request.setFoodName("鸡蛋");
+		request.setPageInfo(new PageInfo(1,5));
+		
+		SearchFoodListResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
 }
