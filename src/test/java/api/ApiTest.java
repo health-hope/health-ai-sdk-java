@@ -16,6 +16,7 @@ import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodSingleRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageStationeryRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
+import com.jiankangyouyi.health.ai.api.request.SearchFoodDetailRequest;
 import com.jiankangyouyi.health.ai.api.request.SearchFoodListRequest;
 import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
@@ -23,6 +24,7 @@ import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageStationeryRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.QasQueryAnswerResponse;
+import com.jiankangyouyi.health.ai.api.response.SearchFoodDetailResponse;
 import com.jiankangyouyi.health.ai.api.response.SearchFoodListResponse;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
@@ -288,6 +290,27 @@ public class ApiTest {
 		request.setPageInfo(new PageInfo(1,5));
 		
 		SearchFoodListResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	/**
+	 * 查询食物详情
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void seachFoodDetail() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		
+		SearchFoodDetailRequest request = new SearchFoodDetailRequest();
+		request.setFoodId("57b6bd3f3004d165422ad7f4");
+		
+		SearchFoodDetailResponse response = client.execute(request);
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}
