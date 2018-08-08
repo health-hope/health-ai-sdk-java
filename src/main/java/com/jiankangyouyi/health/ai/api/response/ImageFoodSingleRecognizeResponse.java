@@ -11,11 +11,10 @@ import com.jiankangyouyi.health.ai.api.HealthAiResponse;
  * @author yangsongbo
  *
  */
-public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
+public class ImageFoodSingleRecognizeResponse extends HealthAiResponse {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 识别的食物列表
 	 */
@@ -28,15 +27,11 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 	public void setTopFoodNutrientBeanList(List<RecognizeSingleFood> topFoodNutrientBeanList) {
 		this.topFoodNutrientBeanList = topFoodNutrientBeanList;
 	}
-	
-	
 
 	@Override
 	public String toString() {
 		return "ImageSingleRecognizeRes [topFoodNutrientBeanList=" + topFoodNutrientBeanList + "]";
 	}
-
-
 
 	/**
 	 * 识别出的食物
@@ -61,10 +56,15 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 		private String foodName;
 
 		/**
+		 * 食物图片：此图片为食物库中存储的食物图片URL，非请求中的图片数据。
+		 */
+		private String imageUrl;
+
+		/**
 		 * 食物单位
 		 */
 		private String unit;
-		
+
 		/**
 		 * 功效
 		 */
@@ -274,7 +274,7 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 		 * 钠
 		 */
 		private BigDecimal sodium;
-		
+
 		/**
 		 * 镁
 		 */
@@ -392,6 +392,14 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 
 		public void setFoodName(String foodName) {
 			this.foodName = foodName;
+		}
+
+		public String getImageUrl() {
+			return imageUrl;
+		}
+
+		public void setImageUrl(String imageUrl) {
+			this.imageUrl = imageUrl;
 		}
 
 		public String getUnit() {
@@ -893,11 +901,11 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 		@Override
 		public String toString() {
 			return "RecognizeSingleFood [confidence=" + confidence + ", foodId=" + foodId + ", foodName=" + foodName
-					+ ", unit=" + unit + ", efficacys=" + efficacys + ", heat=" + heat + ", heatKJ=" + heatKJ
-					+ ", protein=" + protein + ", fat=" + fat + ", carbohydrate=" + carbohydrate + ", moisture="
-					+ moisture + ", cholesterol=" + cholesterol + ", ediblePart=" + ediblePart + ", solkfloc="
-					+ solkfloc + ", vitaminB1=" + vitaminB1 + ", vitaminB2=" + vitaminB2 + ", vitaminC=" + vitaminC
-					+ ", vitaminB6=" + vitaminB6 + ", vitaminB12=" + vitaminB12 + ", vitaminB3=" + vitaminB3
+					+ ", imageUrl=" + imageUrl + ", unit=" + unit + ", efficacys=" + efficacys + ", heat=" + heat
+					+ ", heatKJ=" + heatKJ + ", protein=" + protein + ", fat=" + fat + ", carbohydrate=" + carbohydrate
+					+ ", moisture=" + moisture + ", cholesterol=" + cholesterol + ", ediblePart=" + ediblePart
+					+ ", solkfloc=" + solkfloc + ", vitaminB1=" + vitaminB1 + ", vitaminB2=" + vitaminB2 + ", vitaminC="
+					+ vitaminC + ", vitaminB6=" + vitaminB6 + ", vitaminB12=" + vitaminB12 + ", vitaminB3=" + vitaminB3
 					+ ", vitaminB5=" + vitaminB5 + ", vitaminB9=" + vitaminB9 + ", vitaminA=" + vitaminA + ", vitaminD="
 					+ vitaminD + ", vitaminE=" + vitaminE + ", vitaminK=" + vitaminK + ", lysine=" + lysine
 					+ ", tryptophan=" + tryptophan + ", valine=" + valine + ", phenylalanine=" + phenylalanine
@@ -914,8 +922,6 @@ public class ImageFoodSingleRecognizeResponse extends HealthAiResponse{
 					+ ", pfaPercent=" + pfaPercent + ", sfaPercent=" + sfaPercent + ", carotene=" + carotene
 					+ ", soyIsoflavone=" + soyIsoflavone + ", gi=" + gi + "]";
 		}
-
-		
 
 	}
 

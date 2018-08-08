@@ -32,6 +32,17 @@ public class ImageFoodMultiRecognizeRequest extends HealthAiRequest<ImageFoodMul
 	 */
 	private String foodImageUrl;
 
+	
+	/**
+	 * 图片宽度，可以为空
+	 * </p>
+	 * 1、用于指定返回的食物图片宽度，系统根据该参数对图片进行缩放，取值范围0-9999
+	 * </p>
+	 * 2、为空或者等于0时，返回原图（400*400）
+	 * </p>
+	 */
+	private Integer imageWidth;
+	
 
 	@Override
 	public String getApiUrl() {
@@ -58,17 +69,26 @@ public class ImageFoodMultiRecognizeRequest extends HealthAiRequest<ImageFoodMul
 		this.foodImageUrl = foodImageUrl;
 	}
 
+	public Integer getImageWidth() {
+		return imageWidth;
+	}
 
-	@Override
-	public String toString() {
-		return "ImageMultiRecognitionReq [image=" + image + ", foodImageUrl=" + foodImageUrl + "]";
+
+	public void setImageWidth(Integer imageWidth) {
+		this.imageWidth = imageWidth;
 	}
 
 
 	@Override
 	public void check() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
+	}
+
+
+	@Override
+	public String toString() {
+		return "ImageFoodMultiRecognizeRequest [image=" + image + ", foodImageUrl=" + foodImageUrl + ", imageWidth="
+				+ imageWidth + "]";
 	}
 
 	

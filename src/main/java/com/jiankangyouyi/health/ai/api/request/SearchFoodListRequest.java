@@ -5,7 +5,7 @@ import com.jiankangyouyi.health.ai.api.PageInfo;
 import com.jiankangyouyi.health.ai.api.response.SearchFoodListResponse;
 
 /**
- * 问答服务
+ * 查询食物列表
  * 
  * @author yangsongbo
  *

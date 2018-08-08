@@ -32,6 +32,16 @@ public class ImageFoodSingleRecognizeRequest extends HealthAiRequest<ImageFoodSi
 	 * 返回数量，默认为1
 	 */
 	private Integer top = 1;
+	
+	/**
+	 * 图片宽度，可以为空
+	 * </p>
+	 * 1、用于指定返回的食物图片宽度，系统根据该参数对图片进行缩放，取值范围0-9999
+	 * </p>
+	 * 2、为空或者等于0时，返回原图（400*400）
+	 * </p>
+	 */
+	private Integer imageWidth;
 
 	@Override
 	public String getApiUrl() {
@@ -60,6 +70,14 @@ public class ImageFoodSingleRecognizeRequest extends HealthAiRequest<ImageFoodSi
 
 	public void setTop(Integer top) {
 		this.top = top;
+	}
+	
+	public Integer getImageWidth() {
+		return imageWidth;
+	}
+
+	public void setImageWidth(Integer imageWidth) {
+		this.imageWidth = imageWidth;
 	}
 
 	@Override
