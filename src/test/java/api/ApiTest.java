@@ -2,6 +2,9 @@ package api;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -10,7 +13,13 @@ import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
 import com.jiankangyouyi.health.ai.api.PageInfo;
+import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserInfoBean;
+import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserOptionsBean;
 import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
+import com.jiankangyouyi.health.ai.api.request.EvaluationBriefLoadRequest;
+import com.jiankangyouyi.health.ai.api.request.EvaluationContentLoadRequest;
+import com.jiankangyouyi.health.ai.api.request.EvaluationDataSaveRequest;
+import com.jiankangyouyi.health.ai.api.request.EvaluationResultLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageEmotionRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodSingleRecognizeRequest;
@@ -19,6 +28,10 @@ import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
 import com.jiankangyouyi.health.ai.api.request.SearchFoodDetailRequest;
 import com.jiankangyouyi.health.ai.api.request.SearchFoodListRequest;
 import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
+import com.jiankangyouyi.health.ai.api.response.EvaluationBriefLoadResponse;
+import com.jiankangyouyi.health.ai.api.response.EvaluationContentLoadResponse;
+import com.jiankangyouyi.health.ai.api.response.EvaluationDataSaveResponse;
+import com.jiankangyouyi.health.ai.api.response.EvaluationResultLoadResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
@@ -240,7 +253,7 @@ public class ApiTest {
 
 		
 		QasQueryAnswerRequest request = new QasQueryAnswerRequest();
-		request.setQuestion("吃什么有利于减肥？");
+		request.setQuestion("跑步能减肥吗？");
 		QasQueryAnswerResponse response = client.execute(request);
 		// response json ：
 //		{"answer":"跑步能加速身体的新陈代谢，消耗多余的脂肪或碳水化合物，坚持跑步对减肥的作用很大。","curTime":"2018-06-28 22:42:54","retCode":"SUCCESS","retInfo":"处理成功","sn":"89e2a1ba7ae111e8aa9bac1f6b22e430"}
@@ -314,4 +327,119 @@ public class ApiTest {
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}
+	
+	
+	/**
+	 * 获取评测简介
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void loadEvaluationBrief() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		
+		EvaluationBriefLoadRequest request = new EvaluationBriefLoadRequest();
+		request.setEvaluationCode("GXZPC");
+
+		
+		EvaluationBriefLoadResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+//		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	/**
+	 * 获取评测内容
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void loadEvaluationContent() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		EvaluationUserInfoBean userInfo = new EvaluationUserInfoBean();
+		userInfo.setBirthday("1988-11-26");
+		userInfo.setGender("1");
+		userInfo.setHeight("168");
+		userInfo.setUserName("波波");
+		userInfo.setWeight("70");
+
+		EvaluationContentLoadRequest request = new EvaluationContentLoadRequest();
+		request.setEvaluationCode("GXZPC");
+		request.setUserInfo(userInfo);
+
+		EvaluationContentLoadResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	/**
+	 * 保存评测数据
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void saveEvaluationData() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		EvaluationUserInfoBean userInfo = new EvaluationUserInfoBean();
+        userInfo.setBirthday("1988-11-26");
+        userInfo.setGender("1");
+        userInfo.setHeight("168");
+        userInfo.setUserName("波波");
+        userInfo.setWeight("70");
+        
+        List<EvaluationUserOptionsBean> userOptions = new ArrayList<>();
+        userOptions.add(new EvaluationUserOptionsBean("4", Arrays.asList("1")));
+        userOptions.add(new EvaluationUserOptionsBean("6", Arrays.asList("1","3")));
+        userOptions.add(new EvaluationUserOptionsBean("7", Arrays.asList("1")));
+        userOptions.add(new EvaluationUserOptionsBean("8", Arrays.asList("3")));
+        userOptions.add(new EvaluationUserOptionsBean("9", Arrays.asList("3")));
+        userOptions.add(new EvaluationUserOptionsBean("10", Arrays.asList("3")));
+        userOptions.add(new EvaluationUserOptionsBean("11", Arrays.asList("1")));
+        userOptions.add(new EvaluationUserOptionsBean("12", Arrays.asList("2")));
+        userOptions.add(new EvaluationUserOptionsBean("13", Arrays.asList("4")));
+
+        EvaluationDataSaveRequest request = new EvaluationDataSaveRequest();
+        request.setQuesBankId("5b7e2546ae178f4a45f1fcb7");
+        request.setUserInfo(userInfo);
+        request.setEvaluationCode("GXZPC");
+        request.setUserOptions(userOptions);
+
+    	EvaluationDataSaveResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+//		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	/**
+	 * 获取评测数据
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void loadEvaluationResult() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		EvaluationResultLoadRequest request = new EvaluationResultLoadRequest();
+		request.setEvaluationId("5b7e5e6a14cced4a437bafdf");
+
+		EvaluationResultLoadResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+
 }
