@@ -27,7 +27,7 @@ public class HttpClientUtil {
 	
 	public static final String CONTENT_TYPE_JSON = "application/json;charset=utf-8";
 	
-	private static final int CONNECT_TIME_OUT = 5000; //链接超时时间5秒
+	private static final int CONNECT_TIME_OUT = 30000; //链接超时时间30秒
 	
 	private static final RequestConfig REQUEST_CONFIG = RequestConfig.custom().setConnectTimeout(CONNECT_TIME_OUT).build();
 	

@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -15,11 +17,18 @@ import com.jiankangyouyi.health.ai.api.HealthAiClient;
 import com.jiankangyouyi.health.ai.api.PageInfo;
 import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserInfoBean;
 import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserOptionsBean;
+import com.jiankangyouyi.health.ai.api.bean.query.BodyDataBean;
+import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
 import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationBriefLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationContentLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationDataSaveRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationResultLoadRequest;
+import com.jiankangyouyi.health.ai.api.request.ExerciseSpeechQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.ExerciseTextQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.FoodCountEstimateRequest;
+import com.jiankangyouyi.health.ai.api.request.FoodSpeechQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.FoodTextQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageEmotionRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodSingleRecognizeRequest;
@@ -32,6 +41,9 @@ import com.jiankangyouyi.health.ai.api.response.EvaluationBriefLoadResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationContentLoadResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationDataSaveResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationResultLoadResponse;
+import com.jiankangyouyi.health.ai.api.response.ExerciseQueryGeneralResponse;
+import com.jiankangyouyi.health.ai.api.response.FoodCountEstimateResponse;
+import com.jiankangyouyi.health.ai.api.response.FoodQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
@@ -39,6 +51,8 @@ import com.jiankangyouyi.health.ai.api.response.ImageStationeryRecognizeResponse
 import com.jiankangyouyi.health.ai.api.response.QasQueryAnswerResponse;
 import com.jiankangyouyi.health.ai.api.response.SearchFoodDetailResponse;
 import com.jiankangyouyi.health.ai.api.response.SearchFoodListResponse;
+import com.jiankangyouyi.health.ai.api.util.Base64Util;
+import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
 public class ApiTest {
@@ -441,5 +455,162 @@ public class ApiTest {
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}
+	
+	
+	/**
+	 * 食物文本查询
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void queryFoodByText() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		FoodTextQueryRequest request = new FoodTextQueryRequest();
+		request.setText("油条汤圆醪糟肉夹馍");
+		request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+		request.setPageInfo(new PageInfo(1, 2));
+		request.setCount("230");
+
+		FoodQueryGeneralResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	/**
+	 * 食物语音查询
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void queryFoodBySpeech() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		FoodSpeechQueryRequest request = new FoodSpeechQueryRequest();
+        request.setFormat("amr");
+        request.setSpeech(Base64Util.encode
+        		(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+
+		FoodQueryGeneralResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	/**
+	 * 食物语音查询
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void queryFoodBySpeechJson() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		FoodSpeechQueryRequest request = new FoodSpeechQueryRequest();
+        request.setFormat("amr");
+        request.setSpeech(Base64Util.encode
+        		(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+
+		String result = client.execute(request);
+		System.out.println(result);
+	}
+	
+	
+	/**
+	 * 食物语音查询
+	 * 
+	 * 
+	 * @throws IOException 
+	 */
+	@Test
+	public void estimateFoodCount() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		FoodCountEstimateRequest request = new FoodCountEstimateRequest();
+		request.setFoodId("57b6bd3f3004d165422ad79a");
+
+		FoodCountEstimateResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+
+	@Test
+	public void queryExerciseByText() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		ExerciseTextQueryRequest request = new ExerciseTextQueryRequest();
+		request.setText("跑步羽毛球");
+		request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+		request.setPageInfo(new PageInfo(1, 2));
+		request.setCount("18");
+		request.setBodyData(new BodyDataBean("1", "75"));
+
+		ExerciseQueryGeneralResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	@Test
+	public void queryExerciseBySpeech() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		ExerciseSpeechQueryRequest request = new ExerciseSpeechQueryRequest();
+		request.setFormat("amr");
+        request.setSpeech(Base64Util.encode
+        		(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+		ExerciseQueryGeneralResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	
+	
+	@Test
+	public void test() throws IOException {
+
+		String url = "https://apps.hbox.jiankangyouyi.com/jkyy-apps/h5/food/matching/diabetic/life/advice/query.do";
+		Map<String,String> params = new HashMap<>();
+		params.put("sex", "1");	
+		params.put("weight", "75");	
+		params.put("height", "173");	
+		params.put("age", "34");	
+		params.put("userActivityLevel", "0");	
+		params.put("bloodGlucose", "10.3");	
+		params.put("systolicPressure", "120");	
+		params.put("diastolicPressure", "80");	
+		params.put("user", "yangsongbo");	
+
+		String result = HttpClientUtil.post(url, JsonUtil.toJson(params), HttpClientUtil.CONTENT_TYPE_JSON);
+		System.out.println(result);
+	}
+
 
 }

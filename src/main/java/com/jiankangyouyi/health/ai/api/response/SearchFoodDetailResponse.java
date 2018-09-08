@@ -1,5 +1,7 @@
 package com.jiankangyouyi.health.ai.api.response;
 
+import java.math.BigDecimal;
+
 import com.jiankangyouyi.health.ai.api.HealthAiResponse;
 
 /**
@@ -12,323 +14,323 @@ public class SearchFoodDetailResponse extends HealthAiResponse {
 
 	private static final long serialVersionUID = 1L;
 
-	
 	/**
-     * 食物ID
-     */
-    private String foodId;
+	 * 食物ID
+	 */
+	private String foodId;
 
-    /**
-     * 食物名称
-     */
-    private String foodName;
-    
-    /**
-     * 食物图片
-     */
-    private String foodImageUrl;
+	/**
+	 * 食物名称
+	 */
+	private String foodName;
 
-    /**
-     * 食物单位
-     */
-    private String unit;
+	/**
+	 * 食物图片
+	 */
+	private String foodImageUrl;
 
-    /**
-     * 热量
-     */
-    private int heat;
+	/**
+	 * 食物单位
+	 */
+	private String unit;
 
-    /**
-     * 能量
-     */
-    private int heatKJ;
+	/**
+	 * 热量
+	 */
+	private int heat;
 
-    /**
-     * 蛋白质
-     */
-    private double protein;
+	/**
+	 * 能量
+	 */
+	private int heatKJ;
 
-    /**
-     * 脂肪
-     */
-    private double fat;
+	/**
+	 * 蛋白质
+	 */
+	private BigDecimal protein;
 
-    /**
-     * 碳水化合物
-     */
-    private double carbohydrate;
+	/**
+	 * 脂肪
+	 */
+	private BigDecimal fat;
 
-    /**
-     * 水分
-     */
-    private double moisture;
+	/**
+	 * 碳水化合物
+	 */
+	private BigDecimal carbohydrate;
 
-    /**
-     * 胆固醇
-     */
-    private double cholesterol;
+	/**
+	 * 水分
+	 */
+	private BigDecimal moisture;
 
-    /**
-     * 食部
-     */
-    private double ediblePart;
+	/**
+	 * 胆固醇
+	 */
+	private BigDecimal cholesterol;
 
-    /**
-     * 不溶性纤维
-     */
-    private double solkfloc;
+	/**
+	 * 食部
+	 */
+	private BigDecimal ediblePart;
 
-    /**
-     * 维生素B1
-     */
-    private double vitaminB1;
+	/**
+	 * 不溶性纤维
+	 */
+	private BigDecimal solkfloc;
 
-    /**
-     * 维生素B2
-     */
-    private double vitaminB2;
+	/**
+	 * 维生素B1
+	 */
+	private BigDecimal vitaminB1;
 
-    /**
-     * 维生素C
-     */
-    private double vitaminC;
+	/**
+	 * 维生素B2
+	 */
+	private BigDecimal vitaminB2;
 
-    /**
-     * 维生素B6
-     */
-    private double vitaminB6;
+	/**
+	 * 维生素C
+	 */
+	private BigDecimal vitaminC;
 
-    /**
-     * 维生素B12
-     */
-    private double vitaminB12;
+	/**
+	 * 维生素B6
+	 */
+	private BigDecimal vitaminB6;
 
-    /**
-     * 维生素B3(烟酸)
-     */
-    private double vitaminB3;
+	/**
+	 * 维生素B12
+	 */
+	private BigDecimal vitaminB12;
 
-    /**
-     * 维生素B5(泛酸)
-     */
-    private double vitaminB5;
+	/**
+	 * 维生素B3(烟酸)
+	 */
+	private BigDecimal vitaminB3;
 
-    /**
-     * 维生素B9(叶酸)
-     */
-    private double vitaminB9;
+	/**
+	 * 维生素B5(泛酸)
+	 */
+	private BigDecimal vitaminB5;
 
-    /**
-     * 维生素A
-     */
-    private double vitaminA;
+	/**
+	 * 维生素B9(叶酸)
+	 */
+	private BigDecimal vitaminB9;
 
-    /**
-     * 维生素D
-     */
-    private double vitaminD;
+	/**
+	 * 维生素A
+	 */
+	private BigDecimal vitaminA;
 
-    /**
-     * 维生素E
-     */
-    private double vitaminE;
+	/**
+	 * 维生素D
+	 */
+	private BigDecimal vitaminD;
 
-    /**
-     * 维生素K
-     */
-    private double vitaminK;
+	/**
+	 * 维生素E
+	 */
+	private BigDecimal vitaminE;
 
-    /**
-     * 赖氨酸
-     */
-    private double lysine;
+	/**
+	 * 维生素K
+	 */
+	private BigDecimal vitaminK;
 
-    /**
-     * 色氨酸
-     */
-    private double tryptophan;
+	/**
+	 * 赖氨酸
+	 */
+	private BigDecimal lysine;
 
-    /**
-     * 缬氨酸
-     */
-    private double valine;
+	/**
+	 * 色氨酸
+	 */
+	private BigDecimal tryptophan;
 
-    /**
-     * 苯丙氨酸
-     */
-    private double phenylalanine;
+	/**
+	 * 缬氨酸
+	 */
+	private BigDecimal valine;
 
-    /**
-     * 苏氨酸
-     */
-    private double threonine;
+	/**
+	 * 苯丙氨酸
+	 */
+	private BigDecimal phenylalanine;
 
-    /**
-     * 异亮氨酸
-     */
-    private double isoleucine;
+	/**
+	 * 苏氨酸
+	 */
+	private BigDecimal threonine;
 
-    /**
-     * 亮氨酸
-     */
-    private double leucine;
+	/**
+	 * 异亮氨酸
+	 */
+	private BigDecimal isoleucine;
 
-    /**
-     * 蛋氨酸
-     */
-    private double methionine;
+	/**
+	 * 亮氨酸
+	 */
+	private BigDecimal leucine;
 
-    /**
-     * 精氨酸
-     */
-    private double arginine;
+	/**
+	 * 蛋氨酸
+	 */
+	private BigDecimal methionine;
 
-    /**
-     * 谷氨酸
-     */
-    private double glutamic;
+	/**
+	 * 精氨酸
+	 */
+	private BigDecimal arginine;
 
-    /**
-     * 组氨酸
-     */
-    private double histidine;
+	/**
+	 * 谷氨酸
+	 */
+	private BigDecimal glutamic;
 
-    /**
-     * 丙氨酸
-     */
-    private double alanine;
+	/**
+	 * 组氨酸
+	 */
+	private BigDecimal histidine;
 
-    /**
-     * 甘氨酸
-     */
-    private double glycine;
+	/**
+	 * 丙氨酸
+	 */
+	private BigDecimal alanine;
 
-    /**
-     * 脯氨酸
-     */
-    private double proline;
+	/**
+	 * 甘氨酸
+	 */
+	private BigDecimal glycine;
 
-    /**
-     * 丝氨酸
-     */
-    private double serine;
+	/**
+	 * 脯氨酸
+	 */
+	private BigDecimal proline;
 
-    /**
-     * 天冬氨酸
-     */
-    private double aspartic;
+	/**
+	 * 丝氨酸
+	 */
+	private BigDecimal serine;
 
-    /**
-     * 钙
-     */
-    private double calcium;
+	/**
+	 * 天冬氨酸
+	 */
+	private BigDecimal aspartic;
 
-    /**
-     * 磷
-     */
-    private double phosphorus;
+	/**
+	 * 钙
+	 */
+	private BigDecimal calcium;
 
-    /**
-     * 钾
-     */
-    private double potassium;
+	/**
+	 * 磷
+	 */
+	private BigDecimal phosphorus;
 
-    /**
-     * 钠
-     */
-    private double sodium;
-    /** 镁(mg) */
-    private double magnesium;
+	/**
+	 * 钾
+	 */
+	private BigDecimal potassium;
 
-    /**
-     * 铜
-     */
-    private double copper;
+	/**
+	 * 钠
+	 */
+	private BigDecimal sodium;
 
-    /**
-     * 铁
-     */
-    private double iron;
+	/** 镁(mg) */
+	private BigDecimal magnesium;
 
-    /**
-     * 锌
-     */
-    private double zinc;
+	/**
+	 * 铜
+	 */
+	private BigDecimal copper;
 
-    /**
-     * 锰
-     */
-    private double manganese;
+	/**
+	 * 铁
+	 */
+	private BigDecimal iron;
 
-    /**
-     * 碘
-     */
-    private double iodine;
+	/**
+	 * 锌
+	 */
+	private BigDecimal zinc;
 
-    /**
-     * 铬
-     */
-    private double chromium;
+	/**
+	 * 锰
+	 */
+	private BigDecimal manganese;
 
-    /**
-     * 氟
-     */
-    private double fluorine;
+	/**
+	 * 碘
+	 */
+	private BigDecimal iodine;
 
-    /**
-     * 硒
-     */
-    private double selenium;
+	/**
+	 * 铬
+	 */
+	private BigDecimal chromium;
 
-    /**
-     * 总脂肪酸
-     */
-    private double totalFattyAcid;
+	/**
+	 * 氟
+	 */
+	private BigDecimal fluorine;
 
-    /**
-     * 饱和脂肪酸
-     */
-    private double saturatedFattyAcid;
+	/**
+	 * 硒
+	 */
+	private BigDecimal selenium;
 
-    /**
-     * 单不饱和脂肪酸
-     */
-    private double monounsaturatedFattyAcid;
+	/**
+	 * 总脂肪酸
+	 */
+	private BigDecimal totalFattyAcid;
 
-    /**
-     * 多不饱和脂肪酸
-     */
-    private double polyunsaturatedFattyAcid;
+	/**
+	 * 饱和脂肪酸
+	 */
+	private BigDecimal saturatedFattyAcid;
 
-    /**
-     * 单不饱和脂肪酸占比
-     */
-    private double mfaPercent;
+	/**
+	 * 单不饱和脂肪酸
+	 */
+	private BigDecimal monounsaturatedFattyAcid;
 
-    /**
-     * 多不饱和脂肪酸占比
-     */
-    private double pfaPercent;
+	/**
+	 * 多不饱和脂肪酸
+	 */
+	private BigDecimal polyunsaturatedFattyAcid;
 
-    /**
-     * 饱和脂肪酸占比
-     */
-    private double sfaPercent;
+	/**
+	 * 单不饱和脂肪酸占比
+	 */
+	private BigDecimal mfaPercent;
 
-    /**
-     * 胡萝卜素
-     */
-    private double carotene;
+	/**
+	 * 多不饱和脂肪酸占比
+	 */
+	private BigDecimal pfaPercent;
 
-    /**
-     * 大豆异黄酮
-     */
-    private double soyIsoflavone;
+	/**
+	 * 饱和脂肪酸占比
+	 */
+	private BigDecimal sfaPercent;
 
-    /**
-     * GI（血糖生成指数）
-     */
-    private double gi;
+	/**
+	 * 胡萝卜素
+	 */
+	private BigDecimal carotene;
+
+	/**
+	 * 大豆异黄酮
+	 */
+	private BigDecimal soyIsoflavone;
+
+	/**
+	 * GI（血糖生成指数）
+	 */
+	private BigDecimal gi;
 
 	public String getFoodId() {
 		return foodId;
@@ -378,467 +380,467 @@ public class SearchFoodDetailResponse extends HealthAiResponse {
 		this.heatKJ = heatKJ;
 	}
 
-	public double getProtein() {
+	public BigDecimal getProtein() {
 		return protein;
 	}
 
-	public void setProtein(double protein) {
+	public void setProtein(BigDecimal protein) {
 		this.protein = protein;
 	}
 
-	public double getFat() {
+	public BigDecimal getFat() {
 		return fat;
 	}
 
-	public void setFat(double fat) {
+	public void setFat(BigDecimal fat) {
 		this.fat = fat;
 	}
 
-	public double getCarbohydrate() {
+	public BigDecimal getCarbohydrate() {
 		return carbohydrate;
 	}
 
-	public void setCarbohydrate(double carbohydrate) {
+	public void setCarbohydrate(BigDecimal carbohydrate) {
 		this.carbohydrate = carbohydrate;
 	}
 
-	public double getMoisture() {
+	public BigDecimal getMoisture() {
 		return moisture;
 	}
 
-	public void setMoisture(double moisture) {
+	public void setMoisture(BigDecimal moisture) {
 		this.moisture = moisture;
 	}
 
-	public double getCholesterol() {
+	public BigDecimal getCholesterol() {
 		return cholesterol;
 	}
 
-	public void setCholesterol(double cholesterol) {
+	public void setCholesterol(BigDecimal cholesterol) {
 		this.cholesterol = cholesterol;
 	}
 
-	public double getEdiblePart() {
+	public BigDecimal getEdiblePart() {
 		return ediblePart;
 	}
 
-	public void setEdiblePart(double ediblePart) {
+	public void setEdiblePart(BigDecimal ediblePart) {
 		this.ediblePart = ediblePart;
 	}
 
-	public double getSolkfloc() {
+	public BigDecimal getSolkfloc() {
 		return solkfloc;
 	}
 
-	public void setSolkfloc(double solkfloc) {
+	public void setSolkfloc(BigDecimal solkfloc) {
 		this.solkfloc = solkfloc;
 	}
 
-	public double getVitaminB1() {
+	public BigDecimal getVitaminB1() {
 		return vitaminB1;
 	}
 
-	public void setVitaminB1(double vitaminB1) {
+	public void setVitaminB1(BigDecimal vitaminB1) {
 		this.vitaminB1 = vitaminB1;
 	}
 
-	public double getVitaminB2() {
+	public BigDecimal getVitaminB2() {
 		return vitaminB2;
 	}
 
-	public void setVitaminB2(double vitaminB2) {
+	public void setVitaminB2(BigDecimal vitaminB2) {
 		this.vitaminB2 = vitaminB2;
 	}
 
-	public double getVitaminC() {
+	public BigDecimal getVitaminC() {
 		return vitaminC;
 	}
 
-	public void setVitaminC(double vitaminC) {
+	public void setVitaminC(BigDecimal vitaminC) {
 		this.vitaminC = vitaminC;
 	}
 
-	public double getVitaminB6() {
+	public BigDecimal getVitaminB6() {
 		return vitaminB6;
 	}
 
-	public void setVitaminB6(double vitaminB6) {
+	public void setVitaminB6(BigDecimal vitaminB6) {
 		this.vitaminB6 = vitaminB6;
 	}
 
-	public double getVitaminB12() {
+	public BigDecimal getVitaminB12() {
 		return vitaminB12;
 	}
 
-	public void setVitaminB12(double vitaminB12) {
+	public void setVitaminB12(BigDecimal vitaminB12) {
 		this.vitaminB12 = vitaminB12;
 	}
 
-	public double getVitaminB3() {
+	public BigDecimal getVitaminB3() {
 		return vitaminB3;
 	}
 
-	public void setVitaminB3(double vitaminB3) {
+	public void setVitaminB3(BigDecimal vitaminB3) {
 		this.vitaminB3 = vitaminB3;
 	}
 
-	public double getVitaminB5() {
+	public BigDecimal getVitaminB5() {
 		return vitaminB5;
 	}
 
-	public void setVitaminB5(double vitaminB5) {
+	public void setVitaminB5(BigDecimal vitaminB5) {
 		this.vitaminB5 = vitaminB5;
 	}
 
-	public double getVitaminB9() {
+	public BigDecimal getVitaminB9() {
 		return vitaminB9;
 	}
 
-	public void setVitaminB9(double vitaminB9) {
+	public void setVitaminB9(BigDecimal vitaminB9) {
 		this.vitaminB9 = vitaminB9;
 	}
 
-	public double getVitaminA() {
+	public BigDecimal getVitaminA() {
 		return vitaminA;
 	}
 
-	public void setVitaminA(double vitaminA) {
+	public void setVitaminA(BigDecimal vitaminA) {
 		this.vitaminA = vitaminA;
 	}
 
-	public double getVitaminD() {
+	public BigDecimal getVitaminD() {
 		return vitaminD;
 	}
 
-	public void setVitaminD(double vitaminD) {
+	public void setVitaminD(BigDecimal vitaminD) {
 		this.vitaminD = vitaminD;
 	}
 
-	public double getVitaminE() {
+	public BigDecimal getVitaminE() {
 		return vitaminE;
 	}
 
-	public void setVitaminE(double vitaminE) {
+	public void setVitaminE(BigDecimal vitaminE) {
 		this.vitaminE = vitaminE;
 	}
 
-	public double getVitaminK() {
+	public BigDecimal getVitaminK() {
 		return vitaminK;
 	}
 
-	public void setVitaminK(double vitaminK) {
+	public void setVitaminK(BigDecimal vitaminK) {
 		this.vitaminK = vitaminK;
 	}
 
-	public double getLysine() {
+	public BigDecimal getLysine() {
 		return lysine;
 	}
 
-	public void setLysine(double lysine) {
+	public void setLysine(BigDecimal lysine) {
 		this.lysine = lysine;
 	}
 
-	public double getTryptophan() {
+	public BigDecimal getTryptophan() {
 		return tryptophan;
 	}
 
-	public void setTryptophan(double tryptophan) {
+	public void setTryptophan(BigDecimal tryptophan) {
 		this.tryptophan = tryptophan;
 	}
 
-	public double getValine() {
+	public BigDecimal getValine() {
 		return valine;
 	}
 
-	public void setValine(double valine) {
+	public void setValine(BigDecimal valine) {
 		this.valine = valine;
 	}
 
-	public double getPhenylalanine() {
+	public BigDecimal getPhenylalanine() {
 		return phenylalanine;
 	}
 
-	public void setPhenylalanine(double phenylalanine) {
+	public void setPhenylalanine(BigDecimal phenylalanine) {
 		this.phenylalanine = phenylalanine;
 	}
 
-	public double getThreonine() {
+	public BigDecimal getThreonine() {
 		return threonine;
 	}
 
-	public void setThreonine(double threonine) {
+	public void setThreonine(BigDecimal threonine) {
 		this.threonine = threonine;
 	}
 
-	public double getIsoleucine() {
+	public BigDecimal getIsoleucine() {
 		return isoleucine;
 	}
 
-	public void setIsoleucine(double isoleucine) {
+	public void setIsoleucine(BigDecimal isoleucine) {
 		this.isoleucine = isoleucine;
 	}
 
-	public double getLeucine() {
+	public BigDecimal getLeucine() {
 		return leucine;
 	}
 
-	public void setLeucine(double leucine) {
+	public void setLeucine(BigDecimal leucine) {
 		this.leucine = leucine;
 	}
 
-	public double getMethionine() {
+	public BigDecimal getMethionine() {
 		return methionine;
 	}
 
-	public void setMethionine(double methionine) {
+	public void setMethionine(BigDecimal methionine) {
 		this.methionine = methionine;
 	}
 
-	public double getArginine() {
+	public BigDecimal getArginine() {
 		return arginine;
 	}
 
-	public void setArginine(double arginine) {
+	public void setArginine(BigDecimal arginine) {
 		this.arginine = arginine;
 	}
 
-	public double getGlutamic() {
+	public BigDecimal getGlutamic() {
 		return glutamic;
 	}
 
-	public void setGlutamic(double glutamic) {
+	public void setGlutamic(BigDecimal glutamic) {
 		this.glutamic = glutamic;
 	}
 
-	public double getHistidine() {
+	public BigDecimal getHistidine() {
 		return histidine;
 	}
 
-	public void setHistidine(double histidine) {
+	public void setHistidine(BigDecimal histidine) {
 		this.histidine = histidine;
 	}
 
-	public double getAlanine() {
+	public BigDecimal getAlanine() {
 		return alanine;
 	}
 
-	public void setAlanine(double alanine) {
+	public void setAlanine(BigDecimal alanine) {
 		this.alanine = alanine;
 	}
 
-	public double getGlycine() {
+	public BigDecimal getGlycine() {
 		return glycine;
 	}
 
-	public void setGlycine(double glycine) {
+	public void setGlycine(BigDecimal glycine) {
 		this.glycine = glycine;
 	}
 
-	public double getProline() {
+	public BigDecimal getProline() {
 		return proline;
 	}
 
-	public void setProline(double proline) {
+	public void setProline(BigDecimal proline) {
 		this.proline = proline;
 	}
 
-	public double getSerine() {
+	public BigDecimal getSerine() {
 		return serine;
 	}
 
-	public void setSerine(double serine) {
+	public void setSerine(BigDecimal serine) {
 		this.serine = serine;
 	}
 
-	public double getAspartic() {
+	public BigDecimal getAspartic() {
 		return aspartic;
 	}
 
-	public void setAspartic(double aspartic) {
+	public void setAspartic(BigDecimal aspartic) {
 		this.aspartic = aspartic;
 	}
 
-	public double getCalcium() {
+	public BigDecimal getCalcium() {
 		return calcium;
 	}
 
-	public void setCalcium(double calcium) {
+	public void setCalcium(BigDecimal calcium) {
 		this.calcium = calcium;
 	}
 
-	public double getPhosphorus() {
+	public BigDecimal getPhosphorus() {
 		return phosphorus;
 	}
 
-	public void setPhosphorus(double phosphorus) {
+	public void setPhosphorus(BigDecimal phosphorus) {
 		this.phosphorus = phosphorus;
 	}
 
-	public double getPotassium() {
+	public BigDecimal getPotassium() {
 		return potassium;
 	}
 
-	public void setPotassium(double potassium) {
+	public void setPotassium(BigDecimal potassium) {
 		this.potassium = potassium;
 	}
 
-	public double getSodium() {
+	public BigDecimal getSodium() {
 		return sodium;
 	}
 
-	public void setSodium(double sodium) {
+	public void setSodium(BigDecimal sodium) {
 		this.sodium = sodium;
 	}
 
-	public double getMagnesium() {
+	public BigDecimal getMagnesium() {
 		return magnesium;
 	}
 
-	public void setMagnesium(double magnesium) {
+	public void setMagnesium(BigDecimal magnesium) {
 		this.magnesium = magnesium;
 	}
 
-	public double getCopper() {
+	public BigDecimal getCopper() {
 		return copper;
 	}
 
-	public void setCopper(double copper) {
+	public void setCopper(BigDecimal copper) {
 		this.copper = copper;
 	}
 
-	public double getIron() {
+	public BigDecimal getIron() {
 		return iron;
 	}
 
-	public void setIron(double iron) {
+	public void setIron(BigDecimal iron) {
 		this.iron = iron;
 	}
 
-	public double getZinc() {
+	public BigDecimal getZinc() {
 		return zinc;
 	}
 
-	public void setZinc(double zinc) {
+	public void setZinc(BigDecimal zinc) {
 		this.zinc = zinc;
 	}
 
-	public double getManganese() {
+	public BigDecimal getManganese() {
 		return manganese;
 	}
 
-	public void setManganese(double manganese) {
+	public void setManganese(BigDecimal manganese) {
 		this.manganese = manganese;
 	}
 
-	public double getIodine() {
+	public BigDecimal getIodine() {
 		return iodine;
 	}
 
-	public void setIodine(double iodine) {
+	public void setIodine(BigDecimal iodine) {
 		this.iodine = iodine;
 	}
 
-	public double getChromium() {
+	public BigDecimal getChromium() {
 		return chromium;
 	}
 
-	public void setChromium(double chromium) {
+	public void setChromium(BigDecimal chromium) {
 		this.chromium = chromium;
 	}
 
-	public double getFluorine() {
+	public BigDecimal getFluorine() {
 		return fluorine;
 	}
 
-	public void setFluorine(double fluorine) {
+	public void setFluorine(BigDecimal fluorine) {
 		this.fluorine = fluorine;
 	}
 
-	public double getSelenium() {
+	public BigDecimal getSelenium() {
 		return selenium;
 	}
 
-	public void setSelenium(double selenium) {
+	public void setSelenium(BigDecimal selenium) {
 		this.selenium = selenium;
 	}
 
-	public double getTotalFattyAcid() {
+	public BigDecimal getTotalFattyAcid() {
 		return totalFattyAcid;
 	}
 
-	public void setTotalFattyAcid(double totalFattyAcid) {
+	public void setTotalFattyAcid(BigDecimal totalFattyAcid) {
 		this.totalFattyAcid = totalFattyAcid;
 	}
 
-	public double getSaturatedFattyAcid() {
+	public BigDecimal getSaturatedFattyAcid() {
 		return saturatedFattyAcid;
 	}
 
-	public void setSaturatedFattyAcid(double saturatedFattyAcid) {
+	public void setSaturatedFattyAcid(BigDecimal saturatedFattyAcid) {
 		this.saturatedFattyAcid = saturatedFattyAcid;
 	}
 
-	public double getMonounsaturatedFattyAcid() {
+	public BigDecimal getMonounsaturatedFattyAcid() {
 		return monounsaturatedFattyAcid;
 	}
 
-	public void setMonounsaturatedFattyAcid(double monounsaturatedFattyAcid) {
+	public void setMonounsaturatedFattyAcid(BigDecimal monounsaturatedFattyAcid) {
 		this.monounsaturatedFattyAcid = monounsaturatedFattyAcid;
 	}
 
-	public double getPolyunsaturatedFattyAcid() {
+	public BigDecimal getPolyunsaturatedFattyAcid() {
 		return polyunsaturatedFattyAcid;
 	}
 
-	public void setPolyunsaturatedFattyAcid(double polyunsaturatedFattyAcid) {
+	public void setPolyunsaturatedFattyAcid(BigDecimal polyunsaturatedFattyAcid) {
 		this.polyunsaturatedFattyAcid = polyunsaturatedFattyAcid;
 	}
 
-	public double getMfaPercent() {
+	public BigDecimal getMfaPercent() {
 		return mfaPercent;
 	}
 
-	public void setMfaPercent(double mfaPercent) {
+	public void setMfaPercent(BigDecimal mfaPercent) {
 		this.mfaPercent = mfaPercent;
 	}
 
-	public double getPfaPercent() {
+	public BigDecimal getPfaPercent() {
 		return pfaPercent;
 	}
 
-	public void setPfaPercent(double pfaPercent) {
+	public void setPfaPercent(BigDecimal pfaPercent) {
 		this.pfaPercent = pfaPercent;
 	}
 
-	public double getSfaPercent() {
+	public BigDecimal getSfaPercent() {
 		return sfaPercent;
 	}
 
-	public void setSfaPercent(double sfaPercent) {
+	public void setSfaPercent(BigDecimal sfaPercent) {
 		this.sfaPercent = sfaPercent;
 	}
 
-	public double getCarotene() {
+	public BigDecimal getCarotene() {
 		return carotene;
 	}
 
-	public void setCarotene(double carotene) {
+	public void setCarotene(BigDecimal carotene) {
 		this.carotene = carotene;
 	}
 
-	public double getSoyIsoflavone() {
+	public BigDecimal getSoyIsoflavone() {
 		return soyIsoflavone;
 	}
 
-	public void setSoyIsoflavone(double soyIsoflavone) {
+	public void setSoyIsoflavone(BigDecimal soyIsoflavone) {
 		this.soyIsoflavone = soyIsoflavone;
 	}
 
-	public double getGi() {
+	public BigDecimal getGi() {
 		return gi;
 	}
 
-	public void setGi(double gi) {
+	public void setGi(BigDecimal gi) {
 		this.gi = gi;
 	}
 
@@ -866,5 +868,4 @@ public class SearchFoodDetailResponse extends HealthAiResponse {
 				+ gi + "]";
 	}
 
-	
 }

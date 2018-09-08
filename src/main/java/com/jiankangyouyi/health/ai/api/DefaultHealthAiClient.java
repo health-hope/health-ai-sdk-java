@@ -31,7 +31,29 @@ public class DefaultHealthAiClient implements HealthAiClient{
 		this.serverUrl = serverUrl;
 	}
 	
+	/**
+	 * 调用接口并返回response对象
+	 * 
+	 * @param request
+	 * @return
+	 */
 	public <T extends HealthAiResponse> T execute(HealthAiRequest<T> request){
+		String json = this.execute(request);
+		ServiceResponse res = JsonUtil.fromJson(json, ServiceResponse.class);
+		T trs = null;
+		if(res.getResData()!=null&&res.getResData().length()>0){
+			trs = JsonUtil.fromJson(res.getResData(), request.getResponseClass());
+		}
+		return trs;
+	}
+	
+	
+	/**
+	 * 调用接口并返回json数据
+	 * @param request
+	 * @return
+	 */
+	public String execute(IHealthAiRequest request){
 		//check input
 		request.check();
 		ServiceRequest req = new ServiceRequest();
@@ -50,13 +72,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 		if(rtn == null|| rtn.length()==0){
 			throw new RuntimeException("没有返回数据");
 		}
-		ServiceResponse res = JsonUtil.fromJson(rtn, ServiceResponse.class);
-		T trs = null;
-		if(res.getResData()!=null&&res.getResData().length()>0){
-			trs = JsonUtil.fromJson(res.getResData(), request.getResponseClass());
-		}
-		return trs;
-		
+		return rtn;	
 	}
 	
 	/**
