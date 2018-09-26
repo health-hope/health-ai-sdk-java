@@ -33,6 +33,13 @@ dependencies {
     testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
     testCompile 'junit:junit:4.12'
   	testCompile 'commons-io:commons-io:2.4'
+  	testCompile 'cn.jianzhishidai:jianyue-core:1.7.2'
+	testCompile 'org.apache.poi:poi-ooxml:3.11'
+	testCompile 'org.apache.poi:poi-examples:3.11'
+	testCompile 'org.apache.poi:poi-excelant:3.11'
+	testCompile 'org.apache.commons:commons-lang3:3.4'
+	
+  
   	
 }
 
