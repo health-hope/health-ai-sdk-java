@@ -13,6 +13,8 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jiankangyouyi.health.ai.api.HealthAiConstants;
+
 public class RSAUtil {
 
 	private static final String SIGN_ALGORITHMS_SHA1 = "SHA1WithRSA";
@@ -201,6 +203,18 @@ public class RSAUtil {
 		}
 
 		return false;
+	}
+	
+	public static void main(String[] args) {
+//		String privateKey = "MIICWwIBAAKBgQC36ULM/K+pupdZupwEKA6XxmMd2dN7Y0mJNnst1XviUD0FbNs0iuGt79VIeE5xsS6pQDxBi8KigbxCNGm9q3cpfOFwyIcenw+MTRmQiII658zhLRJlmhioBEVNwd7zz1XWrbMyKQZdcx5qY1AhAn+4ig7BzvKRlAFk3v+awLbeEQIDAQABAoGAGGIb0jO6UoWDpYjhQIfTD3plD8Mej+BlEoUfpb8FMscyn/KDyZ6UN0xx+a7Br78vEY+LraELCCKtRBXQ4y3FmYfRPD5qbPBdTCejrMeg38lQ8TQ7ORTJhHFS+7u+kzYO9JYinlhJRxzw04l3Q3KnVLa5h9JvkWbkuzePjwfLMnECQQDr5rAWWP6RdLpQ9twEFqMGyEJAFHPa7ddNUpy8rEZKpjP080c+D8ZU56g6YlO0PEn175+ZOYt40ED7NBrqbVMlAkEAx5SasxpvDGPMY43ZGc44vSQDNgvmfePc253HXGXij8neJRta7+yPr+Dj+WlmXbVSw6q9kRqjVY2mOTajH2+hfQJAfgTUWHveMlILHilhy4VUPdFJIvZKFdAszg+tz1SwkDxNUTONAWhn6P9/7QCN+qCiWhFSTwZgrX+C1y80mbshSQJAHa7BT0/oIiyZkljfaBIeqCq5+4jLj/+asmMF6n0QtBfu3Q/zd2l0eVD2NvrxCZDVLVqwdOtETY4SocG5gwxkNQJABvf68NI8U32+muNAczg5uYXeh/baKfir6J043ZvkhHSfoRZ8Q5ntGSUAHIWCfPgsmdscT+5/qCAciCChR8wJJg==";
+//		String sign = signWithSHA256("appId=5ba9fc91ccbe98681e1c812f&nonceStr=5531ecb166574a80b074d3bc4db79a08&timestamp=2018-10-08 15:48:30&version=2.0", privateKey, HealthAiConstants.CHARSET_UTF8);
+//	
+//		System.out.println(sign);
+		
+		String public_key ="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCF7u94l3XOYrvz/G/R53OLdi1aFr1PqWB7X3aI+jPFXCzTa5sFQ9OOD7Sf4zTldNXKp0Glvt9qjvVpJxobdrO4XMEQm67n8Ame+U+viGvXOOD4foD9ljselrLGtMi32cmq1+G782fJmkio83UREpCF9Vs1AtRUYf7vtvpLL05pewIDAQAB";
+		String content = "appId=5ba9fc91ccbe98681e1c812f&nonceStr=5531ecb166574a80b074d3bc4db79a08&timestamp=2018-10-08 15:48:30&version=2.0";
+		String sign = "Tx1eEqNOKG70QCzlpaECvfvtWPenjS0e5nFy3W3jcrr0lwe6qXBtzlrd65bBonHgXCSdmw8TwTx+Bfimf2S/9SG1N1uAx6Ic2HVE+/yTcijjjxrcR57Ao1NPWpExViSO+bKd52F7hDPkd32Ok+RLn5ogVGy/ExoIVDrzD6pZ0xs=";
+		System.out.println(verifyWithSHA256(content, sign, public_key, "utf-8"));
 	}
 	
 }

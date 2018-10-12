@@ -19,6 +19,9 @@ import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserInfoBean;
 import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserOptionsBean;
 import com.jiankangyouyi.health.ai.api.bean.query.BodyDataBean;
 import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
+import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest;
+import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.BodyData;
+import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.MealData;
 import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationBriefLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationContentLoadRequest;
@@ -36,6 +39,7 @@ import com.jiankangyouyi.health.ai.api.request.ImageStationeryRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
 import com.jiankangyouyi.health.ai.api.request.SearchFoodDetailRequest;
 import com.jiankangyouyi.health.ai.api.request.SearchFoodListRequest;
+import com.jiankangyouyi.health.ai.api.response.AnalysisMealResponse;
 import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationBriefLoadResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationContentLoadResponse;
@@ -57,17 +61,17 @@ import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
 public class ApiTest {
 	//测试
-	private static String APPID = 
+//	private static String APPID = 
 //			"5b33941b84274a0aa482e105";
-			"5b28ba57e7b10a574ed6e7f5";
-	private static String PRIVATE_KEY = 
-			"MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDE6/zHhjxBxwJ1HnbVLG9EAq4UdC7cEHjAfx8CLDOY+Bhp85kusDh60cj1lYFGEZ5ecOJNax+kFNI2eOHfAwD3GCnnjRHsi5+wc4/lroizdMwLVGk5Uu4rc89uAAGC3gdI5mTAcJg5dnVUHOuKi78OoZiA2iovd37qa5osPXAQCqjAOQaMFMVBMdwP7F28tLbb5K4yRVhot2Xqve5PsFnKnSldr1TgjG7F247GeiTvLutZo4sDzIIeQ1EfIfTbWvB5cMOH6hAiUAcJnTCjVqvaEmdRg41OlVOxg7phw2kPLXQEowInKLvJmIdQD4DMO+/hwixq+zkyTspRoUWTW+cBAgMBAAECggEAdJcMGM3fS0qap+EblmcykV/M1YtcWyrdc4tQPqcQ/ZaWTdTOcxgeuIkQpGaaHXQ9AclwE0pDd5BkTaAQi0tp/OIvnUqmvBiGuaASKHjHswiJ7oNRsYDqRovQ2l3ihysRwRW3vUBswEjkeqKMyoCm4/DFLDT/GQ908zI2G89cVAIQ2lpYVHC+a7lniHbbFueICDxnVKiMfiasErXwWu5bnWZIFdaUi24NUFShVfeY1hGFItOfAxnm88atTRBbrDrdKCUbkN7CG1Kcgl9gGIRfFjA9LKuVFb/Xf2PnR65J2D+lgX7P5BO0PvCQN3JuC+eGzJXeFdtFiNnDZoNVAhA56QKBgQDzl9JBOn9D+gPEIns4I5GxtF7jFMEuG5TrrOwlflWX0+4paisYq+H8fT32O7FsKXup5KCo7fRHBtlfLymBnmJxpJ3+WB1LfeUXw28MD1GeK5TTZkiqYwowEFb1PIMvtLY5pgGEu77NqzEAfmwhGN0BJGhd1Rtos1UusKVD8cLiqwKBgQDO86A+mo8+qmVYvkDeW+FvD4EmzTzMS0r42nxnjN3jTzla1sXkVr68WIQlAESXzLe77r7B5cFc+pW02Gf4mR9VO8HefsjAFuGdBaFOtg9tb3mH9UDdjdabg1TQJy4i9SSncmHGPO4GbuqIu20oegA9PLTZcmjqoocLqtzebjG9AwKBgE4yGG6UBrKdmYPmxcNZt7Vh/2vKB9FzTTTyh8PpcDSS9csZp8f9tUfGNJPMycG891Osbt6LtHTwf+sMSrivTU7J12YEhzLqsRYVyJoIeNzbhKTwGreHn4eaVy/WQw6XZj/PSIGBe1iuccaEztU5FAj/1Pj6JhhQKTIZxpOvEi6NAoGAEerR0tm60SgbgiVmpFm8GMt02REn1GAoa4cvAiAWDdoMEytJEs3X0aKwPivZxHK67ZBr/4mOxigD0hZyWfmX1t9Hl6XOZ6MTgW69Wn00tLrUAMthBE2FaQ1jyGm7+tbSh5TFlk4sJW5w68meV8TIRIT++1yGbNoJax8t5CwSLlUCgYEA7gehw7YbUfPIY6tg30NU3ub+uGK9LAH+f+HglMm/TjxG9OCrWp811Jr+4nILLKjiMc9oWqfbEZU0Vp1VMmxR5yB5ZzbhPEJ+KZVkX4G01tSZveKb30js78XjQg2U0gZs2INod+VVLK8hbC3kbdApZCmRjSReFtx8DT5d7vsjdDg=";
+//			"5b28ba57e7b10a574ed6e7f5";
+//	private static String PRIVATE_KEY = 
+//			"MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDE6/zHhjxBxwJ1HnbVLG9EAq4UdC7cEHjAfx8CLDOY+Bhp85kusDh60cj1lYFGEZ5ecOJNax+kFNI2eOHfAwD3GCnnjRHsi5+wc4/lroizdMwLVGk5Uu4rc89uAAGC3gdI5mTAcJg5dnVUHOuKi78OoZiA2iovd37qa5osPXAQCqjAOQaMFMVBMdwP7F28tLbb5K4yRVhot2Xqve5PsFnKnSldr1TgjG7F247GeiTvLutZo4sDzIIeQ1EfIfTbWvB5cMOH6hAiUAcJnTCjVqvaEmdRg41OlVOxg7phw2kPLXQEowInKLvJmIdQD4DMO+/hwixq+zkyTspRoUWTW+cBAgMBAAECggEAdJcMGM3fS0qap+EblmcykV/M1YtcWyrdc4tQPqcQ/ZaWTdTOcxgeuIkQpGaaHXQ9AclwE0pDd5BkTaAQi0tp/OIvnUqmvBiGuaASKHjHswiJ7oNRsYDqRovQ2l3ihysRwRW3vUBswEjkeqKMyoCm4/DFLDT/GQ908zI2G89cVAIQ2lpYVHC+a7lniHbbFueICDxnVKiMfiasErXwWu5bnWZIFdaUi24NUFShVfeY1hGFItOfAxnm88atTRBbrDrdKCUbkN7CG1Kcgl9gGIRfFjA9LKuVFb/Xf2PnR65J2D+lgX7P5BO0PvCQN3JuC+eGzJXeFdtFiNnDZoNVAhA56QKBgQDzl9JBOn9D+gPEIns4I5GxtF7jFMEuG5TrrOwlflWX0+4paisYq+H8fT32O7FsKXup5KCo7fRHBtlfLymBnmJxpJ3+WB1LfeUXw28MD1GeK5TTZkiqYwowEFb1PIMvtLY5pgGEu77NqzEAfmwhGN0BJGhd1Rtos1UusKVD8cLiqwKBgQDO86A+mo8+qmVYvkDeW+FvD4EmzTzMS0r42nxnjN3jTzla1sXkVr68WIQlAESXzLe77r7B5cFc+pW02Gf4mR9VO8HefsjAFuGdBaFOtg9tb3mH9UDdjdabg1TQJy4i9SSncmHGPO4GbuqIu20oegA9PLTZcmjqoocLqtzebjG9AwKBgE4yGG6UBrKdmYPmxcNZt7Vh/2vKB9FzTTTyh8PpcDSS9csZp8f9tUfGNJPMycG891Osbt6LtHTwf+sMSrivTU7J12YEhzLqsRYVyJoIeNzbhKTwGreHn4eaVy/WQw6XZj/PSIGBe1iuccaEztU5FAj/1Pj6JhhQKTIZxpOvEi6NAoGAEerR0tm60SgbgiVmpFm8GMt02REn1GAoa4cvAiAWDdoMEytJEs3X0aKwPivZxHK67ZBr/4mOxigD0hZyWfmX1t9Hl6XOZ6MTgW69Wn00tLrUAMthBE2FaQ1jyGm7+tbSh5TFlk4sJW5w68meV8TIRIT++1yGbNoJax8t5CwSLlUCgYEA7gehw7YbUfPIY6tg30NU3ub+uGK9LAH+f+HglMm/TjxG9OCrWp811Jr+4nILLKjiMc9oWqfbEZU0Vp1VMmxR5yB5ZzbhPEJ+KZVkX4G01tSZveKb30js78XjQg2U0gZs2INod+VVLK8hbC3kbdApZCmRjSReFtx8DT5d7vsjdDg=";
 //			"MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDvGsh7/ollxwhrtRU3m746ERkgXW2gNlol+IcbvI/7APL+2ndMZvxpwliR59X7vMhPM1t33bkWDQLT1VIzmdkz/2ZTw7UN2EGgbTEflu3Bzt6UqQc0mOxJtsm6PMvfzrIhdr8rYDDR749QDhhKsEg2wzbJNBEhp7JCJRzTTqNpIvaTbaEck8FSm8H6QYOmAcupExrMQA7pEUVBgduVT3oMmcT5RnHh8hD8BjjMV9V/xq8tVOF7F++tvBtdoIW9gT+joFKCWUOertiQWENaub+lvKTeRaGeOlRjmZWp55rcx3hp56usGtSM3O8un8aKMbOJ448gka+XzQ/kOXUmPGlLAgMBAAECggEBAMYhKXQlzXC65q1pljVIJu8y7+Ezyf1yTG0ebcZ8D8rsVG7+VNDInex9EKuGsngxTMLkSa0f25j8GxWxtLXxjFxcDEzo5QSd6HOpR4VnqYhphWMmVUQuW84RW0Op0T6Zpl24alzlDk9H9TdfFp39STmntaQwMunybfIFksc+aIZaylP2sPkvjh8D9LyuSKKpmO5RMO8jM2EEo0AenonV7eXEvVQls/zht8ZnPQzGLBwCS+LvmggYjTbkDEELaVZClxjSgw1Ksw8cY3M05JZAZVfK8sZkxAAqzcrXNLZ0YC/wo/aZNw7LGPD78FHe/AFKTZ9rFtUWtmF9egwLN78aQ6ECgYEA/biIBQzsbRGWB6s3dkRjCYeWptc8aiNg0pzn+vmLbV9fmQII7bLS+lUjzZthYsjHBEEYilcrOYfx9ODT/1mzux+8e/kjxCvzOxJWktE2CfaRn2LzL1fXei6hk4It9kXxUCbxMeH0gTWhp6P8zmJcHh9LIyMZ2O8kivXdGjbRQFMCgYEA8UCjwni8esFnYn4qUXwyXap01EXGOhLqFIwiyds+InnLT723AXFFIxPW91lDCZdWXloL83flyP82qXAjfM//4Dvtb7bq2Ee77uCJn9DaGdQC8xJj1HHkkFInQSexFrIKwcEAPEMZ/EgdPrVW7Fmypf4CVd79RrqqoiHNv1eu9CkCgYEA+ZIXcehZc5vV2StI/fOc+5W80dZsHfc42VLwOYZX6Ljk3ywKPk4li4pOEoQh0jqu0Pd7PTErWobnsLmqrsW8rnc0Pzo9PU0CD3wlXnueTUSVz5NUpKAiW5Qc6W0m6tW33eDAZhHeIW7w2WbMWPKVrCeaEDEJzsLFTk80MwHy6PMCgYBO9CCj3G+SnQkAqtmeoU66aLajYdJl3xrMbrBT73R+Q+3NwwDJcBB4Ul3fxU6zLNwPNNkEbRC+nwd8nD6A8nGDKRmjnfFtpsxSeRmRPACkw0XT1wjk1gE/WiOOpzbFfq8WidtR3YP7lH49r4sq/pAA0whgogGxzBVbykRTgpa3QQKBgQCVWLYdXllqLUQhKZZa2ehShroO14fdCANc0eE5L6wl84gCzGX5ePPvk/WKZtaImTZFGNJZ+XwTGEf9cJ0oMTvZ5kdb3DOSWOIueq4uGohsZUeXBMVjeU6uRqBTn46i7gOH3/FS4U6Vcpr4lY/YVsBnJiQ/oST2jWwghHdvd4SMYw==";
 //			"MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCNHbNejlLVAUg2lOaSzNNl4o491/RcA4ki+rp6zOMU5FZqtrI2xuJVIJtWjMP1p7MKbBDpleELqIWFn74yQFLne1JCwTo3yNc4hbjzvwVC3KwSkgzkbeQiZcC6IqKVwM8zmQQ8U3ZoU8/O9oPCLxXuE0wgjRieaQ2wewdJGBPW5aeoaAi0p3e29Jkk70aYRfpDkoNjYQn4le1K719f3mwyx21RsfA203/uVXSCXoxSc7dJKDMjtF9y8RE9wHDrE4SqSW6x//fjPdyE4lQz1aUqqRhbYwlxQyomMIuoAEUOd3kd1+QWM4ZmdNYl/BPPV1A0AFOxpOX7iN+n16EO5t+rAgMBAAECggEAcyyHhighIOpv9uRmn+/+pcxYDc+hCCx2lA8RfkKVICsRAP3lzGFcvt/jCKvREEF0FpCG6S7Dw5EikSIEyNzJDVcQl50/l+IbDm3Nu1rvv1d+NZXwYcvzA8QKnaDBE/qO4m0EEPyJyrKFDEUU2rs1ad9kJbkjG79gRebT1muJXb1SaqPrsnoAX4xmnMhe7h3w9KOT9ULbLElgwyOy7CdSRJt49KQDa0aVawdtjqGSgqQhWeWEUXa5Xli2s094AEnnHkgHP2OW1+RUq5fSmdGdrm5fKofqsArznRrf6GGar12KNyjnQdBtJAiq27UoQdn8Rn5XhlGsPvi2podblzs1aQKBgQC/UaN/lyIt6nUjDsDfjPlPk66e2Imyk78keSUL5UGtCt7ueQTMQhodh4E5YkY33/hThDo5Fqx95tUVE56jCqlo/66UdaMs5lpWb8CGxsfKYpSstR8bYSwuD1JzJ6W2lK0NAnLYtVV1MG7OD0LB8eqJLRkRU3Le0t6EOLCqi+5URwKBgQC80xQWX4RFApmrNyqqfwHWOQp6yn3SRkmBYD1TFRlzEpyRNH8ZOqStO63NFazb3yfDcR8+PgtY0JoQLf0gmrTXCeThWcJRYJXy9xGROqChVajtnVbJLVbFEZ/gk0yXMPXqOty+8Sm61J6CoOWDoBEcKJlN5izYxjs6MuacAUP/fQKBgASN1O58knu1UQR8nWq02FpkkYuGbACsM6iSmacm1eFgmN3kU5DpIeYCC7lp9XHvCuIyC5DAUWrNy9SsmuIWpuGw9F7kTfYLparZDiQnJypSHmfeB9eHAJ44DyZekzs9XsEohcNSza30cS7GfjhPod2SDT60Vc+oBVPwZYQpwIqRAoGARb34t2LEKfER7QlNOvf6J7OdyUitPFM1pxFy1RL/+V6wcXlgUGM2m71lLlCJLhS4TRmlHoowCrfRj5RM4BQEI0DGRu2uNfxkpf7XgDqVRcGryUfJ3Dhgyhz+XiZJrbYpvj/LdMMCVL1fZoQjAYDHkQz1wq33doGRMqfGQWy+PskCgYEAqP+oWGhuV3bN0TUE6fiTc6r4JM6bZv2PXRASRHkCBfMal2sAPKRWO3hhBX0bhUQ23jmlRRz5pKA3z3k8Vd7Hu5XxQ9nx7Rz2I3QxcmxhdPRYdnD1Mq7LICu0676cP0uH3jQcRdhP6Ho5K/Fl9aQxZACszPDWhdZHOzRmSi2nMDI=";
 	
 	//生产
-//	private static String APPID = "5b07af2f1d41c863dcd7388d";
-//	private static String PRIVATE_KEY = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCp9lo5wFz+35hb/YhjnD8Ua3BS7DU3sawZS2AsnjSMOK5YZOeg9difG7TRD0mBX0A3mnQ3QpDCQB58LcpKc+WzHO/VAeSMlmnFEZuDBfSn+Ctv7QpazWvClOSAiLf0pw4EWxHKkp8X9B7Qi+B+MW3u4XScTNeakJQjRpG1EyCAMZIJIUTtcSBHut6p6lZ40o87dX+x6G06C7X65UbiC6UGagKPs4/vY5ur5KFFyTpK3VaH4w2sySU9HIImiS33G5hSh+xrkM46YtVv96frWcqeHvEExuVfwoBUM8Yu+/jttpprc/7wWR/c/oSTNownHG1hewTz+nJ+9rVfH0nIx2FvAgMBAAECggEAY+WgcoFWJ5hUfP0vxRx5Fw9vHc4oGWwcs2FSTedPC3vlPZ9RZZIamKo4RQivM5NAs23dEP3XB9WYFXT0iX5FbFl9vb03EEr4MBSBSymc+30qSscQZv6GcAADrmitducZngXJFz/GstWRpxIQCRwUeWualqOzte10pKc9zShI2g9S+psmHeM4pvftmPl25MP01NwtNfW8/5aQi6uWvxrXyzAgUoGEJI3vPIhH0wcVDL69Xgyyb4m6ivW+DaRvWGWiWvXyhP5CrQBnPHRrhSXwZ+6PcGAN9Q5i5R/ui9wo+MGHdwa32ebjIKUxkNyNfBZjiM/PSeycY3o17GNdKrCEgQKBgQDfJlFcPMdaMAwQbvhDU4bcpL6xxhmkmxGqBY6IoqvGsZWNTrq89Uu1+hcZb4NBMwQ/jBHahhc2wFt7r0h4bQKju8qnvHGswQMtlaTq5CVU2Pb3Yamz9G/PAJeWN/bZoZZkA2tF1dMFkeLQIowIfkfbgizBOetmM/8U9yVdTs8PVwKBgQDC+5m6DjqBLFxrVVKglQi/4AZhw85x7E+yup1i43AXf8oeyVVlrZJsI1Fo0Yx44bLZOYfTbAzwotHfXY51p05sXtvNke15jOsw/evA87xsvvFFMd8NO0jAMKkVJLnOL0rngKmdSwVMYUbcpb1LFdm6w17nvGzmOXwOhlOAB0AnqQKBgEUhas0nax7uiZ5Bspmw87PBOe57D5CmFafVht2ff5XTiCA5xrIpT+Y1bxiLKl91fZhuPU20gtaMawr7N3lPVCUDVXn3cEPzm5dwp6G5QjNx77idweQlEspPRabc+ZVccOnVAVOmNXShSGHwge9Tp9FCF7lYxytnalvFYQbyFkWLAoGAJ1cqai7KwRtZPlLFzB6l2Ej0IK+oLLY4UmBytuwaxrMC7flDYLOHsofhuhtlk1I+irOf4xmO9tJzM/UldDmgih8NjEmgN4EmRwlEkvbakrpn5cUtMvc+M4Dd7KUvVBmYrGL6VgE3/XQ3HvfV3Jt5BcS7llgfRMhebnPNzywnVpkCgYEAgjZSHwzyD36qK5mq/DzA7EmtSwYckjvZ9F/1E6UVBbJ7kI6/PMW7uMV+rBS9JjkwCK6j7rlFeXnMd+qvOnX/qEYyT4sTc+JctOWr5MGtRevc6xVxOsEq3HRqRdb3ibnxWHVvBmY7FZuqXCEKa6q8MhByiAFuj93cLF1c/cltqU4=";
+	private static String APPID = "5b07af2f1d41c863dcd7388d";
+	private static String PRIVATE_KEY = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCp9lo5wFz+35hb/YhjnD8Ua3BS7DU3sawZS2AsnjSMOK5YZOeg9difG7TRD0mBX0A3mnQ3QpDCQB58LcpKc+WzHO/VAeSMlmnFEZuDBfSn+Ctv7QpazWvClOSAiLf0pw4EWxHKkp8X9B7Qi+B+MW3u4XScTNeakJQjRpG1EyCAMZIJIUTtcSBHut6p6lZ40o87dX+x6G06C7X65UbiC6UGagKPs4/vY5ur5KFFyTpK3VaH4w2sySU9HIImiS33G5hSh+xrkM46YtVv96frWcqeHvEExuVfwoBUM8Yu+/jttpprc/7wWR/c/oSTNownHG1hewTz+nJ+9rVfH0nIx2FvAgMBAAECggEAY+WgcoFWJ5hUfP0vxRx5Fw9vHc4oGWwcs2FSTedPC3vlPZ9RZZIamKo4RQivM5NAs23dEP3XB9WYFXT0iX5FbFl9vb03EEr4MBSBSymc+30qSscQZv6GcAADrmitducZngXJFz/GstWRpxIQCRwUeWualqOzte10pKc9zShI2g9S+psmHeM4pvftmPl25MP01NwtNfW8/5aQi6uWvxrXyzAgUoGEJI3vPIhH0wcVDL69Xgyyb4m6ivW+DaRvWGWiWvXyhP5CrQBnPHRrhSXwZ+6PcGAN9Q5i5R/ui9wo+MGHdwa32ebjIKUxkNyNfBZjiM/PSeycY3o17GNdKrCEgQKBgQDfJlFcPMdaMAwQbvhDU4bcpL6xxhmkmxGqBY6IoqvGsZWNTrq89Uu1+hcZb4NBMwQ/jBHahhc2wFt7r0h4bQKju8qnvHGswQMtlaTq5CVU2Pb3Yamz9G/PAJeWN/bZoZZkA2tF1dMFkeLQIowIfkfbgizBOetmM/8U9yVdTs8PVwKBgQDC+5m6DjqBLFxrVVKglQi/4AZhw85x7E+yup1i43AXf8oeyVVlrZJsI1Fo0Yx44bLZOYfTbAzwotHfXY51p05sXtvNke15jOsw/evA87xsvvFFMd8NO0jAMKkVJLnOL0rngKmdSwVMYUbcpb1LFdm6w17nvGzmOXwOhlOAB0AnqQKBgEUhas0nax7uiZ5Bspmw87PBOe57D5CmFafVht2ff5XTiCA5xrIpT+Y1bxiLKl91fZhuPU20gtaMawr7N3lPVCUDVXn3cEPzm5dwp6G5QjNx77idweQlEspPRabc+ZVccOnVAVOmNXShSGHwge9Tp9FCF7lYxytnalvFYQbyFkWLAoGAJ1cqai7KwRtZPlLFzB6l2Ej0IK+oLLY4UmBytuwaxrMC7flDYLOHsofhuhtlk1I+irOf4xmO9tJzM/UldDmgih8NjEmgN4EmRwlEkvbakrpn5cUtMvc+M4Dd7KUvVBmYrGL6VgE3/XQ3HvfV3Jt5BcS7llgfRMhebnPNzywnVpkCgYEAgjZSHwzyD36qK5mq/DzA7EmtSwYckjvZ9F/1E6UVBbJ7kI6/PMW7uMV+rBS9JjkwCK6j7rlFeXnMd+qvOnX/qEYyT4sTc+JctOWr5MGtRevc6xVxOsEq3HRqRdb3ibnxWHVvBmY7FZuqXCEKa6q8MhByiAFuj93cLF1c/cltqU4=";
 	
 	
 	private static String DATA_PATH = "/Users/yangsongbo/workspace2/health-ai-sdk-java/src/test/java/api/data/";
@@ -307,7 +311,7 @@ public class ApiTest {
 
 		
 		DialogRecordRequest request = new DialogRecordRequest();
-		request.setText("我吃了三十颗米饭一碗紫菜汤");
+		request.setText("烤牛排");
 		DialogRecordResponse response = client.execute(request);
 		//{"curTime":"2018-07-05 16:55:50","result":[{"count":30,"intent":"RECORD_MEAL","itemName":"米饭","unit":"颗"},{"count":1,"intent":"RECORD_MEAL","itemName":"紫菜汤","unit":"碗"}],"retCode":"SUCCESS","sn":"5b3ddd165516106e19a8c4fa"}
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -602,6 +606,44 @@ public class ApiTest {
         request.setPageInfo(new PageInfo(1, 2));
 
 		ExerciseQueryGeneralResponse response = client.execute(request);
+		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	@Test
+	public void analysisMeal() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.jiankangyouyi.com/ego-gw");
+
+		List<MealData> breakfast = new ArrayList<>();
+        breakfast.add(new MealData("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealData("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealData("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealData("57b6cb003004c3a694947437", "178"));
+
+        List<MealData> lunch = new ArrayList<>();
+        lunch.add(new MealData("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealData("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealData("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealData("57b6cb003004c3a694947de3", "178"));
+
+        List<MealData> supper = new ArrayList<>();
+        supper.add(new MealData("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealData("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealData("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealData("58eb4b0df32eaa580dec7296", "100"));
+
+        
+        
+        AnalysisMealRequest request = new AnalysisMealRequest();
+		request.setBodyData(new BodyData("1", "1988-11-26", "1", "1"));
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+
+        AnalysisMealResponse response = client.execute(request);
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}
