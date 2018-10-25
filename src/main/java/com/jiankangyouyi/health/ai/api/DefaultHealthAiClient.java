@@ -67,6 +67,7 @@ public class DefaultHealthAiClient implements HealthAiClient{
 		String reqDataJson = JsonUtil.toJson(request);
 		req.setReqData(reqDataJson);
 		String reqMessage = JsonUtil.toJson(req);
+		System.out.println(reqMessage);
 		String serviceUrl = this.serverUrl + request.getApiUrl();
 		String rtn = HttpClientUtil.post(serviceUrl, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
 		if(rtn == null|| rtn.length()==0){
