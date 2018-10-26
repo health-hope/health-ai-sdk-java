@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.jiankangyouyi.health.ai.api.HealthAiResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
-
 /**
  * 运动课程查询
  * 
@@ -13,7 +11,6 @@ import cn.jianzhishidai.core.annotations.JavaBean;
  * @author yangsongbo
  *
  */
-@JavaBean
 public class SportSubjectQueryResponse extends HealthAiResponse {
 	
 	private static final long serialVersionUID = 1L;

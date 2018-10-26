@@ -6,16 +6,12 @@ import java.util.List;
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.bean.food.RecommendFoodBean;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendChangementResponse;
-import com.jiankangyouyi.health.ai.api.response.FridgeFoodRecommendResponse;
-
-import cn.jianzhishidai.core.annotations.JavaBean;
 
 /***
  * 食材替换
  * 
  * @see /v2/lp/changement/food/recommendation.do
  */
-@JavaBean
 public class FoodRecommendChangementRequest extends HealthAiRequest<FoodRecommendChangementResponse> {
 
 	private static final long serialVersionUID = 1L;

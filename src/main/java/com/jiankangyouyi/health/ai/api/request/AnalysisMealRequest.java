@@ -5,7 +5,6 @@ import java.util.List;
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.response.AnalysisMealResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
 
 /**
  * 饮食分析
@@ -14,7 +13,6 @@ import cn.jianzhishidai.core.annotations.JavaBean;
  * @author yangsongbo
  *
  */
-@JavaBean
 public class AnalysisMealRequest extends HealthAiRequest<AnalysisMealResponse> {
 
 	

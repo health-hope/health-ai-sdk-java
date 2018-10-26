@@ -3,14 +3,11 @@ package com.jiankangyouyi.health.ai.api.request;
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.response.SportVoiceQueryResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
-
 /***
  * 运动音频查询
  * 
  * @see /v2/sports/voice/query.do
  */
-@JavaBean
 public class SportVoiceQueryRequest extends HealthAiRequest<SportVoiceQueryResponse> {
 
 	private static final long serialVersionUID = 1L;

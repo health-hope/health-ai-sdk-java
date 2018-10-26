@@ -6,14 +6,11 @@ import java.util.List;
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.response.FridgeFoodRecommendResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
-
 /***
  * 基于冰箱食材的推荐
  * 
  * @see /v2/lp/fridge/food/recommendation.do
  */
-@JavaBean
 public class FridgeFoodRecommendRequest extends HealthAiRequest<FridgeFoodRecommendResponse> {
 
 	private static final long serialVersionUID = 1L;

@@ -2,7 +2,6 @@ package com.jiankangyouyi.health.ai.api;
 
 import java.io.Serializable;
 
-import org.springframework.util.Assert;
 
 /**
  * 用来定义分页请求信息
@@ -31,11 +30,16 @@ public class PageInfo implements Serializable {
 	}
 
 	public PageInfo(String pageNum, String pageSize) {
-		Assert.hasText(pageNum, "This pageNum must have text; it must not be null, empty, or blank");
-		Assert.hasText(pageSize, "This pageSize must have text; it must not be null, empty, or blank");
+		if (pageNum == null || "".equals(pageNum.trim())) {
+			throw new IllegalArgumentException("This pageNum must have text; it must not be null, empty, or blank");
+		}
+
+		if (pageSize == null || "".equals(pageSize.trim())) {
+			throw new IllegalArgumentException("This pageSize must have text; it must not be null, empty, or blank");
+		}
 		this.pageNum = Integer.valueOf(pageNum);
 		this.pageSize = Integer.valueOf(pageSize);
-		
+
 	}
 
 

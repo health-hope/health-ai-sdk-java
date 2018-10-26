@@ -5,14 +5,11 @@ import java.math.BigDecimal;
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
-
 /***
  * 基于食物库的食材推荐
  * 
  * @see /v2/lp/dbs/food/recommendation.do
  */
-@JavaBean
 public class FoodRecommendRequest extends HealthAiRequest<FoodRecommendResponse> {
 
 	private static final long serialVersionUID = 1L;

@@ -3,8 +3,7 @@ package com.jiankangyouyi.health.ai.api.response;
 import java.util.List;
 
 import com.jiankangyouyi.health.ai.api.HealthAiResponse;
-
-import cn.jianzhishidai.core.domain.PageInfo;
+import com.jiankangyouyi.health.ai.api.PageInfo;
 
 /**
  * 运动专题列表
