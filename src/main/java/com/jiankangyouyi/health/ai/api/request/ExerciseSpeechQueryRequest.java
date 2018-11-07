@@ -38,6 +38,11 @@ public class ExerciseSpeechQueryRequest extends HealthAiRequest<ExerciseQueryGen
 	 * 音频格式
 	 */
 	private String format;
+	
+	/**
+	 * 采样率
+	 */
+	private int rate;
 
 	/** 分页 **/
 	private PageInfo pageInfo;
@@ -62,8 +67,15 @@ public class ExerciseSpeechQueryRequest extends HealthAiRequest<ExerciseQueryGen
 	public void setFormat(String format) {
 		this.format = format;
 	}
-
 	
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
 	public BodyDataBean getBodyData() {
 		return bodyData;
 	}

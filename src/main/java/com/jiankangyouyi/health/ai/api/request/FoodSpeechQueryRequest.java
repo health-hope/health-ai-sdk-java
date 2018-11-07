@@ -38,6 +38,12 @@ public class FoodSpeechQueryRequest extends HealthAiRequest<FoodQueryGeneralResp
 	 * 
 	 */
 	private String format;
+	
+	/**
+	 * 采样率
+	 */
+	private int rate;
+	
 
 	/** 分页 **/
 	private PageInfo pageInfo;
@@ -64,6 +70,14 @@ public class FoodSpeechQueryRequest extends HealthAiRequest<FoodQueryGeneralResp
 
 	public void setSpeech(String speech) {
 		this.speech = speech;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 	public PageInfo getPageInfo() {
