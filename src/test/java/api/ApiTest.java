@@ -296,7 +296,6 @@ public class ApiTest {
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
 				"https://api2.jiankangyouyi.com");
 
-		
 		QasQueryAnswerRequest request = new QasQueryAnswerRequest();
 		request.setQuestion("跑步可以减肥吗");
 		QasQueryAnswerResponse response = client.execute(request);
@@ -319,10 +318,9 @@ public class ApiTest {
 
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
 				"https://api.hbox.jiankangyouyi.com/ego-gw");
-
 		
 		DialogRecordRequest request = new DialogRecordRequest();
-		request.setText("烤牛排");
+		request.setText("我晚上跑步35分钟，然后喝了一罐可乐");
 		DialogRecordResponse response = client.execute(request);
 		//{"curTime":"2018-07-05 16:55:50","result":[{"count":30,"intent":"RECORD_MEAL","itemName":"米饭","unit":"颗"},{"count":1,"intent":"RECORD_MEAL","itemName":"紫菜汤","unit":"碗"}],"retCode":"SUCCESS","sn":"5b3ddd165516106e19a8c4fa"}
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -498,12 +496,12 @@ public class ApiTest {
 	public void queryFoodByText() throws IOException {
 
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-				"https://api.hbox.jiankangyouyi.com/ego-gw");
+				"https://api.jiankangyouyi.com/ego-gw");
 
 		FoodTextQueryRequest request = new FoodTextQueryRequest();
-		request.setText("油条汤圆醪糟肉夹馍");
+		request.setText("苹果的热量是多少");
 		request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
-		request.setPageInfo(new PageInfo(1, 2));
+		request.setPageInfo(new PageInfo(1, 3));
 		request.setCount("230");
 
 		FoodQueryGeneralResponse response = client.execute(request);
@@ -526,6 +524,7 @@ public class ApiTest {
 
 		FoodSpeechQueryRequest request = new FoodSpeechQueryRequest();
         request.setFormat("amr");
+        request.setRate(16000);
         request.setSpeech(Base64Util.encode
         		(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
@@ -611,6 +610,7 @@ public class ApiTest {
 
 		ExerciseSpeechQueryRequest request = new ExerciseSpeechQueryRequest();
 		request.setFormat("amr");
+		request.setRate(16000);
         request.setSpeech(Base64Util.encode
         		(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
@@ -662,22 +662,29 @@ public class ApiTest {
 	
 	
 	@Test
-	public void listSportsSubject() throws IOException {
+	public void listSportsSubject() {
 
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
 				"https://api.hbox.jiankangyouyi.com/ego-gw");
 
 		SportSubjectListRequest request = new SportSubjectListRequest();
 		request.setSportSubject("1");
-        request.setSubjectName(null);
-        request.setGender("1");
-        request.setWeight(BigDecimal.valueOf(70));
-        request.setPageInfo(new PageInfo(1, 2));
-        
-        SportSubjectListResponse response = client.execute(request);
+		request.setSubjectName(null);
+		request.setGender("1");
+		request.setWeight(BigDecimal.valueOf(70));
+		request.setPageInfo(new PageInfo(1, 2));
+
+		SportSubjectListResponse response = client.execute(request);
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
@@ -736,23 +743,22 @@ public class ApiTest {
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
 				"https://api2.hbox.jiankangyouyi.com");
 		List<RecommendFoodBean> foodList = new ArrayList<>();
-
-		foodList.add(new RecommendFoodBean("1", "薏米", 50, "g", 0));
-		foodList.add(new RecommendFoodBean("2", "锅贴", 50, "g", 0));
-		foodList.add(new RecommendFoodBean("3", "红薯", 50, "g", 0));
-		foodList.add(new RecommendFoodBean("4", "鸡胸肉(生)", 40, "g", 0));
-		foodList.add(new RecommendFoodBean("5", "墨鱼丸", 40, "g", 0));
-		foodList.add(new RecommendFoodBean("6", "鹅蛋", 60, "g", 0));
-		foodList.add(new RecommendFoodBean("7", "紫甘蓝", 80, "g", 0));
-		foodList.add(new RecommendFoodBean("8", "油菜", 70, "g", 0));
-		foodList.add(new RecommendFoodBean("9", "西红柿", 50, "g", 0));
-		foodList.add(new RecommendFoodBean("10", "猴头菇", 50, "g", 1));
-		foodList.add(new RecommendFoodBean("11", "胡萝卜", 50, "g", 0));
-		foodList.add(new RecommendFoodBean("12", "荔枝", 130, "g", 0));
-		foodList.add(new RecommendFoodBean("13", "苹果", 100, "g", 0));
-		foodList.add(new RecommendFoodBean("14", "杏仁", 30, "g", 0));
-		foodList.add(new RecommendFoodBean("15", "牛奶", 300, "ml", 0));
-		foodList.add(new RecommendFoodBean("16", "橄榄油", 30, "ml", 0));
+		foodList.add(new RecommendFoodBean("1", "五谷麦片", 50, "g", 0));
+		foodList.add(new RecommendFoodBean("2", "筱麦面", 50, "g", 0));
+		foodList.add(new RecommendFoodBean("3", "红心甘薯", 50, "g", 0));
+		foodList.add(new RecommendFoodBean("4", "鸽子肉", 40, "g", 0));
+		foodList.add(new RecommendFoodBean("5", "黄螺", 40, "g", 0));
+		foodList.add(new RecommendFoodBean("6", "鹌鹑蛋", 60, "g", 0));
+		foodList.add(new RecommendFoodBean("7", "酸白菜", 80, "g", 0));
+		foodList.add(new RecommendFoodBean("8", "包心芥菜", 70, "g", 0));
+		foodList.add(new RecommendFoodBean("9", "青萝卜", 50, "g", 0));
+		foodList.add(new RecommendFoodBean("10", "豇豆", 50, "g", 1));
+		foodList.add(new RecommendFoodBean("11", "鸡腿菇", 50, "g", 0));
+		foodList.add(new RecommendFoodBean("12", "巨峰葡萄", 130, "g", 0));
+		foodList.add(new RecommendFoodBean("13", "黄元帅苹果", 100, "g", 0));
+		foodList.add(new RecommendFoodBean("14", "芡实米(鲜)", 30, "g", 0));
+		foodList.add(new RecommendFoodBean("15", "脱脂牛奶", 300, "ml", 0));
+		foodList.add(new RecommendFoodBean("16", "花生油", 30, "ml", 0));
 		
 		FoodRecommendChangementRequest request = new FoodRecommendChangementRequest();
 		request.setAge(30);
@@ -761,8 +767,6 @@ public class ApiTest {
 		request.setWeight(new BigDecimal("65"));
 		request.setFoodList(foodList);
 		
-		
-
 		FoodRecommendChangementResponse response = client.execute(request);
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
@@ -776,36 +780,20 @@ public class ApiTest {
 				"https://api2.hbox.jiankangyouyi.com");
 		
 		
-		List<String> foodList = new ArrayList<>();
-		foodList.add("薏米");
-		foodList.add("锅贴");
-		foodList.add("红薯");
-		foodList.add("鸡胸肉(生)");
-		foodList.add("墨鱼丸");
-		foodList.add("鹅蛋");
-		foodList.add("紫甘蓝");
-		foodList.add("油菜");
-		foodList.add("西红柿");
-		foodList.add("猴头菇");
-		foodList.add("胡萝卜");
-		foodList.add("荔枝");
-		foodList.add("苹果");
-		foodList.add("杏仁");
-		foodList.add("牛奶");
-		foodList.add("橄榄油");
-		foodList.add("全麦面条(干)");
-		foodList.add("青豆");
-		foodList.add("红心甘薯");
-
+		List<String> foodList = Arrays.asList
+				("薏米","锅贴","红薯","鸡胸肉(生)","墨鱼丸","鹅蛋",
+						"紫甘蓝","油菜","西红柿","猴头菇","胡萝卜","荔枝","苹果","杏仁"
+						,"牛奶","橄榄油","全麦面条(干)","青豆","红心甘薯");
+		
 		FridgeFoodRecommendRequest request = new FridgeFoodRecommendRequest();
 		request.setAge(30);
 		request.setGender("2");
 		request.setHeight(167);
 		request.setWeight(new BigDecimal("65"));
 		request.setFoodList(foodList);
-		
 
 		FridgeFoodRecommendResponse response = client.execute(request);
+		
 		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 		System.out.println(JsonUtil.toJson(response));
 	}

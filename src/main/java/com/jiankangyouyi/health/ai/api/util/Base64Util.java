@@ -1,5 +1,10 @@
 package com.jiankangyouyi.health.ai.api.util;
 
+import java.io.File;
+import java.io.IOException;
+
+import cn.jianzhishidai.core.utils.FileUtil;
+
 public final class Base64Util {
 
     static private final int     BASELENGTH           = 128;
@@ -270,4 +275,6 @@ public final class Base64Util {
         }
         return newSize;
     }
+    
+    
 }
