@@ -13,8 +13,6 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jiankangyouyi.health.ai.api.HealthAiConstants;
-
 public class RSAUtil {
 
 	private static final String SIGN_ALGORITHMS_SHA1 = "SHA1WithRSA";
