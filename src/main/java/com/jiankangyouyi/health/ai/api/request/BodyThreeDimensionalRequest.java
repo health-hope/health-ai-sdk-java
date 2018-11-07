@@ -30,6 +30,13 @@ public class BodyThreeDimensionalRequest extends HealthAiRequest<BodyThreeDimens
 	private List<String> imageList;
 
 	/**
+	 * 图片类型
+	 * </p>
+	 * 1 默认，表示输入的图片信息为图片的url 2 表示输入的图片为base64信息
+	 */
+	private Integer imageType = 1;
+
+	/**
 	 * 身高
 	 */
 	private BigDecimal height;
@@ -69,14 +76,24 @@ public class BodyThreeDimensionalRequest extends HealthAiRequest<BodyThreeDimens
 		return gender;
 	}
 
+	public Integer getImageType() {
+		return imageType;
+	}
+
+	public void setImageType(Integer imageType) {
+		this.imageType = imageType;
+	}
+
 	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
 
 	@Override
 	public String toString() {
-		return "BobyThreeDimensionalRequest [imageList=" + imageList + ", height=" + height + ", gender=" + gender
-				+ "]";
+		return "BodyThreeDimensionalRequest [imageList=" + imageList + ", imageType=" + imageType + ", height=" + height
+				+ ", gender=" + gender + "]";
 	}
+
+	
 
 }
