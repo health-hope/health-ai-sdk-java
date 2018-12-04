@@ -6,6 +6,10 @@ public interface HealthAiClient {
 	
 	
 	public String execute(IHealthAiRequest request);
+	
+	
+	public String execute(String reqData,String apiUrl);
+
 
 	
 }

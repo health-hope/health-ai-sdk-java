@@ -56,6 +56,19 @@ public class DefaultHealthAiClient implements HealthAiClient{
 	public String execute(IHealthAiRequest request){
 		//check input
 		request.check();
+		String reqDataJson = JsonUtil.toJson(request);
+		return this.execute(reqDataJson, request.getApiUrl());
+	}
+	
+	
+	/**
+	 * 调用接口并返回json数据
+	 * 
+	 * @param reqDataJson  reqData的Json字符串
+	 * @param apiUrl 对应request对象中的apiUrl
+	 */
+	public String execute(String reqDataJson,String apiUrl){
+		
 		ServiceRequest req = new ServiceRequest();
 		req.setAppId(appId);
 		req.setVersion(version);
@@ -64,15 +77,16 @@ public class DefaultHealthAiClient implements HealthAiClient{
 		String signString = createSignString(req.signFiledMap());
 		String sign = RSAUtil.signWithSHA256(signString, privateKey, HealthAiConstants.CHARSET_UTF8);
 		req.setSign(sign);
-		String reqDataJson = JsonUtil.toJson(request);
 		req.setReqData(reqDataJson);
 		String reqMessage = JsonUtil.toJson(req);
-//		System.out.println(reqMessage);
-		String serviceUrl = this.serverUrl + request.getApiUrl();
-		String rtn = HttpClientUtil.post(serviceUrl, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
+		System.out.println("请求数据："+reqMessage);
+		String url = this.serverUrl + apiUrl;
+		String rtn = HttpClientUtil.post(url, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
 		if(rtn == null|| rtn.length()==0){
 			throw new RuntimeException("没有返回数据");
 		}
+		System.out.println("返回数据："+rtn);
+
 		return rtn;	
 	}
 	
