@@ -16,6 +16,7 @@ import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
 import com.jiankangyouyi.health.ai.api.PageInfo;
 import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest;
+import com.jiankangyouyi.health.ai.api.request.BodyThreeDimensionalRequest;
 import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
 import com.jiankangyouyi.health.ai.api.request.ExerciseSpeechQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.ExerciseTextQueryRequest;
@@ -23,16 +24,19 @@ import com.jiankangyouyi.health.ai.api.request.FoodCountEstimateRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodRecommendChangementRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodSpeechQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodTextQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.FoodVolumeRecognitionRequest;
 import com.jiankangyouyi.health.ai.api.request.FridgeFoodRecommendRequest;
 import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
 import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.BodyData;
 import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.MealData;
 import com.jiankangyouyi.health.ai.api.response.AnalysisMealResponse;
+import com.jiankangyouyi.health.ai.api.response.BodyThreeDimensionalResponse;
 import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
 import com.jiankangyouyi.health.ai.api.response.ExerciseQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodCountEstimateResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendChangementResponse;
+import com.jiankangyouyi.health.ai.api.response.FoodVolumeRecognitionResponse;
 import com.jiankangyouyi.health.ai.api.response.FridgeFoodRecommendResponse;
 import com.jiankangyouyi.health.ai.api.response.QasQueryAnswerResponse;
 import com.jiankangyouyi.health.ai.api.util.Base64Util;
@@ -51,33 +55,19 @@ public class Sample {
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
 
 		// 根据接口文档构建Request
-		List<MealData> breakfast = new ArrayList<>();
-        breakfast.add(new MealData("57b6cb003004c3a694946dbe", "178"));
-        breakfast.add(new MealData("57b6cb003004c3a69494845c", "71"));
-        breakfast.add(new MealData("57b6cb003004c3a694947ce8", "178"));
-        breakfast.add(new MealData("57b6cb003004c3a694947437", "178"));
+		List<String> imageList = new ArrayList<>();
+		imageList.add("Base64 image data或者图片URL");
+		imageList.add("Base64 image data或者图片URL");
 
-        List<MealData> lunch = new ArrayList<>();
-        lunch.add(new MealData("57da3d2677c8df901ec90e2e", "178"));
-        lunch.add(new MealData("57b6cb003004c3a694945e6e", "297"));
-        lunch.add(new MealData("57da3cdc77c8df901ec90da3", "119"));
-        lunch.add(new MealData("57b6cb003004c3a694947de3", "178"));
-
-        List<MealData> supper = new ArrayList<>();
-        supper.add(new MealData("57b6cb003004c3a6949473e1", "357"));
-        supper.add(new MealData("57b6cb003004c3a694946e65", "119"));
-        supper.add(new MealData("57b6cb003004c3a694945cfc", "178"));
-        supper.add(new MealData("58eb4b0df32eaa580dec7296", "100"));
-        
-        AnalysisMealRequest request = new AnalysisMealRequest();
-        //性别、生日、非健康人群分类、孕产妇人群分类
-		request.setBodyData(new BodyData("1", "1988-11-26", "1", "1"));
-        request.setBreakfast(breakfast);
-        request.setLunch(lunch);
-        request.setSupper(supper);
-        
+		BodyThreeDimensionalRequest request = new BodyThreeDimensionalRequest();
+		request.setImageList(imageList);
+		request.setHeight(BigDecimal.valueOf(172));
+		request.setGender(1);
+		//1 URL 2 Base64 image data
+		request.setImageType(1);
+		
 		// 发起请求，得到返回结果
-        AnalysisMealResponse response = client.execute(request);
+		BodyThreeDimensionalResponse response = client.execute(request);
 		
 		System.out.println(JsonUtil.toJson(response, true));
 	}

@@ -24,6 +24,7 @@ import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
 import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest;
 import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.BodyData;
 import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.MealData;
+import com.jiankangyouyi.health.ai.api.request.BodyThreeDimensionalRequest;
 import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationBriefLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.EvaluationContentLoadRequest;
@@ -36,6 +37,7 @@ import com.jiankangyouyi.health.ai.api.request.FoodRecommendChangementRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodRecommendRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodSpeechQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodTextQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.FoodVolumeRecognitionRequest;
 import com.jiankangyouyi.health.ai.api.request.FridgeFoodRecommendRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageEmotionRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
@@ -48,6 +50,7 @@ import com.jiankangyouyi.health.ai.api.request.SportSubjectListRequest;
 import com.jiankangyouyi.health.ai.api.request.SportSubjectQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.SportVoiceQueryRequest;
 import com.jiankangyouyi.health.ai.api.response.AnalysisMealResponse;
+import com.jiankangyouyi.health.ai.api.response.BodyThreeDimensionalResponse;
 import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationBriefLoadResponse;
 import com.jiankangyouyi.health.ai.api.response.EvaluationContentLoadResponse;
@@ -58,6 +61,7 @@ import com.jiankangyouyi.health.ai.api.response.FoodCountEstimateResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendChangementResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendResponse;
+import com.jiankangyouyi.health.ai.api.response.FoodVolumeRecognitionResponse;
 import com.jiankangyouyi.health.ai.api.response.FridgeFoodRecommendResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
@@ -72,6 +76,8 @@ import com.jiankangyouyi.health.ai.api.response.SportVoiceQueryResponse;
 import com.jiankangyouyi.health.ai.api.util.Base64Util;
 import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
+
+import cn.jianzhishidai.core.utils.DateUtil;
 
 public class ApiTest {
 	//测试
@@ -193,14 +199,14 @@ public class ApiTest {
 	public void imageFoodSingleRecognizeBase64Test() throws IOException {
 
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-				"https://api2.jiankangyouyi.com");
+				"https://api2.hbox.jiankangyouyi.com");
 
-//		String image = FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"),
-//				"UTF-8");
-		
-		
-		String image = FileUtils.readFileToString(new File("/Users/yangsongbo/Downloads/1.txt"),
+		String image = FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"),
 				"UTF-8");
+		
+		
+//		String image = FileUtils.readFileToString(new File("/Users/yangsongbo/Downloads/1.txt"),
+//				"UTF-8");
 		
 		byte[] imageBys = cn.jianzhishidai.core.utils.Base64Util.decode(image);
 		FileUtils.writeByteArrayToFile(new File("/Users/yangsongbo/Downloads/aaaaaa.jpg"), imageBys);
@@ -225,7 +231,7 @@ public class ApiTest {
 		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
 				"https://api2.hbox.jiankangyouyi.com");
 
-		String foodImageUrl = "https://oieve67xn.qnssl.com/images/2/e62e0808a0004c1385bd806a89595051.jpeg";
+		String foodImageUrl = "https://files.public.jianzhishidai.cn/images/2/3f2e9663a6de4ba8afad88b4a5ed10c3.jpg?hash=FtUd6_DTWkCFxhLZGYbti0ET7JkV&width=400&height=400&fsize=20759&scope=1";
 		ImageFoodSingleRecognizeRequest request = new ImageFoodSingleRecognizeRequest();
 		request.setFoodImageUrl(foodImageUrl);
 		ImageFoodSingleRecognizeResponse response = client.execute(request);
@@ -799,6 +805,330 @@ public class ApiTest {
 	}
 	
 	
+	
+	@Test
+	public void foodVolumeRecognitionBase64() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api2.hbox.jiankangyouyi.com");
+		
+		
+		
+		List<String> imageList = new ArrayList<>();
+		imageList.add(Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/食物三维重建-1.jpeg"))));
+		imageList.add(Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/食物三维重建-2.jpeg"))));
+
+		FoodVolumeRecognitionRequest request = new FoodVolumeRecognitionRequest();
+		request.setImageType(2);
+		request.setImageList(imageList);
+
+		FoodVolumeRecognitionResponse response = client.execute(request);
+		
+//		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	
+	
+	
+	@Test
+	public void foodVolumeRecognitionURL() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api2.hbox.jiankangyouyi.com");
+		
+		
+		
+		List<String> imageList = new ArrayList<>();
+		imageList.add("https://files.jiankangyouyi.com/apple279701849_1.jpg");
+		imageList.add("https://files.jiankangyouyi.com/apple279701849_2.jpg");
+
+		FoodVolumeRecognitionRequest request = new FoodVolumeRecognitionRequest();
+		request.setImageType(1);
+		request.setImageList(imageList);
+
+		FoodVolumeRecognitionResponse response = client.execute(request);
+		
+//		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	@Test
+	public void bodyThreeDimensionalBase64() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api2.hbox.jiankangyouyi.com");
+		
+		
+		
+		List<String> imageList = new ArrayList<>();
+		imageList.add(Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/boby3424242_zhengmian.jpg"))));
+		imageList.add(Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/boby3424242_cemian.jpg"))));
+
+		BodyThreeDimensionalRequest request = new BodyThreeDimensionalRequest();
+		request.setImageList(imageList);
+		request.setHeight(BigDecimal.valueOf(172));
+		request.setGender(1);
+		request.setImageType(2);
+		
+		BodyThreeDimensionalResponse response = client.execute(request);
+//		String result = client.execute(request);
+//		System.out.println(result);
+//		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+	}
+	
+	
+	@Test
+	public void bodyThreeDimensionalURL() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api2.hbox.jiankangyouyi.com");
+		
+		
+		
+		List<String> imageList = new ArrayList<>();
+		imageList.add("https://files.jiankangyouyi.com/boby3424242_zhengmian.jpg");
+		imageList.add("https://files.jiankangyouyi.com/boby3424242_cemian.jpg");
+
+		BodyThreeDimensionalRequest request = new BodyThreeDimensionalRequest();
+		request.setImageList(imageList);
+		request.setHeight(BigDecimal.valueOf(172));
+		request.setGender(1);
+		request.setImageType(1);
+		
+		BodyThreeDimensionalResponse response = client.execute(request);
+//		String result = client.execute(request);
+//		System.out.println(result);
+//		System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+		System.out.println(JsonUtil.toJson(response));
+		
+	}
+	
+	
+	
+	@Test
+	public void semanticRecordFoodAnalysis() throws IOException {
+		
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		
+		Map<String,String> reqData = new HashMap<>();
+		reqData.put("text", "我早上吃了一个包子，一杯豆浆");
+		
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/semantic/record/food/analysis.do");
+
+		
+		System.out.println(result);
+		System.out.println(JsonUtil.formatJson(result));
+		
+	}
+	
+	
+		
+	@Test
+	public void queryFoodByFoodIdsFoodName() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+
+		Map<String, Object> reqData = new HashMap<>();
+		// reqData.put("foodIds",
+		// Arrays.asList("57b6cb003004c3a694945dee","57b6cb003004c3a6949485ee"));
+		reqData.put("foodName", "火龙果");
+
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/query/foodids_foodname/food/list.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+		
+	@Test
+	public void saveRecordFood() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		Map<String,Object> record1 = new HashMap<>();
+		record1.put("recordFrom", "3");
+		record1.put("mealType", "1");
+		record1.put("foodType", "1");
+		record1.put("foodId", "5b431137ae178f4a45f1de54");
+		record1.put("count", 1);
+		record1.put("kilocalorie", 210);
+		record1.put("unit", "个");
+		record1.put("imageRecognitionSn", null);
+		record1.put("semanticAnalysisSn", "5be98e6f14cced2a3086dbbd");
+
+
+		Map<String,Object> record2 = new HashMap<>();
+		record2.put("recordFrom", "3");
+		record2.put("mealType", "1");
+		record2.put("foodType", "1");
+		record2.put("foodId", "57b6bd3f3004d165422af1cf");
+		record2.put("count", 1);
+		record2.put("kilocalorie", 48);
+		record2.put("unit", "杯");
+		record2.put("imageRecognitionSn", null);
+		record2.put("semanticAnalysisSn", "5be98e6f14cced2a3086dbbd");
+
+		
+		
+		List<Map<String,Object>> recordList = new ArrayList<>();
+		recordList.add(record1);
+		recordList.add(record2);
+		
+		Map<String, Object> reqData = new HashMap<>();
+		reqData.put("recordDate", DateUtil.getCurDateStr("yyyyMMdd"));
+		reqData.put("userId", "20150208010000008441");
+		reqData.put("recordList", recordList);
+		
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/record/food/save.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
+	
+	
+	@Test
+	public void saveCustomFood() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+//		byte[] imageBytes = FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/aaaaaaa.jpg"));
+
+		byte[] imageBytes = FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/005LUq26jw1eyfcnmyfmwj30ci08cgn7.jpg"));
+		String image = Base64Util.encode(imageBytes);
+		
+		Map<String, Object> reqData = new HashMap<>();
+		reqData.put("userId", "20150208010000008441");
+		reqData.put("foodName", "妈妈炖的牛肉");
+		reqData.put("count", "500");
+		reqData.put("unit", "克");
+		reqData.put("kilocalorie", "1450");
+		reqData.put("image", image);
+		
+		System.out.println("image length : "+ imageBytes.length);
+
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/record/custom_food/save.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
+	
+	
+	@Test
+	public void findFoodMetrologyDetail() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		
+		Map<String, Object> reqData = new HashMap<>();
+		reqData.put("foodId", "57b6bd3f3004d165422ad79a");
+
+		
+
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/record/food/metrology/detail.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
+	
+	@Test
+	public void findFoodMetrologyTypeList() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		
+		Map<String, Object> reqData = new HashMap<>();
+		
+		String result = client.execute(null, "/v2/record/food/metrology/type/list.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
+	
+	@Test
+	public void semanticRecordExerciseAnalysis() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		
+		Map<String, Object> reqData = new HashMap<>();
+		reqData.put("text", "我刚才跑了30分钟");
+		reqData.put("gender", "1");
+		reqData.put("weight", 76);
+
+		
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/semantic/record/exercise/analysis.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
+	
+	@Test
+	public void saveCustomExercise() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		byte[] imageBytes = FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/005LUq26jw1eyfcnmyfmwj30ci08cgn7.jpg"));
+		String image = Base64Util.encode(imageBytes);
+		
+		Map<String, Object> reqData = new HashMap<>();
+		reqData.put("userId", "20150208010000008441");
+		reqData.put("exerciseName", "打出溜滑");
+		reqData.put("count", 15);
+		reqData.put("unit", "米");
+		reqData.put("kilocalorie", 15);
+		reqData.put("image", image);
+
+		
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/record/custom_exercise/save.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
+	@Test
+	public void saveRecordExercise() throws IOException {
+
+		HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+				"https://api.hbox.jiankangyouyi.com/ego-gw");
+		
+		//5beaa19d14cced6e342c83b0 打出溜滑
+		// 5beaa28414cced6e342c83b1  sn 
+		Map<String,Object> record1 = new HashMap<>();
+		record1.put("exerciseType", "1");   //1 系统运动  2 自定义运动
+		record1.put("exerciseId", "58abe85f0cad1532604c23a9");
+		record1.put("count", 15);
+		record1.put("kilocalorie", 205);
+		record1.put("unit", "分钟");
+		record1.put("recordFrom", "3");  // 2 文字录入 2 语音录入
+		record1.put("semanticAnalysisSn", "5beaa28414cced6e342c83b1");
+
+
+		Map<String,Object> record2 = new HashMap<>();
+		record2.put("exerciseType", "1");   //1 系统运动  2 自定义运动
+		record2.put("exerciseId", "5beaa19d14cced6e342c83b0");
+		record2.put("count", 30);
+		record2.put("kilocalorie", 30);
+		record2.put("unit", "米");
+		record2.put("recordFrom", "3");  // 2 文字录入 2 语音录入
+		record2.put("semanticAnalysisSn", "5beaa28414cced6e342c83b1");
+
+		List<Map<String,Object>> recordList = new ArrayList<>();
+		recordList.add(record1);
+		recordList.add(record2);
+		
+		Map<String, Object> reqData = new HashMap<>();
+		reqData.put("recordDate", DateUtil.getCurDateStr("yyyyMMdd"));
+		reqData.put("userId", "20150208010000008441");
+		reqData.put("recordList", recordList);
+
+		
+		String result = client.execute(JsonUtil.toJson(reqData), "/v2/record/exercise/save.do");
+		System.out.println(JsonUtil.formatJson(result));
+	}
+	
 	@Test
 	public void test() throws IOException {
 
@@ -817,6 +1147,7 @@ public class ApiTest {
 		String result = HttpClientUtil.post(url, JsonUtil.toJson(params), HttpClientUtil.CONTENT_TYPE_JSON);
 		System.out.println(result);
 	}
+	
 
 
 }
