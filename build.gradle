@@ -31,7 +31,7 @@ dependencies {
 	
 	
     //testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
-    testCompile 'junit:junit:4.0'
+    testCompile 'junit:junit:4.12'
   	testCompile 'commons-io:commons-io:2.4'
 	testCompile 'org.apache.poi:poi-ooxml:3.11'
 	testCompile 'org.apache.poi:poi-examples:3.11'
