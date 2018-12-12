@@ -15,277 +15,276 @@ import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 import com.jiankangyouyi.health.ai.api.util.RSAUtil;
 import com.jiankangyouyi.health.ai.api.util.UUIDUtil;
 
-public class DefaultHealthAiClient implements HealthAiClient{
+public class DefaultHealthAiClient implements HealthAiClient {
 
-	private String appId;
-	private String privateKey;
-	private String version;
-	private String serverUrl;
-	
-	private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE); 
-	
-	public DefaultHealthAiClient(String appId,String privateKey,Version version,String serverUrl){
-		this.appId = appId;
-		this.privateKey = privateKey;
-		this.version = version.getValue();
-		this.serverUrl = serverUrl;
-	}
-	
-	/**
-	 * 调用接口并返回response对象
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public <T extends HealthAiResponse> T execute(HealthAiRequest<T> request){
-		String json = this.execute(request);
-		ServiceResponse res = JsonUtil.fromJson(json, ServiceResponse.class);
-		T trs = null;
-		if(res.getResData()!=null&&res.getResData().length()>0){
-			trs = JsonUtil.fromJson(res.getResData(), request.getResponseClass());
-		}
-		return trs;
-	}
-	
-	
-	/**
-	 * 调用接口并返回json数据
-	 * @param request
-	 * @return
-	 */
-	public String execute(IHealthAiRequest request){
-		//check input
-		request.check();
-		String reqDataJson = JsonUtil.toJson(request);
-		return this.execute(reqDataJson, request.getApiUrl());
-	}
-	
-	
-	/**
-	 * 调用接口并返回json数据
-	 * 
-	 * @param reqDataJson  reqData的Json字符串
-	 * @param apiUrl 对应request对象中的apiUrl
-	 */
-	public String execute(String reqDataJson,String apiUrl){
-		
-		ServiceRequest req = new ServiceRequest();
-		req.setAppId(appId);
-		req.setVersion(version);
-		req.setNonceStr(UUIDUtil.getJavaUUID());
-		req.setTimestamp(sdf.format(new Timestamp(System.currentTimeMillis())));
-		String signString = createSignString(req.signFiledMap());
-		String sign = RSAUtil.signWithSHA256(signString, privateKey, HealthAiConstants.CHARSET_UTF8);
-		req.setSign(sign);
-		req.setReqData(reqDataJson);
-		String reqMessage = JsonUtil.toJson(req);
-		System.out.println("请求数据："+reqMessage);
-		String url = this.serverUrl + apiUrl;
-		String rtn = HttpClientUtil.post(url, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
-		if(rtn == null|| rtn.length()==0){
-			throw new RuntimeException("没有返回数据");
-		}
-		System.out.println("返回数据："+rtn);
+    private String appId;
+    private String privateKey;
+    private String version;
+    private String serverUrl;
 
-		return rtn;	
-	}
-	
-	/**
-	 * 组装签名串
-	 * @param params
-	 * @return
-	 */
-	private String createSignString(Map<String, String> params){
-		StringBuilder prestr = new StringBuilder("");
-		if (params!=null&&!params.isEmpty()) {
-			params.remove("sign");
-			List<String> keys = new ArrayList<String>(params.keySet());
+    private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE);
 
-			Collections.sort(keys);
+    public DefaultHealthAiClient(String appId, String privateKey, Version version, String serverUrl) {
+        this.appId = appId;
+        this.privateKey = privateKey;
+        this.version = version.getValue();
+        this.serverUrl = serverUrl;
+    }
 
-			for (int i = 0; i < keys.size(); i++) {
-				String key = keys.get(i);
-				String value = params.get(key);
+    /**
+     * 调用接口并返回response对象
+     * 
+     * @param request
+     * @return
+     */
+    public <T extends HealthAiResponse> T execute(HealthAiRequest<T> request) {
+        String json = this.executeReturnJson(request);
+        ServiceResponse res = JsonUtil.fromJson(json, ServiceResponse.class);
+        T trs = null;
+        if (res.getResData() != null && res.getResData().length() > 0) {
+            trs = JsonUtil.fromJson(res.getResData(), request.getResponseClass());
+        }
+        return trs;
+    }
 
-				if (value == null || value.toString().length() == 0)
-					continue;
-				if (i != 0) {
-					prestr.append("&");
-				}
-				prestr.append(key).append("=");
-				prestr.append(value);
-			}
-		}
-		return prestr.toString();
-	}
-	
-	/**
-	 * 内部请求POJO
-	 * @author ThinkPad
-	 *
-	 */
-	@SuppressWarnings("unused")
-	private static class ServiceRequest{
-		/**
-		 * 随机字符串
-		 */
-		private String nonceStr;
-		
-		/**
-		 * 应用ID
-		 */
-		private String appId;
+    /**
+     * 调用接口并返回json数据
+     * 
+     * @param request
+     * @return
+     */
+    public String executeReturnJson(IHealthAiRequest request) {
+        // check input
+        request.check();
+        String reqDataJson = JsonUtil.toJson(request);
+        return this.executeReturnJson(reqDataJson, request.getApiUrl());
+    }
 
-		/**
-		 * 版本号
-		 */
-		private String version;
-		
-		/**
-		 * 请求时间
-		 */
-		private String timestamp;
-		
-		/**
-		 * 签名
-		 */
-		private String sign;
-		
-		/**
-		 * 业务数据
-		 */
-		private String reqData;
+    /**
+     * 调用接口并返回json数据
+     * 
+     * @param reqDataJson reqData的Json字符串
+     * @param apiUrl 对应request对象中的apiUrl
+     */
+    public String executeReturnJson(String reqDataJson, String apiUrl) {
 
-		public String getNonceStr() {
-			return nonceStr;
-		}
+        ServiceRequest req = new ServiceRequest();
+        req.setAppId(appId);
+        req.setVersion(version);
+        req.setNonceStr(UUIDUtil.getJavaUUID());
+        req.setTimestamp(sdf.format(new Timestamp(System.currentTimeMillis())));
+        String signString = createSignString(req.signFiledMap());
+        String sign = RSAUtil.signWithSHA256(signString, privateKey, HealthAiConstants.CHARSET_UTF8);
+        req.setSign(sign);
+        req.setReqData(reqDataJson);
+        String reqMessage = JsonUtil.toJson(req);
+        System.out.println("请求数据：" + reqMessage);
+        String url = this.serverUrl + apiUrl;
+        String rtn = HttpClientUtil.post(url, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
+        if (rtn == null || rtn.length() == 0) {
+            throw new RuntimeException("没有返回数据");
+        }
+        System.out.println("返回数据：" + rtn);
 
-		public void setNonceStr(String nonceStr) {
-			this.nonceStr = nonceStr;
-		}
+        return rtn;
+    }
 
-		public String getAppId() {
-			return appId;
-		}
+    /**
+     * 组装签名串
+     * 
+     * @param params
+     * @return
+     */
+    private String createSignString(Map<String, String> params) {
+        StringBuilder prestr = new StringBuilder("");
+        if (params != null && !params.isEmpty()) {
+            params.remove("sign");
+            List<String> keys = new ArrayList<String>(params.keySet());
 
-		public void setAppId(String appId) {
-			this.appId = appId;
-		}
+            Collections.sort(keys);
 
-		public String getVersion() {
-			return version;
-		}
+            for (int i = 0; i < keys.size(); i++) {
+                String key = keys.get(i);
+                String value = params.get(key);
 
-		public void setVersion(String version) {
-			this.version = version;
-		}
+                if (value == null || value.toString().length() == 0)
+                    continue;
+                if (i != 0) {
+                    prestr.append("&");
+                }
+                prestr.append(key).append("=");
+                prestr.append(value);
+            }
+        }
+        return prestr.toString();
+    }
 
-		public String getTimestamp() {
-			return timestamp;
-		}
+    /**
+     * 内部请求POJO
+     * 
+     * @author ThinkPad
+     *
+     */
+    @SuppressWarnings("unused")
+    private static class ServiceRequest {
+        /**
+         * 随机字符串
+         */
+        private String nonceStr;
 
-		public void setTimestamp(String timestamp) {
-			this.timestamp = timestamp;
-		}
+        /**
+         * 应用ID
+         */
+        private String appId;
 
-		public String getSign() {
-			return sign;
-		}
+        /**
+         * 版本号
+         */
+        private String version;
 
-		public void setSign(String sign) {
-			this.sign = sign;
-		}
+        /**
+         * 请求时间
+         */
+        private String timestamp;
 
-		public String getReqData() {
-			return reqData;
-		}
+        /**
+         * 签名
+         */
+        private String sign;
 
-		public void setReqData(String reqData) {
-			this.reqData = reqData;
-		}
-		
-		public Map<String,String> signFiledMap() {
-	   		Map<String,String> map_=new HashMap<String,String>();
-	    	map_.put("appId",getAppId());
-	    	map_.put("version",getVersion());
-	    	map_.put("timestamp",getTimestamp());
-	    	map_.put("nonceStr",getNonceStr());
-			return map_;
-	    }
-	}
-	
-	/**
-	 * 内部应答POJO
-	 * @author ThinkPad
-	 *
-	 */
-	@SuppressWarnings("unused")
-	private static class ServiceResponse{
-		
-		private String resData;
-		
-		private String sign;
-		
-		private String timestamp;
-		
+        /**
+         * 业务数据
+         */
+        private String reqData;
 
-		public String getTimestamp() {
-			return timestamp;
-		}
+        public String getNonceStr() {
+            return nonceStr;
+        }
 
-		public void setTimestamp(String timestamp) {
-			this.timestamp = timestamp;
-		}
+        public void setNonceStr(String nonceStr) {
+            this.nonceStr = nonceStr;
+        }
 
-		public String getResData() {
-			return resData;
-		}
+        public String getAppId() {
+            return appId;
+        }
 
-		public void setResData(String resData) {
-			this.resData = resData;
-		}
+        public void setAppId(String appId) {
+            this.appId = appId;
+        }
 
-		public String getSign() {
-			return sign;
-		}
+        public String getVersion() {
+            return version;
+        }
 
-		public void setSign(String sign) {
-			this.sign = sign;
-		}
-		
-		public Map<String,String> signFiledMap() {
-	   		Map<String,String> map_=new HashMap<String,String>();
-	    	map_.put("resData",getResData());
-	    	map_.put("timestamp",getTimestamp());
-	    	map_.put("sign",getSign());
-			return map_;
-	    }
-	}
-	
-	
-	/**
-	 * 版本号
-	 * @author yangsongbo
-	 *
-	 */
-	public static enum Version{
-		
-		VERSION_1_0("1.0"),
-		
-		VERSION_2_0("2.0");
-		
-		
-		private Version(String value){
-			this.value = value ;
-		}
-		
-		private String value;
+        public void setVersion(String version) {
+            this.version = version;
+        }
 
-		public String getValue() {
-			return value;
-		}
-		
-	}
-	
-	
+        public String getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+        }
+
+        public String getSign() {
+            return sign;
+        }
+
+        public void setSign(String sign) {
+            this.sign = sign;
+        }
+
+        public String getReqData() {
+            return reqData;
+        }
+
+        public void setReqData(String reqData) {
+            this.reqData = reqData;
+        }
+
+        public Map<String, String> signFiledMap() {
+            Map<String, String> map_ = new HashMap<String, String>();
+            map_.put("appId", getAppId());
+            map_.put("version", getVersion());
+            map_.put("timestamp", getTimestamp());
+            map_.put("nonceStr", getNonceStr());
+            return map_;
+        }
+    }
+
+    /**
+     * 内部应答POJO
+     * 
+     * @author ThinkPad
+     *
+     */
+    @SuppressWarnings("unused")
+    private static class ServiceResponse {
+
+        private String resData;
+
+        private String sign;
+
+        private String timestamp;
+
+        public String getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+        }
+
+        public String getResData() {
+            return resData;
+        }
+
+        public void setResData(String resData) {
+            this.resData = resData;
+        }
+
+        public String getSign() {
+            return sign;
+        }
+
+        public void setSign(String sign) {
+            this.sign = sign;
+        }
+
+        public Map<String, String> signFiledMap() {
+            Map<String, String> map_ = new HashMap<String, String>();
+            map_.put("resData", getResData());
+            map_.put("timestamp", getTimestamp());
+            map_.put("sign", getSign());
+            return map_;
+        }
+    }
+
+    /**
+     * 版本号
+     * 
+     * @author yangsongbo
+     *
+     */
+    public static enum Version {
+
+        VERSION_1_0("1.0"),
+
+        VERSION_2_0("2.0");
+
+        private Version(String value) {
+            this.value = value;
+        }
+
+        private String value;
+
+        public String getValue() {
+            return value;
+        }
+
+    }
+
 }
