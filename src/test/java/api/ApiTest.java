@@ -92,8 +92,6 @@ import com.jiankangyouyi.health.ai.api.util.Base64Util;
 import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
-import cn.jianzhishidai.core.utils.DateUtil;
-
 public class ApiTest {
     // 测试
     private static String APPID = "5b33941b84274a0aa482e105";
@@ -221,7 +219,7 @@ public class ApiTest {
         // String image = FileUtils.readFileToString(new File("/Users/yangsongbo/Downloads/1.txt"),
         // "UTF-8");
 
-        byte[] imageBys = cn.jianzhishidai.core.utils.Base64Util.decode(image);
+        byte[] imageBys = Base64Util.decode(image);
         FileUtils.writeByteArrayToFile(new File("/Users/yangsongbo/Downloads/aaaaaa.jpg"), imageBys);
         ImageFoodSingleRecognizeRequest request = new ImageFoodSingleRecognizeRequest();
         request.setImage(image);
@@ -1503,7 +1501,7 @@ public class ApiTest {
         recordList.add(record2);
 
         Map<String, Object> reqData = new HashMap<>();
-        reqData.put("recordDate", DateUtil.getCurDateStr("yyyyMMdd"));
+        reqData.put("recordDate", api.DateUtil.getCurDateStr("yyyyMMdd"));
         reqData.put("userId", "20150208010000008441");
         reqData.put("recordList", recordList);
 

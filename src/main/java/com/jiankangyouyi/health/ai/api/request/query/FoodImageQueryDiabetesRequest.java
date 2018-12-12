@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.response.query.FoodImageQueryGeneralResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
-
 /**
  * 糖尿病人群食物图像查询
  *
@@ -14,7 +12,6 @@ import cn.jianzhishidai.core.annotations.JavaBean;
  * @see /v2/query/diabetes/image/food/list.do
  * @author yangsongbo
  */
-@JavaBean
 public class FoodImageQueryDiabetesRequest extends HealthAiRequest<FoodImageQueryGeneralResponse> {
 
     private static final long serialVersionUID = 1L;

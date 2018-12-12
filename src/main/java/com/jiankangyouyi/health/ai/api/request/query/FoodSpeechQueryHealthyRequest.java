@@ -7,8 +7,6 @@ import com.jiankangyouyi.health.ai.api.PageInfo;
 import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
 import com.jiankangyouyi.health.ai.api.response.query.FoodTextSpeechQueryGeneralResponse;
 
-import cn.jianzhishidai.core.annotations.JavaBean;
-
 /**
  * 健康人群食物语音查询
  *
@@ -16,7 +14,6 @@ import cn.jianzhishidai.core.annotations.JavaBean;
  * @see /v2/query/healthy/speech/food/list.do
  * @author yangsongbo
  */
-@JavaBean
 public class FoodSpeechQueryHealthyRequest extends HealthAiRequest<FoodTextSpeechQueryGeneralResponse> {
 
     private static final long serialVersionUID = 1L;
