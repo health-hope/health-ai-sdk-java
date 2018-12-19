@@ -507,8 +507,8 @@ public class ApiTest {
     @Test
     public void queryHealthyFoodByText() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryHealthyRequest request = new FoodTextQueryHealthyRequest();
         request.setText("苹果的热量是多少");
@@ -533,8 +533,8 @@ public class ApiTest {
     @Test
     public void querySubHealthyFoodByText() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQuerySubHealthyRequest request = new FoodTextQuerySubHealthyRequest();
         request.setText("苹果的热量是多少");
@@ -559,8 +559,8 @@ public class ApiTest {
     @Test
     public void queryDiabetesFoodByText() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryDiabetesRequest request = new FoodTextQueryDiabetesRequest();
         request.setText("苹果的热量是多少");
@@ -585,8 +585,8 @@ public class ApiTest {
     @Test
     public void queryHypertensionFoodByText() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryHypertensionRequest request = new FoodTextQueryHypertensionRequest();
         request.setText("苹果的热量是多少");
@@ -611,8 +611,8 @@ public class ApiTest {
     @Test
     public void queryHyperlipidemiaFoodByText() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryHyperlipidemiaRequest request = new FoodTextQueryHyperlipidemiaRequest();
         request.setText("苹果的热量是多少");
@@ -637,8 +637,8 @@ public class ApiTest {
     @Test
     public void queryMaternalFoodByText() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryMaternalRequest request = new FoodTextQueryMaternalRequest();
         request.setText("苹果的热量是多少");
@@ -662,8 +662,8 @@ public class ApiTest {
     @Test
     public void queryHealthyFoodBySpeech() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryHealthyRequest request = new FoodSpeechQueryHealthyRequest();
         request.setFormat("amr");
@@ -690,8 +690,8 @@ public class ApiTest {
     @Test
     public void querySubHealthyFoodBySpeech() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQuerySubHealthyRequest request = new FoodSpeechQuerySubHealthyRequest();
         request.setFormat("amr");
@@ -718,8 +718,8 @@ public class ApiTest {
     @Test
     public void queryDiabetesFoodBySpeech() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryDiabetesRequest request = new FoodSpeechQueryDiabetesRequest();
         request.setFormat("amr");
@@ -746,8 +746,8 @@ public class ApiTest {
     @Test
     public void queryHypertensionFoodBySpeech() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryHypertensionRequest request = new FoodSpeechQueryHypertensionRequest();
         request.setFormat("amr");
@@ -774,8 +774,8 @@ public class ApiTest {
     @Test
     public void queryHyperlipidemiaFoodBySpeech() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryHyperlipidemiaRequest request = new FoodSpeechQueryHyperlipidemiaRequest();
         request.setFormat("amr");
@@ -802,8 +802,8 @@ public class ApiTest {
     @Test
     public void queryMaternalFoodBySpeech() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryMaternalRequest request = new FoodSpeechQueryMaternalRequest();
         request.setFormat("amr");
@@ -830,7 +830,7 @@ public class ApiTest {
     public void queryHealthyFoodByImage() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
             FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
@@ -838,13 +838,13 @@ public class ApiTest {
         FoodImageQueryHealthyRequest request = new FoodImageQueryHealthyRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
-        request.setTop(3);
+        request.setTop(2);
         request.setGender("1");
         request.setAge(BigDecimal.valueOf(32));
 
         FoodImageQueryGeneralResponse response = client.execute(request);
-        System.out.println("sss:" + JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        // System.out.println(JsonUtil.toJson(response));
+        // System.out.println("sss:" + JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
     }
 
     /**
@@ -858,7 +858,7 @@ public class ApiTest {
     public void querySubHealthyFoodByImage() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
             FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
@@ -866,7 +866,7 @@ public class ApiTest {
         FoodImageQuerySubHealthyRequest request = new FoodImageQuerySubHealthyRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
-        request.setTop(3);
+        request.setTop(2);
         request.setGender("1");
         request.setAge(BigDecimal.valueOf(32));
 
@@ -886,7 +886,7 @@ public class ApiTest {
     public void queryDiabetesFoodByImage() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
             FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
@@ -894,7 +894,7 @@ public class ApiTest {
         FoodImageQueryDiabetesRequest request = new FoodImageQueryDiabetesRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
-        request.setTop(3);
+        request.setTop(2);
         request.setGender("1");
         request.setAge(BigDecimal.valueOf(32));
 
@@ -914,7 +914,7 @@ public class ApiTest {
     public void queryHypertensionFoodByImage() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
             FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
@@ -922,7 +922,7 @@ public class ApiTest {
         FoodImageQueryHypertensionRequest request = new FoodImageQueryHypertensionRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
-        request.setTop(3);
+        request.setTop(2);
         request.setGender("1");
         request.setAge(BigDecimal.valueOf(32));
 
@@ -942,7 +942,7 @@ public class ApiTest {
     public void queryHyperlipidemiaFoodByImage() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
             FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
@@ -950,7 +950,7 @@ public class ApiTest {
         FoodImageQueryHyperlipidemiaRequest request = new FoodImageQueryHyperlipidemiaRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
-        request.setTop(3);
+        request.setTop(2);
         request.setGender("1");
         request.setAge(BigDecimal.valueOf(32));
 
@@ -960,7 +960,7 @@ public class ApiTest {
     }
 
     /**
-     * 高血脂人群食物图像查询
+     * 孕产妇人群食物图像查询
      * 
      * 
      * @throws IOException
@@ -970,7 +970,7 @@ public class ApiTest {
     public void queryMaternalFoodByImage() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
             FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
@@ -978,7 +978,7 @@ public class ApiTest {
         FoodImageQueryMaternalRequest request = new FoodImageQueryMaternalRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
-        request.setTop(3);
+        request.setTop(2);
         request.setStage("1");
 
         FoodImageQueryGeneralResponse response = client.execute(request);

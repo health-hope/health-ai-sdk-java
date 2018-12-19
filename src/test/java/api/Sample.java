@@ -1,14 +1,13 @@
 package api;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
-import com.jiankangyouyi.health.ai.api.request.BodyThreeDimensionalRequest;
-import com.jiankangyouyi.health.ai.api.response.BodyThreeDimensionalResponse;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryMaternalRequest;
+import com.jiankangyouyi.health.ai.api.response.query.FoodImageQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
 public class Sample {
@@ -18,25 +17,23 @@ public class Sample {
     private static final Version VERSION = Version.VERSION_2_0;
     private static final String URL = "https://api.jiankangyouyi.com/ego-gw";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // 初始化client
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
 
         // 根据接口文档构建Request
-        List<String> imageList = new ArrayList<>();
-        imageList.add("Base64 image data或者图片URL");
-        imageList.add("Base64 image data或者图片URL");
-
-        BodyThreeDimensionalRequest request = new BodyThreeDimensionalRequest();
-        request.setImageList(imageList);
-        request.setHeight(BigDecimal.valueOf(172));
-        request.setGender(1);
-        // 1 URL 2 Base64 image data
-        request.setImageType(1);
+        FoodImageQueryMaternalRequest request = new FoodImageQueryMaternalRequest();
+        // 图像数据
+        request.setImage("填写base64编码的图像文件");
+        // 指定食物的质量或体积，质量单位g，体积单位ml
+        request.setCount(BigDecimal.valueOf(100));
+        // 指定返回的数据条数
+        request.setTop(2);
+        // 1 <孕早期(孕第1周到13周末期间)> 2 <孕中期(孕14周到孕27周末期间)> 3 <孕晚期(孕28周后)> 4 <哺乳期>
+        request.setStage("1");
 
         // 发起请求，得到返回结果
-        BodyThreeDimensionalResponse response = client.execute(request);
-
+        FoodImageQueryGeneralResponse response = client.execute(request);
         System.out.println(JsonUtil.toJson(response, true));
     }
 
