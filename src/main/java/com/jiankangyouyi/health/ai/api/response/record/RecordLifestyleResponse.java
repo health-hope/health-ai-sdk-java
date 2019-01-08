@@ -32,6 +32,30 @@ public class RecordLifestyleResponse extends HealthAiResponse {
      */
     private List<RecordLifestyleItemBean> recordItems;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
+    }
+
+    public List<RecordLifestyleItemBean> getRecordItems() {
+        return recordItems;
+    }
+
+    public void setRecordItems(List<RecordLifestyleItemBean> recordItems) {
+        this.recordItems = recordItems;
+    }
+
     /**
      * 
      * TODO:记录项
