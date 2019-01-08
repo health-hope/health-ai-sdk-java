@@ -16,36 +16,29 @@ import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
 import com.jiankangyouyi.health.ai.api.PageInfo;
+import com.jiankangyouyi.health.ai.api.bean.analysis.MealDataBean;
 import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserInfoBean;
 import com.jiankangyouyi.health.ai.api.bean.evaluation.EvaluationUserOptionsBean;
 import com.jiankangyouyi.health.ai.api.bean.food.RecommendFoodBean;
-import com.jiankangyouyi.health.ai.api.bean.query.BodyDataBean;
-import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
-import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest;
-import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.BodyData;
-import com.jiankangyouyi.health.ai.api.request.AnalysisMealRequest.MealData;
 import com.jiankangyouyi.health.ai.api.request.BodyThreeDimensionalRequest;
-import com.jiankangyouyi.health.ai.api.request.DialogRecordRequest;
-import com.jiankangyouyi.health.ai.api.request.EvaluationBriefLoadRequest;
-import com.jiankangyouyi.health.ai.api.request.EvaluationContentLoadRequest;
-import com.jiankangyouyi.health.ai.api.request.EvaluationDataSaveRequest;
-import com.jiankangyouyi.health.ai.api.request.EvaluationResultLoadRequest;
-import com.jiankangyouyi.health.ai.api.request.ExerciseSpeechQueryRequest;
-import com.jiankangyouyi.health.ai.api.request.ExerciseTextQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodRecommendChangementRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodRecommendRequest;
 import com.jiankangyouyi.health.ai.api.request.FoodVolumeRecognitionRequest;
-import com.jiankangyouyi.health.ai.api.request.FridgeFoodRecommendRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageEmotionRecognizeRequest;
-import com.jiankangyouyi.health.ai.api.request.ImageFoodMultiRecognizeRequest;
 import com.jiankangyouyi.health.ai.api.request.ImageFoodSingleRecognizeRequest;
-import com.jiankangyouyi.health.ai.api.request.ImageStationeryRecognizeRequest;
-import com.jiankangyouyi.health.ai.api.request.QasQueryAnswerRequest;
-import com.jiankangyouyi.health.ai.api.request.SearchFoodDetailRequest;
-import com.jiankangyouyi.health.ai.api.request.SearchFoodListRequest;
-import com.jiankangyouyi.health.ai.api.request.SportSubjectListRequest;
-import com.jiankangyouyi.health.ai.api.request.SportSubjectQueryRequest;
-import com.jiankangyouyi.health.ai.api.request.SportVoiceQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisDiabetesMealReqData;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisHealthyMealReqData;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisHyperlipidemiaMealReqData;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisHypertensionMealReqData;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisMaternalMealReqData;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisSubHealthyMealReqData;
+import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationBriefLoadRequest;
+import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationContentLoadRequest;
+import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationDataSaveRequest;
+import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationResultLoadRequest;
+import com.jiankangyouyi.health.ai.api.request.qas.QasQueryAnswerRequest;
+import com.jiankangyouyi.health.ai.api.request.query.ExerciseSpeechQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.query.ExerciseTextQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryDiabetesRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHealthyRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHyperlipidemiaRequest;
@@ -64,30 +57,25 @@ import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHyperlipidemia
 import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHypertensionRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryMaternalRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodTextQuerySubHealthyRequest;
-import com.jiankangyouyi.health.ai.api.response.AnalysisMealResponse;
+import com.jiankangyouyi.health.ai.api.request.query.bean.BodyDataBean;
+import com.jiankangyouyi.health.ai.api.request.query.bean.HighlightBean;
+import com.jiankangyouyi.health.ai.api.request.record.RecordLifestyleRequest;
 import com.jiankangyouyi.health.ai.api.response.BodyThreeDimensionalResponse;
-import com.jiankangyouyi.health.ai.api.response.DialogRecordResponse;
-import com.jiankangyouyi.health.ai.api.response.EvaluationBriefLoadResponse;
-import com.jiankangyouyi.health.ai.api.response.EvaluationContentLoadResponse;
-import com.jiankangyouyi.health.ai.api.response.EvaluationDataSaveResponse;
-import com.jiankangyouyi.health.ai.api.response.EvaluationResultLoadResponse;
-import com.jiankangyouyi.health.ai.api.response.ExerciseQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendChangementResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodRecommendResponse;
 import com.jiankangyouyi.health.ai.api.response.FoodVolumeRecognitionResponse;
-import com.jiankangyouyi.health.ai.api.response.FridgeFoodRecommendResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
-import com.jiankangyouyi.health.ai.api.response.ImageFoodMultiRecognizeResponse;
 import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
-import com.jiankangyouyi.health.ai.api.response.ImageStationeryRecognizeResponse;
-import com.jiankangyouyi.health.ai.api.response.QasQueryAnswerResponse;
-import com.jiankangyouyi.health.ai.api.response.SearchFoodDetailResponse;
-import com.jiankangyouyi.health.ai.api.response.SearchFoodListResponse;
-import com.jiankangyouyi.health.ai.api.response.SportSubjectListResponse;
-import com.jiankangyouyi.health.ai.api.response.SportSubjectQueryResponse;
-import com.jiankangyouyi.health.ai.api.response.SportVoiceQueryResponse;
+import com.jiankangyouyi.health.ai.api.response.analysis.AnalysisMealGeneralResData;
+import com.jiankangyouyi.health.ai.api.response.evaluation.EvaluationBriefLoadResponse;
+import com.jiankangyouyi.health.ai.api.response.evaluation.EvaluationContentLoadResponse;
+import com.jiankangyouyi.health.ai.api.response.evaluation.EvaluationDataSaveResponse;
+import com.jiankangyouyi.health.ai.api.response.evaluation.EvaluationResultLoadResponse;
+import com.jiankangyouyi.health.ai.api.response.qas.QasQueryAnswerResponse;
+import com.jiankangyouyi.health.ai.api.response.query.ExerciseQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.query.FoodImageQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.query.FoodTextSpeechQueryGeneralResponse;
+import com.jiankangyouyi.health.ai.api.response.record.RecordLifestyleResponse;
 import com.jiankangyouyi.health.ai.api.util.Base64Util;
 import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
@@ -114,7 +102,7 @@ public class ApiTest {
     public void imageEmotionRecognizeBase64Test() throws IOException {
 
         HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
 
         String image = FileUtils.readFileToString(new File(DATA_PATH + "emotion_recognize_base64_image.txt"), "UTF-8");
         ImageEmotionRecognizeRequest request = new ImageEmotionRecognizeRequest();
@@ -159,48 +147,42 @@ public class ApiTest {
      * 
      * 
      * @throws IOException
+     * 
+     * @Test public void imageFoodMultiRecognizeBase64Test() throws IOException { String image =
+     *       FileUtils.readFileToString(new File(DATA_PATH + "food_multi_recognize_base64_image.txt"), "UTF-8");
+     * 
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api2.hbox.jiankangyouyi.com"); ImageFoodMultiRecognizeRequest request = new
+     *       ImageFoodMultiRecognizeRequest(); request.setImage(image); ImageFoodMultiRecognizeResponse response =
+     *       client.execute(request); // response json ： // {"curTime":"2018-06-28 // 18:56:
+     *       47","recognitionFoodList":[{"alanine":0.0,"arginine":0.0,"aspartic":0.0,"calcium":5.84,"carbohydrate":24.94,"carotene":0.0,"cholesterol":0.0,"chromium":0.0,"confidence":0.857318,"copper":0.05,"ediblePart":100.0,"fat":11.78,"fluorine":0.0,"foodId":"57b6bd3f3004d165422ad74b","foodName":"米饭","gi":0.0,"glutamic":0.0,"glycine":0.0,"heat":225,"heatKJ":941,"histidine":0.0,"iodine":0.0,"iron":1.05,"isoleucine":0.0,"leftCoordinate":0.407,"leucine":0.0,"lysine":0.0,"manganese":0.46,"methionine":0.0,"mfaPercent":45.07,"moisture":55.61,"monounsaturatedFattyAcid":0.84,"pfaPercent":41.19,"phenylalanine":0.0,"phosphorus":48.65,"polyunsaturatedFattyAcid":0.77,"potassium":23.59,"proline":0.0,"protein":4.63,"recognitionFoodNum":0,"saturatedFattyAcid":0.27,"selenium":0.31,"serine":0.0,"sfaPercent":14.36,"sodium":2.06,"solkfloc":0.24,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.0898,"totalFattyAcid":1.87,"tryptophan":0.0,"unit":"克","valine":0.0,"vitaminA":0.0,"vitaminB1":0.06,"vitaminB12":0.0,"vitaminB2":0.02,"vitaminB3":1.49,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.47,"vitaminK":0.0,"zinc":0.73},{"alanine":897.5,"arginine":758.0,"aspartic":922.5,"calcium":8.5,"carbohydrate":0.15,"carotene":0.0,"cholesterol":53.0,"chromium":0.0,"confidence":0.844831,"copper":0.13,"ediblePart":74.0,"fat":1.15,"fluorine":0.0,"foodId":"57da3a2177c86f66be2dab20","foodName":"乌鸡汤","gi":0.0,"glutamic":1530.5,"glycine":463.0,"heat":55,"heatKJ":230,"histidine":291.5,"iodine":0.0,"iron":1.15,"isoleucine":0.0,"leftCoordinate":0.4419,"leucine":0.0,"lysine":0.0,"manganese":0.03,"methionine":0.0,"mfaPercent":27.27,"moisture":36.95,"monounsaturatedFattyAcid":0.3,"pfaPercent":9.09,"phenylalanine":0.0,"phosphorus":105.0,"polyunsaturatedFattyAcid":0.1,"potassium":161.5,"proline":771.5,"protein":11.15,"recognitionFoodNum":0,"saturatedFattyAcid":0.65,"selenium":3.87,"serine":532.0,"sfaPercent":59.09,"sodium":32.0,"solkfloc":0.0,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.4973,"totalFattyAcid":1.1,"tryptophan":140.0,"unit":"克","valine":362.0,"vitaminA":0.0,"vitaminB1":0.01,"vitaminB12":0.0,"vitaminB2":0.1,"vitaminB3":3.55,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.89,"vitaminK":0.0,"zinc":0.8}],"retCode":"SUCCESS","retInfo":"处理成功","sn":"f2cb27e47ac111e8aa9bac1f6b22e430
+     *       "} System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response));
+     * 
+     *       }
      */
-    @Test
-    public void imageFoodMultiRecognizeBase64Test() throws IOException {
-        String image =
-            FileUtils.readFileToString(new File(DATA_PATH + "food_multi_recognize_base64_image.txt"), "UTF-8");
-
-        HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
-        ImageFoodMultiRecognizeRequest request = new ImageFoodMultiRecognizeRequest();
-        request.setImage(image);
-        ImageFoodMultiRecognizeResponse response = client.execute(request);
-        // response json ：
-        // {"curTime":"2018-06-28
-        // 18:56:47","recognitionFoodList":[{"alanine":0.0,"arginine":0.0,"aspartic":0.0,"calcium":5.84,"carbohydrate":24.94,"carotene":0.0,"cholesterol":0.0,"chromium":0.0,"confidence":0.857318,"copper":0.05,"ediblePart":100.0,"fat":11.78,"fluorine":0.0,"foodId":"57b6bd3f3004d165422ad74b","foodName":"米饭","gi":0.0,"glutamic":0.0,"glycine":0.0,"heat":225,"heatKJ":941,"histidine":0.0,"iodine":0.0,"iron":1.05,"isoleucine":0.0,"leftCoordinate":0.407,"leucine":0.0,"lysine":0.0,"manganese":0.46,"methionine":0.0,"mfaPercent":45.07,"moisture":55.61,"monounsaturatedFattyAcid":0.84,"pfaPercent":41.19,"phenylalanine":0.0,"phosphorus":48.65,"polyunsaturatedFattyAcid":0.77,"potassium":23.59,"proline":0.0,"protein":4.63,"recognitionFoodNum":0,"saturatedFattyAcid":0.27,"selenium":0.31,"serine":0.0,"sfaPercent":14.36,"sodium":2.06,"solkfloc":0.24,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.0898,"totalFattyAcid":1.87,"tryptophan":0.0,"unit":"克","valine":0.0,"vitaminA":0.0,"vitaminB1":0.06,"vitaminB12":0.0,"vitaminB2":0.02,"vitaminB3":1.49,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.47,"vitaminK":0.0,"zinc":0.73},{"alanine":897.5,"arginine":758.0,"aspartic":922.5,"calcium":8.5,"carbohydrate":0.15,"carotene":0.0,"cholesterol":53.0,"chromium":0.0,"confidence":0.844831,"copper":0.13,"ediblePart":74.0,"fat":1.15,"fluorine":0.0,"foodId":"57da3a2177c86f66be2dab20","foodName":"乌鸡汤","gi":0.0,"glutamic":1530.5,"glycine":463.0,"heat":55,"heatKJ":230,"histidine":291.5,"iodine":0.0,"iron":1.15,"isoleucine":0.0,"leftCoordinate":0.4419,"leucine":0.0,"lysine":0.0,"manganese":0.03,"methionine":0.0,"mfaPercent":27.27,"moisture":36.95,"monounsaturatedFattyAcid":0.3,"pfaPercent":9.09,"phenylalanine":0.0,"phosphorus":105.0,"polyunsaturatedFattyAcid":0.1,"potassium":161.5,"proline":771.5,"protein":11.15,"recognitionFoodNum":0,"saturatedFattyAcid":0.65,"selenium":3.87,"serine":532.0,"sfaPercent":59.09,"sodium":32.0,"solkfloc":0.0,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.4973,"totalFattyAcid":1.1,"tryptophan":140.0,"unit":"克","valine":362.0,"vitaminA":0.0,"vitaminB1":0.01,"vitaminB12":0.0,"vitaminB2":0.1,"vitaminB3":3.55,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.89,"vitaminK":0.0,"zinc":0.8}],"retCode":"SUCCESS","retInfo":"处理成功","sn":"f2cb27e47ac111e8aa9bac1f6b22e430"}
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-
-    }
 
     /**
      * 一图多物食物识别Test : URL
      * 
      * 
      * @throws IOException
+     * 
+     * @Test public void imageFoodMultiRecognizeURLTest() throws IOException {
+     * 
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api2.hbox.jiankangyouyi.com");
+     * 
+     *       String foodImageUrl = "https://oieve67xn.qnssl.com/images/2/e62e0808a0004c1385bd806a89595051.jpeg";
+     *       ImageFoodMultiRecognizeRequest request = new ImageFoodMultiRecognizeRequest();
+     *       request.setFoodImageUrl(foodImageUrl); ImageFoodMultiRecognizeResponse response = client.execute(request);
+     *       // response json ： // {"curTime":"2018-06-28 // 18:56:
+     *       47","recognitionFoodList":[{"alanine":0.0,"arginine":0.0,"aspartic":0.0,"calcium":5.84,"carbohydrate":24.94,"carotene":0.0,"cholesterol":0.0,"chromium":0.0,"confidence":0.857318,"copper":0.05,"ediblePart":100.0,"fat":11.78,"fluorine":0.0,"foodId":"57b6bd3f3004d165422ad74b","foodName":"米饭","gi":0.0,"glutamic":0.0,"glycine":0.0,"heat":225,"heatKJ":941,"histidine":0.0,"iodine":0.0,"iron":1.05,"isoleucine":0.0,"leftCoordinate":0.407,"leucine":0.0,"lysine":0.0,"manganese":0.46,"methionine":0.0,"mfaPercent":45.07,"moisture":55.61,"monounsaturatedFattyAcid":0.84,"pfaPercent":41.19,"phenylalanine":0.0,"phosphorus":48.65,"polyunsaturatedFattyAcid":0.77,"potassium":23.59,"proline":0.0,"protein":4.63,"recognitionFoodNum":0,"saturatedFattyAcid":0.27,"selenium":0.31,"serine":0.0,"sfaPercent":14.36,"sodium":2.06,"solkfloc":0.24,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.0898,"totalFattyAcid":1.87,"tryptophan":0.0,"unit":"克","valine":0.0,"vitaminA":0.0,"vitaminB1":0.06,"vitaminB12":0.0,"vitaminB2":0.02,"vitaminB3":1.49,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.47,"vitaminK":0.0,"zinc":0.73},{"alanine":897.5,"arginine":758.0,"aspartic":922.5,"calcium":8.5,"carbohydrate":0.15,"carotene":0.0,"cholesterol":53.0,"chromium":0.0,"confidence":0.844831,"copper":0.13,"ediblePart":74.0,"fat":1.15,"fluorine":0.0,"foodId":"57da3a2177c86f66be2dab20","foodName":"乌鸡汤","gi":0.0,"glutamic":1530.5,"glycine":463.0,"heat":55,"heatKJ":230,"histidine":291.5,"iodine":0.0,"iron":1.15,"isoleucine":0.0,"leftCoordinate":0.4419,"leucine":0.0,"lysine":0.0,"manganese":0.03,"methionine":0.0,"mfaPercent":27.27,"moisture":36.95,"monounsaturatedFattyAcid":0.3,"pfaPercent":9.09,"phenylalanine":0.0,"phosphorus":105.0,"polyunsaturatedFattyAcid":0.1,"potassium":161.5,"proline":771.5,"protein":11.15,"recognitionFoodNum":0,"saturatedFattyAcid":0.65,"selenium":3.87,"serine":532.0,"sfaPercent":59.09,"sodium":32.0,"solkfloc":0.0,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.4973,"totalFattyAcid":1.1,"tryptophan":140.0,"unit":"克","valine":362.0,"vitaminA":0.0,"vitaminB1":0.01,"vitaminB12":0.0,"vitaminB2":0.1,"vitaminB3":3.55,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.89,"vitaminK":0.0,"zinc":0.8}],"retCode":"SUCCESS","retInfo":"处理成功","sn":"f2cb27e47ac111e8aa9bac1f6b22e430
+     *       "} System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response));
+     * 
+     *       }
      */
-    @Test
-    public void imageFoodMultiRecognizeURLTest() throws IOException {
-
-        HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
-
-        String foodImageUrl = "https://oieve67xn.qnssl.com/images/2/e62e0808a0004c1385bd806a89595051.jpeg";
-        ImageFoodMultiRecognizeRequest request = new ImageFoodMultiRecognizeRequest();
-        request.setFoodImageUrl(foodImageUrl);
-        ImageFoodMultiRecognizeResponse response = client.execute(request);
-        // response json ：
-        // {"curTime":"2018-06-28
-        // 18:56:47","recognitionFoodList":[{"alanine":0.0,"arginine":0.0,"aspartic":0.0,"calcium":5.84,"carbohydrate":24.94,"carotene":0.0,"cholesterol":0.0,"chromium":0.0,"confidence":0.857318,"copper":0.05,"ediblePart":100.0,"fat":11.78,"fluorine":0.0,"foodId":"57b6bd3f3004d165422ad74b","foodName":"米饭","gi":0.0,"glutamic":0.0,"glycine":0.0,"heat":225,"heatKJ":941,"histidine":0.0,"iodine":0.0,"iron":1.05,"isoleucine":0.0,"leftCoordinate":0.407,"leucine":0.0,"lysine":0.0,"manganese":0.46,"methionine":0.0,"mfaPercent":45.07,"moisture":55.61,"monounsaturatedFattyAcid":0.84,"pfaPercent":41.19,"phenylalanine":0.0,"phosphorus":48.65,"polyunsaturatedFattyAcid":0.77,"potassium":23.59,"proline":0.0,"protein":4.63,"recognitionFoodNum":0,"saturatedFattyAcid":0.27,"selenium":0.31,"serine":0.0,"sfaPercent":14.36,"sodium":2.06,"solkfloc":0.24,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.0898,"totalFattyAcid":1.87,"tryptophan":0.0,"unit":"克","valine":0.0,"vitaminA":0.0,"vitaminB1":0.06,"vitaminB12":0.0,"vitaminB2":0.02,"vitaminB3":1.49,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.47,"vitaminK":0.0,"zinc":0.73},{"alanine":897.5,"arginine":758.0,"aspartic":922.5,"calcium":8.5,"carbohydrate":0.15,"carotene":0.0,"cholesterol":53.0,"chromium":0.0,"confidence":0.844831,"copper":0.13,"ediblePart":74.0,"fat":1.15,"fluorine":0.0,"foodId":"57da3a2177c86f66be2dab20","foodName":"乌鸡汤","gi":0.0,"glutamic":1530.5,"glycine":463.0,"heat":55,"heatKJ":230,"histidine":291.5,"iodine":0.0,"iron":1.15,"isoleucine":0.0,"leftCoordinate":0.4419,"leucine":0.0,"lysine":0.0,"manganese":0.03,"methionine":0.0,"mfaPercent":27.27,"moisture":36.95,"monounsaturatedFattyAcid":0.3,"pfaPercent":9.09,"phenylalanine":0.0,"phosphorus":105.0,"polyunsaturatedFattyAcid":0.1,"potassium":161.5,"proline":771.5,"protein":11.15,"recognitionFoodNum":0,"saturatedFattyAcid":0.65,"selenium":3.87,"serine":532.0,"sfaPercent":59.09,"sodium":32.0,"solkfloc":0.0,"soyIsoflavone":0.0,"threonine":0.0,"topCoordinate":0.4973,"totalFattyAcid":1.1,"tryptophan":140.0,"unit":"克","valine":362.0,"vitaminA":0.0,"vitaminB1":0.01,"vitaminB12":0.0,"vitaminB2":0.1,"vitaminB3":3.55,"vitaminB5":0.0,"vitaminB6":0.0,"vitaminB9":0.0,"vitaminC":0.0,"vitaminD":0.0,"vitaminE":0.89,"vitaminK":0.0,"zinc":0.8}],"retCode":"SUCCESS","retInfo":"处理成功","sn":"f2cb27e47ac111e8aa9bac1f6b22e430"}
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-
-    }
 
     /**
      * 一图一物食物识别Test : Base64
@@ -262,48 +244,41 @@ public class ApiTest {
      * 
      * 
      * @throws IOException
+     * 
+     * @Test public void imageStationeryRecognizeBase64Test() throws IOException {
+     * 
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api2.hbox.jiankangyouyi.com");
+     * 
+     *       String image = FileUtils.readFileToString(new File(DATA_PATH + "stationery_recognize_base64_image.txt"),
+     *       "UTF-8"); ImageStationeryRecognizeRequest request = new ImageStationeryRecognizeRequest();
+     *       request.setImage(image); ImageStationeryRecognizeResponse response = client.execute(request); // response
+     *       json ： // {"confidence":0.993592,"curTime":"2018-06-28 //
+     *       19:11:45","itemName":"笔","retCode":"SUCCESS","retInfo":"处理成功","sn":"0b5678a27ac411e8aa9bac1f6b22e430"}
+     *       System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response)); }
      */
-    @Test
-    public void imageStationeryRecognizeBase64Test() throws IOException {
-
-        HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
-
-        String image =
-            FileUtils.readFileToString(new File(DATA_PATH + "stationery_recognize_base64_image.txt"), "UTF-8");
-        ImageStationeryRecognizeRequest request = new ImageStationeryRecognizeRequest();
-        request.setImage(image);
-        ImageStationeryRecognizeResponse response = client.execute(request);
-        // response json ：
-        // {"confidence":0.993592,"curTime":"2018-06-28
-        // 19:11:45","itemName":"笔","retCode":"SUCCESS","retInfo":"处理成功","sn":"0b5678a27ac411e8aa9bac1f6b22e430"}
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
 
     /**
      * 文具识别Test : Base64
      * 
      * 
      * @throws IOException
+     * 
+     * @Test public void imageStationeryRecognizeURLTest() throws IOException {
+     * 
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api2.hbox.jiankangyouyi.com");
+     * 
+     *       String officeImageUrl = "https://oieve67xn.qnssl.com/images/2/559bfa07ab6440459ebcde122c1f6038.jpeg";
+     * 
+     *       ImageStationeryRecognizeRequest request = new ImageStationeryRecognizeRequest();
+     *       request.setOfficeImageUrl(officeImageUrl); ImageStationeryRecognizeResponse response =
+     *       client.execute(request); // response json ： // {"confidence":0.993592,"curTime":"2018-06-28 //
+     *       19:11:45","itemName":"笔","retCode":"SUCCESS","retInfo":"处理成功","sn":"0b5678a27ac411e8aa9bac1f6b22e430"}
+     *       System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response)); }
      */
-    @Test
-    public void imageStationeryRecognizeURLTest() throws IOException {
-
-        HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
-
-        String officeImageUrl = "https://oieve67xn.qnssl.com/images/2/559bfa07ab6440459ebcde122c1f6038.jpeg";
-
-        ImageStationeryRecognizeRequest request = new ImageStationeryRecognizeRequest();
-        request.setOfficeImageUrl(officeImageUrl);
-        ImageStationeryRecognizeResponse response = client.execute(request);
-        // response json ：
-        // {"confidence":0.993592,"curTime":"2018-06-28
-        // 19:11:45","itemName":"笔","retCode":"SUCCESS","retInfo":"处理成功","sn":"0b5678a27ac411e8aa9bac1f6b22e430"}
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
 
     /**
      * 智能问答
@@ -335,14 +310,14 @@ public class ApiTest {
      * @throws IOException
      */
     @Test
-    public void dialogRecordTest() throws IOException {
+    public void recordLifestyle() throws IOException {
 
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
 
-        DialogRecordRequest request = new DialogRecordRequest();
-        request.setText("我晚上跑步35分钟，然后喝了一罐可乐");
-        DialogRecordResponse response = client.execute(request);
+        RecordLifestyleRequest request = new RecordLifestyleRequest();
+        request.setMessage("我昨天午休了3个小时");
+        RecordLifestyleResponse response = client.execute(request);
         // {"curTime":"2018-07-05
         // 16:55:50","result":[{"count":30,"intent":"RECORD_MEAL","itemName":"米饭","unit":"颗"},{"count":1,"intent":"RECORD_MEAL","itemName":"紫菜汤","unit":"碗"}],"retCode":"SUCCESS","sn":"5b3ddd165516106e19a8c4fa"}
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -354,42 +329,38 @@ public class ApiTest {
      * 
      * 
      * @throws IOException
+     * 
+     * @Test public void seachFoodList() throws IOException {
+     * 
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api.hbox.jiankangyouyi.com/ego-gw");
+     * 
+     *       SearchFoodListRequest request = new SearchFoodListRequest(); request.setFoodName("鸡蛋");
+     *       request.setPageInfo(new PageInfo(1, 5));
+     * 
+     *       SearchFoodListResponse response = client.execute(request);
+     *       System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response)); }
      */
-    @Test
-    public void seachFoodList() throws IOException {
-
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
-
-        SearchFoodListRequest request = new SearchFoodListRequest();
-        request.setFoodName("鸡蛋");
-        request.setPageInfo(new PageInfo(1, 5));
-
-        SearchFoodListResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
 
     /**
      * 查询食物详情
      * 
      * 
      * @throws IOException
+     * 
+     * @Test public void seachFoodDetail() throws IOException {
+     * 
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api.hbox.jiankangyouyi.com/ego-gw");
+     * 
+     *       SearchFoodDetailRequest request = new SearchFoodDetailRequest();
+     *       request.setFoodId("57b6bd3f3004d165422ad7f4");
+     * 
+     *       SearchFoodDetailResponse response = client.execute(request);
+     *       System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response)); }
      */
-    @Test
-    public void seachFoodDetail() throws IOException {
-
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
-
-        SearchFoodDetailRequest request = new SearchFoodDetailRequest();
-        request.setFoodId("57b6bd3f3004d165422ad7f4");
-
-        SearchFoodDetailResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
-
     /**
      * 获取评测简介
      * 
@@ -1063,88 +1034,40 @@ public class ApiTest {
         System.out.println(JsonUtil.toJson(response));
     }
 
-    @Test
-    public void analysisMeal() throws IOException {
-
-        HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
-
-        List<MealData> breakfast = new ArrayList<>();
-        breakfast.add(new MealData("57b6cb003004c3a694946dbe", "178"));
-        breakfast.add(new MealData("57b6cb003004c3a69494845c", "71"));
-        breakfast.add(new MealData("57b6cb003004c3a694947ce8", "178"));
-        breakfast.add(new MealData("57b6cb003004c3a694947437", "178"));
-
-        List<MealData> lunch = new ArrayList<>();
-        lunch.add(new MealData("57da3d2677c8df901ec90e2e", "178"));
-        lunch.add(new MealData("57b6cb003004c3a694945e6e", "297"));
-        lunch.add(new MealData("57da3cdc77c8df901ec90da3", "119"));
-        lunch.add(new MealData("57b6cb003004c3a694947de3", "178"));
-
-        List<MealData> supper = new ArrayList<>();
-        supper.add(new MealData("57b6cb003004c3a6949473e1", "357"));
-        supper.add(new MealData("57b6cb003004c3a694946e65", "119"));
-        supper.add(new MealData("57b6cb003004c3a694945cfc", "178"));
-        supper.add(new MealData("58eb4b0df32eaa580dec7296", "100"));
-
-        AnalysisMealRequest request = new AnalysisMealRequest();
-        request.setBodyData(new BodyData("1", "1988-11-26", "1", "1"));
-        request.setBreakfast(breakfast);
-        request.setLunch(lunch);
-        request.setSupper(supper);
-
-        AnalysisMealResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
-
-    @Test
-    public void listSportsSubject() {
-
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
-
-        SportSubjectListRequest request = new SportSubjectListRequest();
-        request.setSportSubject("1");
-        request.setSubjectName(null);
-        request.setGender("1");
-        request.setWeight(BigDecimal.valueOf(70));
-        request.setPageInfo(new PageInfo(1, 2));
-
-        SportSubjectListResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
-
-    @Test
-    public void querySportCourse() throws IOException {
-
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
-
-        SportSubjectQueryRequest request = new SportSubjectQueryRequest();
-        request.setCourseId("5926afec48fb60380a0706a8");
-        request.setGender("1");
-        request.setWeight(new BigDecimal("74.3"));
-
-        SportSubjectQueryResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
-
-    @Test
-    public void querySportVoice() throws IOException {
-
-        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-            "https://api.hbox.jiankangyouyi.com/ego-gw");
-
-        SportVoiceQueryRequest request = new SportVoiceQueryRequest();
-        request.setSportVoiceType("1");
-
-        SportVoiceQueryResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
+    // @Test
+    // public void analysisMeal() throws IOException {
+    //
+    // HealthAiClient client =
+    // new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+    //
+    // List<MealDataBean> breakfast = new ArrayList<>();
+    // breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+    // breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+    // breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+    // breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+    //
+    // List<MealDataBean> lunch = new ArrayList<>();
+    // lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+    // lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+    // lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+    // lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+    //
+    // List<MealDataBean> supper = new ArrayList<>();
+    // supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+    // supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+    // supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+    // supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+    //
+    // AnalysisMealRequest request = new AnalysisMealRequest();
+    // request.setBodyData(new BodyData("1", "1988-11-26", "1", "1"));
+    // request.setBreakfast(breakfast);
+    // request.setLunch(lunch);
+    // request.setSupper(supper);
+    //
+    // AnalysisMealResponse response = client.execute(request);
+    // System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    // System.out.println(JsonUtil.toJson(response));
+    // }
 
     @Test
     public void recommendFood() throws IOException {
@@ -1194,28 +1117,6 @@ public class ApiTest {
         request.setFoodList(foodList);
 
         FoodRecommendChangementResponse response = client.execute(request);
-        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-        System.out.println(JsonUtil.toJson(response));
-    }
-
-    @Test
-    public void recommendFridgeFood() throws IOException {
-
-        HealthAiClient client =
-            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
-
-        List<String> foodList = Arrays.asList("薏米", "锅贴", "红薯", "鸡胸肉(生)", "墨鱼丸", "鹅蛋", "紫甘蓝", "油菜", "西红柿", "猴头菇", "胡萝卜",
-            "荔枝", "苹果", "杏仁", "牛奶", "橄榄油", "全麦面条(干)", "青豆", "红心甘薯");
-
-        FridgeFoodRecommendRequest request = new FridgeFoodRecommendRequest();
-        request.setAge(30);
-        request.setGender("2");
-        request.setHeight(167);
-        request.setWeight(new BigDecimal("65"));
-        request.setFoodList(foodList);
-
-        FridgeFoodRecommendResponse response = client.execute(request);
-
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
         System.out.println(JsonUtil.toJson(response));
     }
@@ -1529,4 +1430,218 @@ public class ApiTest {
         System.out.println(result);
     }
 
+    @Test
+    public void analysisHealthyMeal() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
+        AnalysisHealthyMealReqData request = new AnalysisHealthyMealReqData();
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+        request.setAge("31");
+        request.setGender("1");
+
+        AnalysisMealGeneralResData response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void analysisSubHealthyMeal() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
+        AnalysisSubHealthyMealReqData request = new AnalysisSubHealthyMealReqData();
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+        request.setAge("31");
+        request.setGender("1");
+
+        AnalysisMealGeneralResData response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void analysisDiabetesMeal() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
+        AnalysisDiabetesMealReqData request = new AnalysisDiabetesMealReqData();
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+        request.setAge("31");
+        request.setGender("1");
+
+        AnalysisMealGeneralResData response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void analysisHypertensionMeal() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
+        AnalysisHypertensionMealReqData request = new AnalysisHypertensionMealReqData();
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+        request.setAge("31");
+        request.setGender("1");
+
+        AnalysisMealGeneralResData response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void analysisHyperlipidemiaMeal() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
+        AnalysisHyperlipidemiaMealReqData request = new AnalysisHyperlipidemiaMealReqData();
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+        request.setAge("31");
+        request.setGender("1");
+
+        AnalysisMealGeneralResData response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void analysisMaternalMeal() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
+        AnalysisMaternalMealReqData request = new AnalysisMaternalMealReqData();
+        request.setBreakfast(breakfast);
+        request.setLunch(lunch);
+        request.setSupper(supper);
+        request.setStage("1");
+
+        AnalysisMealGeneralResData response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
 }

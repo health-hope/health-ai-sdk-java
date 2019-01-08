@@ -1,13 +1,15 @@
 package api;
 
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryMaternalRequest;
-import com.jiankangyouyi.health.ai.api.response.query.FoodImageQueryGeneralResponse;
+import com.jiankangyouyi.health.ai.api.bean.analysis.MealDataBean;
+import com.jiankangyouyi.health.ai.api.request.analysis.AnalysisMaternalMealReqData;
+import com.jiankangyouyi.health.ai.api.response.analysis.AnalysisMealGeneralResData;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
 public class Sample {
@@ -21,19 +23,37 @@ public class Sample {
         // 初始化client
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
 
+        List<MealDataBean> breakfast = new ArrayList<>();
+        breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a69494845c", "71"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947ce8", "178"));
+        breakfast.add(new MealDataBean("57b6cb003004c3a694947437", "178"));
+
+        List<MealDataBean> lunch = new ArrayList<>();
+        lunch.add(new MealDataBean("57da3d2677c8df901ec90e2e", "178"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694945e6e", "297"));
+        lunch.add(new MealDataBean("57da3cdc77c8df901ec90da3", "119"));
+        lunch.add(new MealDataBean("57b6cb003004c3a694947de3", "178"));
+
+        List<MealDataBean> supper = new ArrayList<>();
+        supper.add(new MealDataBean("57b6cb003004c3a6949473e1", "357"));
+        supper.add(new MealDataBean("57b6cb003004c3a694946e65", "119"));
+        supper.add(new MealDataBean("57b6cb003004c3a694945cfc", "178"));
+        supper.add(new MealDataBean("58eb4b0df32eaa580dec7296", "100"));
+
         // 根据接口文档构建Request
-        FoodImageQueryMaternalRequest request = new FoodImageQueryMaternalRequest();
-        // 图像数据
-        request.setImage("填写base64编码的图像文件");
-        // 指定食物的质量或体积，质量单位g，体积单位ml
-        request.setCount(BigDecimal.valueOf(100));
-        // 指定返回的数据条数
-        request.setTop(2);
+        AnalysisMaternalMealReqData request = new AnalysisMaternalMealReqData();
+        // 早餐数据
+        request.setBreakfast(breakfast);
+        // 午餐数据
+        request.setLunch(lunch);
+        // 晚餐数据
+        request.setSupper(supper);
         // 1 <孕早期(孕第1周到13周末期间)> 2 <孕中期(孕14周到孕27周末期间)> 3 <孕晚期(孕28周后)> 4 <哺乳期>
         request.setStage("1");
 
         // 发起请求，得到返回结果
-        FoodImageQueryGeneralResponse response = client.execute(request);
+        AnalysisMealGeneralResData response = client.execute(request);
         System.out.println(JsonUtil.toJson(response, true));
     }
 
