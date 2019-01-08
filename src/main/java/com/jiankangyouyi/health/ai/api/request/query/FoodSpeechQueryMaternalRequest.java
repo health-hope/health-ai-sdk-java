@@ -2,7 +2,7 @@ package com.jiankangyouyi.health.ai.api.request.query;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.PageInfo;
-import com.jiankangyouyi.health.ai.api.bean.query.HighlightBean;
+import com.jiankangyouyi.health.ai.api.request.query.bean.HighlightBean;
 import com.jiankangyouyi.health.ai.api.response.query.FoodTextSpeechQueryGeneralResponse;
 
 /**
