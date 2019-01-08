@@ -13,110 +13,125 @@ import com.jiankangyouyi.health.ai.api.HealthAiResponse;
  */
 public class ImageEmotionRecognizeResponse extends HealthAiResponse {
 
-	
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 识别结果
-	 */
-	private List<RecognizeEmotion> recognitionEmotionList;
+    private static final long serialVersionUID = 1L;
 
-	
-	
+    /**
+     * 识别结果
+     */
+    private List<RecognizeEmotion> recognitionEmotionList;
 
-	public List<RecognizeEmotion> getRecognitionEmotionList() {
-		return recognitionEmotionList;
-	}
+    public List<RecognizeEmotion> getRecognitionEmotionList() {
+        return recognitionEmotionList;
+    }
 
+    public void setRecognitionEmotionList(List<RecognizeEmotion> recognitionEmotionList) {
+        this.recognitionEmotionList = recognitionEmotionList;
+    }
 
+    @Override
+    public String toString() {
+        return "ImageEmotionRecognizeResponse [recognitionEmotionList=" + recognitionEmotionList + "]";
+    }
 
+    /**
+     * 识别出的表情
+     * 
+     * @author yangsongbo
+     *
+     */
+    public static class RecognizeEmotion {
 
-	public void setRecognitionEmotionList(List<RecognizeEmotion> recognitionEmotionList) {
-		this.recognitionEmotionList = recognitionEmotionList;
-	}
-	
-	
+        /**
+         * 表情 :
+         * </p>
+         * disgust ： 厌恶
+         * </p>
+         * fear ： 恐惧
+         * </p>
+         * happy ： 高兴
+         * </p>
+         * sad ： 难过
+         * </p>
+         * surprise ： 惊喜
+         * </p>
+         * neutral ：正常
+         * </p>
+         */
+        private String emotionName;
 
+        /**
+         * 置信度
+         */
+        private BigDecimal confidence;
 
-	@Override
-	public String toString() {
-		return "ImageEmotionRecognizeResponse [recognitionEmotionList=" + recognitionEmotionList + "]";
-	}
+        /**
+         * 目标框左上角坐标点x相对图片宽长度百分比
+         */
+        private BigDecimal xmin;
 
+        /**
+         * 目标框右下角坐标点x相对图片宽长度百分比
+         */
+        private BigDecimal xmax;
 
-	/**
-	 * 识别出的表情
-	 * 
-	 * @author yangsongbo
-	 *
-	 */
-	public static class RecognizeEmotion {
-	
-		/**
-		 * 表情 : </p> 
-		 * disgust ： 厌恶 </p> 
-		 * fear ： 恐惧 </p> 
-		 * happy ： 高兴 </p> 
-		 * sad ： 难过 </p> 
-		 * surprise ： 惊喜 </p> 
-		 * neutral ：正常 </p> 
-		 */
-		private String emotionName;
-		
-		/**
-		 * 置信度
-		 */
-		private BigDecimal confidence;
-		
-		/**
-		 * 识别人物距离左边距离百分比
-		 */
-		private BigDecimal leftCoordinate;
-		
-		/**
-		 * 识别人物距离上边界百分比
-		 */
-		private BigDecimal topCoordinate;
+        /**
+         * 目标框左上角坐标点y相对图片高长度百分比
+         */
+        private BigDecimal ymin;
 
-		public String getEmotionName() {
-			return emotionName;
-		}
+        /**
+         * 目标框右下角坐标点y相对图片高长度百分比
+         */
+        private BigDecimal ymax;
 
-		public void setEmotionName(String emotionName) {
-			this.emotionName = emotionName;
-		}
+        public String getEmotionName() {
+            return emotionName;
+        }
 
-		public BigDecimal getConfidence() {
-			return confidence;
-		}
+        public void setEmotionName(String emotionName) {
+            this.emotionName = emotionName;
+        }
 
-		public void setConfidence(BigDecimal confidence) {
-			this.confidence = confidence;
-		}
+        public BigDecimal getConfidence() {
+            return confidence;
+        }
 
-		public BigDecimal getLeftCoordinate() {
-			return leftCoordinate;
-		}
+        public void setConfidence(BigDecimal confidence) {
+            this.confidence = confidence;
+        }
 
-		public void setLeftCoordinate(BigDecimal leftCoordinate) {
-			this.leftCoordinate = leftCoordinate;
-		}
+        public BigDecimal getXmin() {
+            return xmin;
+        }
 
-		public BigDecimal getTopCoordinate() {
-			return topCoordinate;
-		}
+        public void setXmin(BigDecimal xmin) {
+            this.xmin = xmin;
+        }
 
-		public void setTopCoordinate(BigDecimal topCoordinate) {
-			this.topCoordinate = topCoordinate;
-		}
+        public BigDecimal getXmax() {
+            return xmax;
+        }
 
-		@Override
-		public String toString() {
-			return "RecognizeEmotion [emotionName=" + emotionName + ", confidence=" + confidence + ", leftCoordinate="
-					+ leftCoordinate + ", topCoordinate=" + topCoordinate + "]";
-		}
+        public void setXmax(BigDecimal xmax) {
+            this.xmax = xmax;
+        }
 
-	}
+        public BigDecimal getYmin() {
+            return ymin;
+        }
 
+        public void setYmin(BigDecimal ymin) {
+            this.ymin = ymin;
+        }
+
+        public BigDecimal getYmax() {
+            return ymax;
+        }
+
+        public void setYmax(BigDecimal ymax) {
+            this.ymax = ymax;
+        }
+
+    }
 
 }
