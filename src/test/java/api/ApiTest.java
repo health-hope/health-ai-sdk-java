@@ -1746,4 +1746,189 @@ public class ApiTest {
         System.out.println(JsonUtil.toJson(response));
     }
 
+    /**
+     * 骨质疏松人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryOsteoporosisLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryOsteoporosisRequest request = new LabelSpeechQueryOsteoporosisRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+    /**
+     * 脑卒中人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryStrokeLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryStrokeRequest request = new LabelSpeechQueryStrokeRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 痛风人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryGoutLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryGoutRequest request = new LabelSpeechQueryGoutRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 糖尿病人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryDiabetesLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryDiabetesRequest request = new LabelSpeechQueryDiabetesRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 高血压人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryHypertensionLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryHypertensionRequest request = new LabelSpeechQueryHypertensionRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 冠心病人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryCoronaryHeartDiseaseLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryCoronaryHeartDiseaseRequest request = new LabelSpeechQueryCoronaryHeartDiseaseRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 孕妇人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryExpectantMotherDiseaseLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryExpectantMotherRequest request = new LabelSpeechQueryExpectantMotherRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 高血脂人群标签语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryHighBloodFatDiseaseLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryHighBloodFatRequest request = new LabelSpeechQueryHighBloodFatRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
 }

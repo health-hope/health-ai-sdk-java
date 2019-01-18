@@ -19,7 +19,7 @@ public class LabelTextQueryHypertensionRequest extends HealthAiRequest<LabelText
     /**
      * 请求链接
      */
-    private static final String API_URL = "/v2/query/osteoporosis/text/label/list.do";
+    private static final String API_URL = "/v2/query/hypertension/text/label/list.do";
 
     /** 查询文本 **/
     private String text;

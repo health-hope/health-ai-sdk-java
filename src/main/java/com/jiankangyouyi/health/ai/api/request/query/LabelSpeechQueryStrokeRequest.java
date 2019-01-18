@@ -6,36 +6,41 @@ import com.jiankangyouyi.health.ai.api.request.query.bean.HighlightBean;
 import com.jiankangyouyi.health.ai.api.response.query.LabelTextSpeechQueryGeneralResponse;
 
 /**
- * 高血脂人群食物文本查询
+ * 脑卒中人群食物语音查询
  *
- * @author yangsongbo
- * @see /v2/query/blood-fat/text/label/list.do
  * @since v2.0
+ * @see  /v2/query/stroke/speech/label/list.do
+ * @author yangsongbo
  */
-public class LabelTextQueryHighBloodFatRequest extends HealthAiRequest<LabelTextSpeechQueryGeneralResponse> {
+public class LabelSpeechQueryStrokeRequest extends HealthAiRequest<LabelTextSpeechQueryGeneralResponse> {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 请求链接
      */
-    private static final String API_URL = "/v2/query/blood-fat/text/label/list.do";
+    private static final String API_URL = "/v2/query/stroke/speech/label/list.do";
+
+    /** 查询文本 **/
+    private String speech;
 
     /**
-     * 查询文本
-     **/
-    private String text;
+     * 音频格式
+     */
+    private String format;
 
-    /**
-     * 分页
-     **/
+    /** 分页 **/
     private PageInfo pageInfo;
+
+    /**
+     * 采样率 8000 或 16000
+     */
+    private int rate;
 
     /**
      * 高亮设置
      */
     private HighlightBean highlight;
-
     @Override
     public String getApiUrl() {
         return API_URL;
@@ -45,12 +50,20 @@ public class LabelTextQueryHighBloodFatRequest extends HealthAiRequest<LabelText
         return serialVersionUID;
     }
 
-    public String getText() {
-        return text;
+    public String getSpeech() {
+        return speech;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setSpeech(String speech) {
+        this.speech = speech;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
     }
 
     public PageInfo getPageInfo() {
@@ -61,6 +74,14 @@ public class LabelTextQueryHighBloodFatRequest extends HealthAiRequest<LabelText
         this.pageInfo = pageInfo;
     }
 
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
     public HighlightBean getHighlight() {
         return highlight;
     }
@@ -69,9 +90,10 @@ public class LabelTextQueryHighBloodFatRequest extends HealthAiRequest<LabelText
         this.highlight = highlight;
     }
 
+
     /* (non-Javadoc)
-     * @see com.jiankangyouyi.health.ai.api.IHealthAiRequest#check()
-     */
+         * @see com.jiankangyouyi.health.ai.api.IHealthAiRequest#check()
+         */
     @Override
     public void check() {
         // TODO Auto-generated method stub
