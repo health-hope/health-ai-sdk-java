@@ -78,13 +78,13 @@ public class DefaultHealthAiClient implements HealthAiClient {
         req.setSign(sign);
         req.setReqData(reqDataJson);
         String reqMessage = JsonUtil.toJson(req);
-        System.out.println("请求数据：" + reqMessage);
+        System.out.println("请求数据：\n" + reqMessage);
         String url = this.serverUrl + apiUrl;
         String rtn = HttpClientUtil.post(url, reqMessage, HealthAiConstants.CONTENT_TYPE_JSON);
         if (rtn == null || rtn.length() == 0) {
             throw new RuntimeException("没有返回数据");
         }
-        System.out.println("返回数据：" + rtn);
+        System.out.println("返回数据：\n" + rtn);
 
         return rtn;
     }
