@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.jiankangyouyi.health.ai.api.request.query.*;
-import com.jiankangyouyi.health.ai.api.response.query.LabelTextSpeechQueryGeneralResponse;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
@@ -39,6 +37,46 @@ import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationContentLoadR
 import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationDataSaveRequest;
 import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationResultLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.qas.QasQueryAnswerRequest;
+import com.jiankangyouyi.health.ai.api.request.query.ExerciseSpeechQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.query.ExerciseTextQueryRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryDiabetesRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHealthyRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHyperlipidemiaRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHypertensionRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryMaternalRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageQuerySubHealthyRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryDiabetesRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryHealthyRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryHyperlipidemiaRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryHypertensionRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryMaternalRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQuerySubHealthyRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryDiabetesRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHealthyRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHyperlipidemiaRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHypertensionRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryMaternalRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodTextQuerySubHealthyRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryCoronaryHeartDiseaseRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryDiabetesRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryExpectantMotherRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryGoutRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryHighBloodFatRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryHypertensionRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryOsteoporosisRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryStrokeRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryCoronaryHeartDiseaseRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryDiabetesRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryExpectantMotherRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryGoutRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryHighBloodFatRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryHypertensionRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryOsteoporosisRequest;
+import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryStrokeRequest;
+import com.jiankangyouyi.health.ai.api.request.query.QueryDiseaseListRequest;
+import com.jiankangyouyi.health.ai.api.request.query.QueryDrugListRequest;
+import com.jiankangyouyi.health.ai.api.request.query.QueryFoodAdditiveListRequest;
+import com.jiankangyouyi.health.ai.api.request.query.QueryMedicatedGruelListRequest;
 import com.jiankangyouyi.health.ai.api.request.query.bean.BodyDataBean;
 import com.jiankangyouyi.health.ai.api.request.query.bean.HighlightBean;
 import com.jiankangyouyi.health.ai.api.request.record.RecordLifestyleRequest;
@@ -57,6 +95,11 @@ import com.jiankangyouyi.health.ai.api.response.qas.QasQueryAnswerResponse;
 import com.jiankangyouyi.health.ai.api.response.query.ExerciseQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.query.FoodImageQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.query.FoodTextSpeechQueryGeneralResponse;
+import com.jiankangyouyi.health.ai.api.response.query.LabelTextSpeechQueryGeneralResponse;
+import com.jiankangyouyi.health.ai.api.response.query.QueryDiseaseListResponse;
+import com.jiankangyouyi.health.ai.api.response.query.QueryDrugListResponse;
+import com.jiankangyouyi.health.ai.api.response.query.QueryFoodAdditiveListResponse;
+import com.jiankangyouyi.health.ai.api.response.query.QueryMedicatedGruelListResponse;
 import com.jiankangyouyi.health.ai.api.response.record.RecordLifestyleResponse;
 import com.jiankangyouyi.health.ai.api.util.Base64Util;
 import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
@@ -66,7 +109,7 @@ public class ApiTest {
     // 测试
     private static String APPID = "5b33941b84274a0aa482e105";
     private static String PRIVATE_KEY =
-            "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDvGsh7/ollxwhrtRU3m746ERkgXW2gNlol+IcbvI/7APL+2ndMZvxpwliR59X7vMhPM1t33bkWDQLT1VIzmdkz/2ZTw7UN2EGgbTEflu3Bzt6UqQc0mOxJtsm6PMvfzrIhdr8rYDDR749QDhhKsEg2wzbJNBEhp7JCJRzTTqNpIvaTbaEck8FSm8H6QYOmAcupExrMQA7pEUVBgduVT3oMmcT5RnHh8hD8BjjMV9V/xq8tVOF7F++tvBtdoIW9gT+joFKCWUOertiQWENaub+lvKTeRaGeOlRjmZWp55rcx3hp56usGtSM3O8un8aKMbOJ448gka+XzQ/kOXUmPGlLAgMBAAECggEBAMYhKXQlzXC65q1pljVIJu8y7+Ezyf1yTG0ebcZ8D8rsVG7+VNDInex9EKuGsngxTMLkSa0f25j8GxWxtLXxjFxcDEzo5QSd6HOpR4VnqYhphWMmVUQuW84RW0Op0T6Zpl24alzlDk9H9TdfFp39STmntaQwMunybfIFksc+aIZaylP2sPkvjh8D9LyuSKKpmO5RMO8jM2EEo0AenonV7eXEvVQls/zht8ZnPQzGLBwCS+LvmggYjTbkDEELaVZClxjSgw1Ksw8cY3M05JZAZVfK8sZkxAAqzcrXNLZ0YC/wo/aZNw7LGPD78FHe/AFKTZ9rFtUWtmF9egwLN78aQ6ECgYEA/biIBQzsbRGWB6s3dkRjCYeWptc8aiNg0pzn+vmLbV9fmQII7bLS+lUjzZthYsjHBEEYilcrOYfx9ODT/1mzux+8e/kjxCvzOxJWktE2CfaRn2LzL1fXei6hk4It9kXxUCbxMeH0gTWhp6P8zmJcHh9LIyMZ2O8kivXdGjbRQFMCgYEA8UCjwni8esFnYn4qUXwyXap01EXGOhLqFIwiyds+InnLT723AXFFIxPW91lDCZdWXloL83flyP82qXAjfM//4Dvtb7bq2Ee77uCJn9DaGdQC8xJj1HHkkFInQSexFrIKwcEAPEMZ/EgdPrVW7Fmypf4CVd79RrqqoiHNv1eu9CkCgYEA+ZIXcehZc5vV2StI/fOc+5W80dZsHfc42VLwOYZX6Ljk3ywKPk4li4pOEoQh0jqu0Pd7PTErWobnsLmqrsW8rnc0Pzo9PU0CD3wlXnueTUSVz5NUpKAiW5Qc6W0m6tW33eDAZhHeIW7w2WbMWPKVrCeaEDEJzsLFTk80MwHy6PMCgYBO9CCj3G+SnQkAqtmeoU66aLajYdJl3xrMbrBT73R+Q+3NwwDJcBB4Ul3fxU6zLNwPNNkEbRC+nwd8nD6A8nGDKRmjnfFtpsxSeRmRPACkw0XT1wjk1gE/WiOOpzbFfq8WidtR3YP7lH49r4sq/pAA0whgogGxzBVbykRTgpa3QQKBgQCVWLYdXllqLUQhKZZa2ehShroO14fdCANc0eE5L6wl84gCzGX5ePPvk/WKZtaImTZFGNJZ+XwTGEf9cJ0oMTvZ5kdb3DOSWOIueq4uGohsZUeXBMVjeU6uRqBTn46i7gOH3/FS4U6Vcpr4lY/YVsBnJiQ/oST2jWwghHdvd4SMYw==";
+        "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDvGsh7/ollxwhrtRU3m746ERkgXW2gNlol+IcbvI/7APL+2ndMZvxpwliR59X7vMhPM1t33bkWDQLT1VIzmdkz/2ZTw7UN2EGgbTEflu3Bzt6UqQc0mOxJtsm6PMvfzrIhdr8rYDDR749QDhhKsEg2wzbJNBEhp7JCJRzTTqNpIvaTbaEck8FSm8H6QYOmAcupExrMQA7pEUVBgduVT3oMmcT5RnHh8hD8BjjMV9V/xq8tVOF7F++tvBtdoIW9gT+joFKCWUOertiQWENaub+lvKTeRaGeOlRjmZWp55rcx3hp56usGtSM3O8un8aKMbOJ448gka+XzQ/kOXUmPGlLAgMBAAECggEBAMYhKXQlzXC65q1pljVIJu8y7+Ezyf1yTG0ebcZ8D8rsVG7+VNDInex9EKuGsngxTMLkSa0f25j8GxWxtLXxjFxcDEzo5QSd6HOpR4VnqYhphWMmVUQuW84RW0Op0T6Zpl24alzlDk9H9TdfFp39STmntaQwMunybfIFksc+aIZaylP2sPkvjh8D9LyuSKKpmO5RMO8jM2EEo0AenonV7eXEvVQls/zht8ZnPQzGLBwCS+LvmggYjTbkDEELaVZClxjSgw1Ksw8cY3M05JZAZVfK8sZkxAAqzcrXNLZ0YC/wo/aZNw7LGPD78FHe/AFKTZ9rFtUWtmF9egwLN78aQ6ECgYEA/biIBQzsbRGWB6s3dkRjCYeWptc8aiNg0pzn+vmLbV9fmQII7bLS+lUjzZthYsjHBEEYilcrOYfx9ODT/1mzux+8e/kjxCvzOxJWktE2CfaRn2LzL1fXei6hk4It9kXxUCbxMeH0gTWhp6P8zmJcHh9LIyMZ2O8kivXdGjbRQFMCgYEA8UCjwni8esFnYn4qUXwyXap01EXGOhLqFIwiyds+InnLT723AXFFIxPW91lDCZdWXloL83flyP82qXAjfM//4Dvtb7bq2Ee77uCJn9DaGdQC8xJj1HHkkFInQSexFrIKwcEAPEMZ/EgdPrVW7Fmypf4CVd79RrqqoiHNv1eu9CkCgYEA+ZIXcehZc5vV2StI/fOc+5W80dZsHfc42VLwOYZX6Ljk3ywKPk4li4pOEoQh0jqu0Pd7PTErWobnsLmqrsW8rnc0Pzo9PU0CD3wlXnueTUSVz5NUpKAiW5Qc6W0m6tW33eDAZhHeIW7w2WbMWPKVrCeaEDEJzsLFTk80MwHy6PMCgYBO9CCj3G+SnQkAqtmeoU66aLajYdJl3xrMbrBT73R+Q+3NwwDJcBB4Ul3fxU6zLNwPNNkEbRC+nwd8nD6A8nGDKRmjnfFtpsxSeRmRPACkw0XT1wjk1gE/WiOOpzbFfq8WidtR3YP7lH49r4sq/pAA0whgogGxzBVbykRTgpa3QQKBgQCVWLYdXllqLUQhKZZa2ehShroO14fdCANc0eE5L6wl84gCzGX5ePPvk/WKZtaImTZFGNJZ+XwTGEf9cJ0oMTvZ5kdb3DOSWOIueq4uGohsZUeXBMVjeU6uRqBTn46i7gOH3/FS4U6Vcpr4lY/YVsBnJiQ/oST2jWwghHdvd4SMYw==";
 
     // 生产
     // private static String APPID = "5b07af2f1d41c863dcd7388d";
@@ -84,7 +127,7 @@ public class ApiTest {
     public void imageEmotionRecognizeBase64Test() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
 
         String image = FileUtils.readFileToString(new File(DATA_PATH + "emotion_recognize_base64_image.txt"), "UTF-8");
         ImageEmotionRecognizeRequest request = new ImageEmotionRecognizeRequest();
@@ -108,7 +151,7 @@ public class ApiTest {
     public void imageEmotionRecognizeURLTest() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
         String emotionImageUrl = "https://oieve67xn.qnssl.com/images/2/b4d2cda31c8246d2bd2c2db67007833e.jpeg";
 
         ImageEmotionRecognizeRequest request = new ImageEmotionRecognizeRequest();
@@ -174,10 +217,10 @@ public class ApiTest {
     public void imageFoodSingleRecognizeBase64Test() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         // String image = FileUtils.readFileToString(new File("/Users/yangsongbo/Downloads/1.txt"),
         // "UTF-8");
@@ -203,10 +246,10 @@ public class ApiTest {
     public void imageFoodSingleRecognizeURLTest() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         String foodImageUrl =
-                "https://files.public.jianzhishidai.cn/images/2/3f2e9663a6de4ba8afad88b4a5ed10c3.jpg?hash=FtUd6_DTWkCFxhLZGYbti0ET7JkV&width=400&height=400&fsize=20759&scope=1";
+            "https://files.public.jianzhishidai.cn/images/2/3f2e9663a6de4ba8afad88b4a5ed10c3.jpg?hash=FtUd6_DTWkCFxhLZGYbti0ET7JkV&width=400&height=400&fsize=20759&scope=1";
         ImageFoodSingleRecognizeRequest request = new ImageFoodSingleRecognizeRequest();
         request.setFoodImageUrl(foodImageUrl);
         ImageFoodSingleRecognizeResponse response = client.execute(request);
@@ -268,7 +311,7 @@ public class ApiTest {
     public void qasQueryAnswerTest() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
 
         QasQueryAnswerRequest request = new QasQueryAnswerRequest();
         request.setQuestion("跑步可以减肥吗");
@@ -290,7 +333,7 @@ public class ApiTest {
     public void recordLifestyle() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com");
 
         RecordLifestyleRequest request = new RecordLifestyleRequest();
         request.setMessage("我昨天午休了3个小时");
@@ -347,7 +390,7 @@ public class ApiTest {
     public void loadEvaluationBrief() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         EvaluationBriefLoadRequest request = new EvaluationBriefLoadRequest();
         request.setEvaluationCode("GXZPC");
@@ -366,7 +409,7 @@ public class ApiTest {
     public void loadEvaluationContent() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         EvaluationUserInfoBean userInfo = new EvaluationUserInfoBean();
         userInfo.setBirthday("1988-11-26");
@@ -393,7 +436,7 @@ public class ApiTest {
     public void saveEvaluationData() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         EvaluationUserInfoBean userInfo = new EvaluationUserInfoBean();
         userInfo.setBirthday("1988-11-26");
@@ -433,7 +476,7 @@ public class ApiTest {
     public void loadEvaluationResult() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         EvaluationResultLoadRequest request = new EvaluationResultLoadRequest();
         request.setEvaluationId("5b7e5e6a14cced4a437bafdf");
@@ -451,11 +494,11 @@ public class ApiTest {
     @Test
     public void queryHealthyFoodByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryHealthyRequest request = new FoodTextQueryHealthyRequest();
-        request.setText("苹果的热量是多少");
+        request.setText("天然子");
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 3));
         request.setCount(BigDecimal.valueOf(200));
@@ -477,10 +520,10 @@ public class ApiTest {
     public void querySubHealthyFoodByText() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQuerySubHealthyRequest request = new FoodTextQuerySubHealthyRequest();
-        request.setText("苹果的热量是多少");
+        request.setText("天然子");
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 3));
         request.setCount(BigDecimal.valueOf(200));
@@ -502,7 +545,7 @@ public class ApiTest {
     public void queryDiabetesFoodByText() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryDiabetesRequest request = new FoodTextQueryDiabetesRequest();
         request.setText("苹果的热量是多少");
@@ -527,7 +570,7 @@ public class ApiTest {
     public void queryHypertensionFoodByText() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryHypertensionRequest request = new FoodTextQueryHypertensionRequest();
         request.setText("苹果的热量是多少");
@@ -552,7 +595,7 @@ public class ApiTest {
     public void queryHyperlipidemiaFoodByText() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryHyperlipidemiaRequest request = new FoodTextQueryHyperlipidemiaRequest();
         request.setText("苹果的热量是多少");
@@ -577,7 +620,7 @@ public class ApiTest {
     public void queryMaternalFoodByText() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodTextQueryMaternalRequest request = new FoodTextQueryMaternalRequest();
         request.setText("苹果的热量是多少");
@@ -600,13 +643,13 @@ public class ApiTest {
     public void queryHealthyFoodBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryHealthyRequest request = new FoodSpeechQueryHealthyRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
         request.setGender("1");
@@ -626,13 +669,13 @@ public class ApiTest {
     public void querySubHealthyFoodBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQuerySubHealthyRequest request = new FoodSpeechQuerySubHealthyRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
         request.setGender("1");
@@ -652,13 +695,13 @@ public class ApiTest {
     public void queryDiabetesFoodBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryDiabetesRequest request = new FoodSpeechQueryDiabetesRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
         request.setGender("1");
@@ -678,13 +721,13 @@ public class ApiTest {
     public void queryHypertensionFoodBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryHypertensionRequest request = new FoodSpeechQueryHypertensionRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
         request.setGender("1");
@@ -704,13 +747,13 @@ public class ApiTest {
     public void queryHyperlipidemiaFoodBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryHyperlipidemiaRequest request = new FoodSpeechQueryHyperlipidemiaRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
         request.setGender("1");
@@ -730,13 +773,13 @@ public class ApiTest {
     public void queryMaternalFoodBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         FoodSpeechQueryMaternalRequest request = new FoodSpeechQueryMaternalRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
         request.setStage("1");
@@ -755,10 +798,10 @@ public class ApiTest {
     public void queryHealthyFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         FoodImageQueryHealthyRequest request = new FoodImageQueryHealthyRequest();
         request.setImage(image);
@@ -781,10 +824,10 @@ public class ApiTest {
     public void querySubHealthyFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         FoodImageQuerySubHealthyRequest request = new FoodImageQuerySubHealthyRequest();
         request.setImage(image);
@@ -807,10 +850,10 @@ public class ApiTest {
     public void queryDiabetesFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         FoodImageQueryDiabetesRequest request = new FoodImageQueryDiabetesRequest();
         request.setImage(image);
@@ -833,10 +876,10 @@ public class ApiTest {
     public void queryHypertensionFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         FoodImageQueryHypertensionRequest request = new FoodImageQueryHypertensionRequest();
         request.setImage(image);
@@ -859,10 +902,10 @@ public class ApiTest {
     public void queryHyperlipidemiaFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         FoodImageQueryHyperlipidemiaRequest request = new FoodImageQueryHyperlipidemiaRequest();
         request.setImage(image);
@@ -885,10 +928,10 @@ public class ApiTest {
     public void queryMaternalFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
 
         String image =
-                FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
+            FileUtils.readFileToString(new File(DATA_PATH + "food_single_recognize_base64_image.txt"), "UTF-8");
 
         FoodImageQueryMaternalRequest request = new FoodImageQueryMaternalRequest();
         request.setImage(image);
@@ -926,23 +969,23 @@ public class ApiTest {
      *
      * @throws IOException
      * @Test public void estimateFoodCount() throws IOException {
-     * <p>
-     * HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-     * "https://api.hbox.jiankangyouyi.com/ego-gw");
-     * <p>
-     * FoodCountEstimateRequest request = new FoodCountEstimateRequest();
-     * request.setFoodId("57b6bd3f3004d165422ad79a");
-     * <p>
-     * FoodCountEstimateResponse response = client.execute(request);
-     * System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
-     * System.out.println(JsonUtil.toJson(response)); }
+     *       <p>
+     *       HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+     *       "https://api.hbox.jiankangyouyi.com/ego-gw");
+     *       <p>
+     *       FoodCountEstimateRequest request = new FoodCountEstimateRequest();
+     *       request.setFoodId("57b6bd3f3004d165422ad79a");
+     *       <p>
+     *       FoodCountEstimateResponse response = client.execute(request);
+     *       System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+     *       System.out.println(JsonUtil.toJson(response)); }
      */
 
     @Test
     public void queryExerciseByText() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         ExerciseTextQueryRequest request = new ExerciseTextQueryRequest();
         request.setText("跑步羽毛球");
@@ -960,13 +1003,13 @@ public class ApiTest {
     public void queryExerciseBySpeech() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         ExerciseSpeechQueryRequest request = new ExerciseSpeechQueryRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1014,7 +1057,7 @@ public class ApiTest {
     public void recommendFood() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         FoodRecommendRequest request = new FoodRecommendRequest();
         request.setAge(30);
@@ -1031,7 +1074,7 @@ public class ApiTest {
     public void recommendFoodChangement() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
         List<RecommendFoodBean> foodList = new ArrayList<>();
         foodList.add(new RecommendFoodBean("1", "五谷麦片", 50, "g", 0));
         foodList.add(new RecommendFoodBean("2", "筱麦面", 50, "g", 0));
@@ -1066,13 +1109,13 @@ public class ApiTest {
     public void foodVolumeRecognitionBase64() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         List<String> imageList = new ArrayList<>();
         imageList.add(
-                Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/食物三维重建-1.jpeg"))));
+            Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/食物三维重建-1.jpeg"))));
         imageList.add(
-                Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/食物三维重建-2.jpeg"))));
+            Base64Util.encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/食物三维重建-2.jpeg"))));
 
         FoodVolumeRecognitionRequest request = new FoodVolumeRecognitionRequest();
         request.setImageType(2);
@@ -1088,7 +1131,7 @@ public class ApiTest {
     public void foodVolumeRecognitionURL() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         List<String> imageList = new ArrayList<>();
         imageList.add("https://files.jiankangyouyi.com/apple279701849_1.jpg");
@@ -1108,13 +1151,13 @@ public class ApiTest {
     public void bodyThreeDimensionalBase64() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         List<String> imageList = new ArrayList<>();
         imageList.add(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/boby3424242_zhengmian.jpg"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/boby3424242_zhengmian.jpg"))));
         imageList.add(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/boby3424242_cemian.jpg"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/boby3424242_cemian.jpg"))));
 
         BodyThreeDimensionalRequest request = new BodyThreeDimensionalRequest();
         request.setImageList(imageList);
@@ -1133,7 +1176,7 @@ public class ApiTest {
     public void bodyThreeDimensionalURL() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
 
         List<String> imageList = new ArrayList<>();
         imageList.add("https://files.jiankangyouyi.com/boby3424242_zhengmian.jpg");
@@ -1157,7 +1200,7 @@ public class ApiTest {
     public void semanticRecordFoodAnalysis() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         Map<String, String> reqData = new HashMap<>();
         reqData.put("text", "我早上吃了一个包子，一杯豆浆");
@@ -1173,7 +1216,7 @@ public class ApiTest {
     public void queryFoodByFoodIdsFoodName() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         Map<String, Object> reqData = new HashMap<>();
         // reqData.put("foodIds",
@@ -1188,7 +1231,7 @@ public class ApiTest {
     public void saveRecordFood() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         Map<String, Object> record1 = new HashMap<>();
         record1.put("recordFrom", "3");
@@ -1229,12 +1272,12 @@ public class ApiTest {
     public void saveCustomFood() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         // byte[] imageBytes = FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/aaaaaaa.jpg"));
 
         byte[] imageBytes =
-                FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/005LUq26jw1eyfcnmyfmwj30ci08cgn7.jpg"));
+            FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/005LUq26jw1eyfcnmyfmwj30ci08cgn7.jpg"));
         String image = Base64Util.encode(imageBytes);
 
         Map<String, Object> reqData = new HashMap<>();
@@ -1255,7 +1298,7 @@ public class ApiTest {
     public void findFoodMetrologyDetail() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         Map<String, Object> reqData = new HashMap<>();
         reqData.put("foodId", "57b6bd3f3004d165422ad79a");
@@ -1268,7 +1311,7 @@ public class ApiTest {
     public void findFoodMetrologyTypeList() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         Map<String, Object> reqData = new HashMap<>();
 
@@ -1280,7 +1323,7 @@ public class ApiTest {
     public void semanticRecordExerciseAnalysis() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         Map<String, Object> reqData = new HashMap<>();
         reqData.put("text", "我刚才跑了30分钟");
@@ -1295,10 +1338,10 @@ public class ApiTest {
     public void saveCustomExercise() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         byte[] imageBytes =
-                FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/005LUq26jw1eyfcnmyfmwj30ci08cgn7.jpg"));
+            FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/005LUq26jw1eyfcnmyfmwj30ci08cgn7.jpg"));
         String image = Base64Util.encode(imageBytes);
 
         Map<String, Object> reqData = new HashMap<>();
@@ -1317,7 +1360,7 @@ public class ApiTest {
     public void saveRecordExercise() throws IOException {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
-                "https://api.hbox.jiankangyouyi.com/ego-gw");
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         // 5beaa19d14cced6e342c83b0 打出溜滑
         // 5beaa28414cced6e342c83b1 sn
@@ -1375,7 +1418,7 @@ public class ApiTest {
     public void analysisHealthyMeal() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         List<MealDataBean> breakfast = new ArrayList<>();
         breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
@@ -1411,7 +1454,7 @@ public class ApiTest {
     public void analysisSubHealthyMeal() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         List<MealDataBean> breakfast = new ArrayList<>();
         breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
@@ -1447,7 +1490,7 @@ public class ApiTest {
     public void analysisDiabetesMeal() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         List<MealDataBean> breakfast = new ArrayList<>();
         breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
@@ -1483,7 +1526,7 @@ public class ApiTest {
     public void analysisHypertensionMeal() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         List<MealDataBean> breakfast = new ArrayList<>();
         breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
@@ -1519,7 +1562,7 @@ public class ApiTest {
     public void analysisHyperlipidemiaMeal() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         List<MealDataBean> breakfast = new ArrayList<>();
         breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
@@ -1555,7 +1598,7 @@ public class ApiTest {
     public void analysisMaternalMeal() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         List<MealDataBean> breakfast = new ArrayList<>();
         breakfast.add(new MealDataBean("57b6cb003004c3a694946dbe", "178"));
@@ -1586,6 +1629,70 @@ public class ApiTest {
         System.out.println(JsonUtil.toJson(response));
     }
 
+    @Test
+    public void queryMedicatedGruelList() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        QueryMedicatedGruelListRequest request = new QueryMedicatedGruelListRequest();
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setText("酸枣");
+
+        QueryMedicatedGruelListResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void queryFoodAdditiveList() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        QueryFoodAdditiveListRequest request = new QueryFoodAdditiveListRequest();
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setText("酯");
+
+        QueryFoodAdditiveListResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void queryDrugList() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        QueryDrugListRequest request = new QueryDrugListRequest();
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setText("溶液");
+
+        QueryDrugListResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    @Test
+    public void queryDiseaseList() throws IOException {
+
+        HealthAiClient client =
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+
+        QueryDiseaseListRequest request = new QueryDiseaseListRequest();
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 1));
+        request.setText("红癣");
+
+        QueryDiseaseListResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
     /**
      * 骨质疏松人群标签文本查询
      *
@@ -1594,8 +1701,8 @@ public class ApiTest {
     @Test
     public void queryOsteoporosisLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryOsteoporosisRequest request = new LabelTextQueryOsteoporosisRequest();
         request.setText("苹果是什么");
@@ -1614,8 +1721,8 @@ public class ApiTest {
     @Test
     public void queryStrokeLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryStrokeRequest request = new LabelTextQueryStrokeRequest();
         request.setText("苹果是什么");
@@ -1634,8 +1741,8 @@ public class ApiTest {
     @Test
     public void queryGoutLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryGoutRequest request = new LabelTextQueryGoutRequest();
         request.setText("苹果是什么");
@@ -1654,8 +1761,8 @@ public class ApiTest {
     @Test
     public void queryDiabetesLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryDiabetesRequest request = new LabelTextQueryDiabetesRequest();
         request.setText("苹果是什么");
@@ -1674,8 +1781,8 @@ public class ApiTest {
     @Test
     public void queryHypertensionLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryHypertensionRequest request = new LabelTextQueryHypertensionRequest();
         request.setText("苹果是什么");
@@ -1694,8 +1801,8 @@ public class ApiTest {
     @Test
     public void queryCoronaryHeartDiseaseLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryCoronaryHeartDiseaseRequest request = new LabelTextQueryCoronaryHeartDiseaseRequest();
         request.setText("苹果是什么");
@@ -1714,8 +1821,8 @@ public class ApiTest {
     @Test
     public void queryExpectantMotherDiseaseLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryExpectantMotherRequest request = new LabelTextQueryExpectantMotherRequest();
         request.setText("苹果是什么");
@@ -1734,8 +1841,8 @@ public class ApiTest {
     @Test
     public void queryHighBloodFatDiseaseLabelByText() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryHighBloodFatRequest request = new LabelTextQueryHighBloodFatRequest();
         request.setText("苹果是什么");
@@ -1755,13 +1862,13 @@ public class ApiTest {
     public void queryOsteoporosisLabelBySpeech() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
+            new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryOsteoporosisRequest request = new LabelSpeechQueryOsteoporosisRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1778,14 +1885,14 @@ public class ApiTest {
     @Test
     public void queryStrokeLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryStrokeRequest request = new LabelSpeechQueryStrokeRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1801,14 +1908,14 @@ public class ApiTest {
     @Test
     public void queryGoutLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryGoutRequest request = new LabelSpeechQueryGoutRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1824,14 +1931,14 @@ public class ApiTest {
     @Test
     public void queryDiabetesLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryDiabetesRequest request = new LabelSpeechQueryDiabetesRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1847,14 +1954,14 @@ public class ApiTest {
     @Test
     public void queryHypertensionLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryHypertensionRequest request = new LabelSpeechQueryHypertensionRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1870,14 +1977,14 @@ public class ApiTest {
     @Test
     public void queryCoronaryHeartDiseaseLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryCoronaryHeartDiseaseRequest request = new LabelSpeechQueryCoronaryHeartDiseaseRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1893,14 +2000,14 @@ public class ApiTest {
     @Test
     public void queryExpectantMotherDiseaseLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryExpectantMotherRequest request = new LabelSpeechQueryExpectantMotherRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
@@ -1916,14 +2023,14 @@ public class ApiTest {
     @Test
     public void queryHighBloodFatDiseaseLabelBySpeech() throws IOException {
 
-        HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+            "https://api.hbox.jiankangyouyi.com/ego-gw");
 
         LabelSpeechQueryHighBloodFatRequest request = new LabelSpeechQueryHighBloodFatRequest();
         request.setFormat("amr");
         request.setRate(16000);
         request.setSpeech(Base64Util
-                .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
+            .encode(FileUtils.readFileToByteArray(new File("/Users/yangsongbo/Downloads/16k-23850 (1).amr"))));
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 2));
 
