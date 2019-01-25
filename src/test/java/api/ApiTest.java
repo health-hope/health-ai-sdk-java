@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jiankangyouyi.health.ai.api.request.query.*;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
@@ -37,46 +38,6 @@ import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationContentLoadR
 import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationDataSaveRequest;
 import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationResultLoadRequest;
 import com.jiankangyouyi.health.ai.api.request.qas.QasQueryAnswerRequest;
-import com.jiankangyouyi.health.ai.api.request.query.ExerciseSpeechQueryRequest;
-import com.jiankangyouyi.health.ai.api.request.query.ExerciseTextQueryRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryDiabetesRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHealthyRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHyperlipidemiaRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHypertensionRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryMaternalRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodImageQuerySubHealthyRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryDiabetesRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryHealthyRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryHyperlipidemiaRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryHypertensionRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQueryMaternalRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodSpeechQuerySubHealthyRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryDiabetesRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHealthyRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHyperlipidemiaRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryHypertensionRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodTextQueryMaternalRequest;
-import com.jiankangyouyi.health.ai.api.request.query.FoodTextQuerySubHealthyRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryCoronaryHeartDiseaseRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryDiabetesRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryExpectantMotherRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryGoutRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryHighBloodFatRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryHypertensionRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryOsteoporosisRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelSpeechQueryStrokeRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryCoronaryHeartDiseaseRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryDiabetesRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryExpectantMotherRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryGoutRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryHighBloodFatRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryHypertensionRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryOsteoporosisRequest;
-import com.jiankangyouyi.health.ai.api.request.query.LabelTextQueryStrokeRequest;
-import com.jiankangyouyi.health.ai.api.request.query.QueryDiseaseListRequest;
-import com.jiankangyouyi.health.ai.api.request.query.QueryDrugListRequest;
-import com.jiankangyouyi.health.ai.api.request.query.QueryFoodAdditiveListRequest;
-import com.jiankangyouyi.health.ai.api.request.query.QueryMedicatedGruelListRequest;
 import com.jiankangyouyi.health.ai.api.request.query.bean.BodyDataBean;
 import com.jiankangyouyi.health.ai.api.request.query.bean.HighlightBean;
 import com.jiankangyouyi.health.ai.api.request.record.RecordLifestyleRequest;
@@ -1803,9 +1764,11 @@ public class ApiTest {
 
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
             "https://api.hbox.jiankangyouyi.com/ego-gw");
+        //  HealthAiClient client =
+        //          new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.jiankangyouyi.com/ego-gw");
 
         LabelTextQueryCoronaryHeartDiseaseRequest request = new LabelTextQueryCoronaryHeartDiseaseRequest();
-        request.setText("苹果是什么");
+        request.setText("梨是什么");
         request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
         request.setPageInfo(new PageInfo(1, 1));
         LabelTextSpeechQueryGeneralResponse response = client.execute(request);
@@ -2036,6 +1999,172 @@ public class ApiTest {
 
         LabelTextSpeechQueryGeneralResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+    /**
+     * 骨质疏松人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceOsteoporosis() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryOsteoporosisRequest request = new LabelImageQueryOsteoporosisRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 脑卒中人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceStroke() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryStrokeRequest request = new LabelImageQueryStrokeRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 痛风人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceGout() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryGoutRequest request = new LabelImageQueryGoutRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 糖尿病人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceDiabetes() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryDiabetesRequest request = new LabelImageQueryDiabetesRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 高血压人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceHypertension() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryHypertensionRequest request = new LabelImageQueryHypertensionRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 冠心病人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceCoronary() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryCoronaryRequest request = new LabelImageQueryCoronaryRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 孕妇人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdvicePregnantWoman() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+
+        LabelImageQueryPregnantWomanRequest request = new LabelImageQueryPregnantWomanRequest();
+        request.setImage(image);
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
+    /**
+     * 高血脂人群食物能不能吃标签图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceHighBloodFat() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image =
+                FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
+        LabelImageQueryHighBloodFatRequest request = new LabelImageQueryHighBloodFatRequest();
+        request.setImage(image);
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
     }
 
 }
