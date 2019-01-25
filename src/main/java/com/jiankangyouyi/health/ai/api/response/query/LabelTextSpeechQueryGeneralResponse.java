@@ -98,28 +98,16 @@ public class LabelTextSpeechQueryGeneralResponse extends HealthAiResponse {
         private String foodName;
 
         /**
-         * 关联名称
-         */
-        private List<String> relationNames;
-
-        /**
          * 高亮内容
          */
         private List<String> highlightText;
-
-        /**
-         * 食物描述
-         */
-        private String describe;
 
         @Override
         public String toString() {
             return "FoodBasicInfoBean{" +
                     "foodId='" + foodId + '\'' +
                     ", foodName='" + foodName + '\'' +
-                    ", relationNames=" + relationNames +
                     ", highlightText=" + highlightText +
-                    ", describe='" + describe + '\'' +
                     '}';
         }
 
@@ -139,36 +127,12 @@ public class LabelTextSpeechQueryGeneralResponse extends HealthAiResponse {
             this.foodName = foodName;
         }
 
-        public List<String> getRelationNames() {
-            return relationNames;
-        }
-
-        public void setRelationNames(List<String> relationNames) {
-            this.relationNames = relationNames;
-        }
-
         public List<String> getHighlightText() {
             return highlightText;
         }
 
         public void setHighlightText(List<String> highlightText) {
             this.highlightText = highlightText;
-        }
-
-        public String getDescribe() {
-            return describe;
-        }
-
-        public void setDescribe(String describe) {
-            this.describe = describe;
-        }
-
-        public FoodBasicInfoBean(String foodId, String foodName, List<String> relationNames, List<String> highlightText, String describe) {
-            this.foodId = foodId;
-            this.foodName = foodName;
-            this.relationNames = relationNames;
-            this.highlightText = highlightText;
-            this.describe = describe;
         }
 
         public FoodBasicInfoBean() {
