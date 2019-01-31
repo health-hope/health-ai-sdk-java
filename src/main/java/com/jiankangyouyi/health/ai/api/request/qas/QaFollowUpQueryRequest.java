@@ -2,7 +2,6 @@ package com.jiankangyouyi.health.ai.api.request.qas;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
 import com.jiankangyouyi.health.ai.api.response.qas.QaFollowUpQueryResponse;
-import com.jiankangyouyi.health.ai.api.response.qas.QasQueryAnswerResponse;
 
 /**
  * 智能随访
@@ -10,7 +9,6 @@ import com.jiankangyouyi.health.ai.api.response.qas.QasQueryAnswerResponse;
  * @author dongle
  */
 public class QaFollowUpQueryRequest extends HealthAiRequest<QaFollowUpQueryResponse> {
-
 
     private static final long serialVersionUID = 1L;
 
