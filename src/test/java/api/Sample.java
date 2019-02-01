@@ -1,14 +1,10 @@
 package api;
 
-import java.io.IOException;
-
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
-import com.jiankangyouyi.health.ai.api.PageInfo;
-import com.jiankangyouyi.health.ai.api.request.query.QueryMedicatedGruelListRequest;
-import com.jiankangyouyi.health.ai.api.request.query.bean.HighlightBean;
-import com.jiankangyouyi.health.ai.api.response.query.QueryMedicatedGruelListResponse;
+import com.jiankangyouyi.health.ai.api.request.vision.PhysiognomyRecognitionRequest;
+import com.jiankangyouyi.health.ai.api.response.vision.PhysiognomyRecognitionResponse;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
 public class Sample {
@@ -16,25 +12,168 @@ public class Sample {
     private static final String APPID = "你的appId";
     private static final String PRIVATE_KEY = "你的私钥";
     private static final Version VERSION = Version.VERSION_2_0;
-    private static final String URL = "https://api.jiankangyouyi.com/ego-gw";
+    private static final String URL = "https://api2.jiankangyouyi.com";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // 初始化client
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
-
         // 根据接口文档构建Request
-        QueryMedicatedGruelListRequest request = new QueryMedicatedGruelListRequest();
-        // 高亮设置
-        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
-        // 分页
-        request.setPageInfo(new PageInfo(1, 2));
-        // 查询文本
-        request.setText("酸枣");
+        PhysiognomyRecognitionRequest request = new PhysiognomyRecognitionRequest();
+        // 图片数据
+        request.setImageFile("填写图片URL");
+        // 图片类型 1 base64 2 URL
+        request.setImageType("2");
 
+        // 图片数据
+        // request.setImageFile(Base64Util.encode(FileUtils
+        // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+        // 图片类型 1 base64 2 URL
+        // request.setImageType("1");
         // 发起请求，得到返回结果
-        QueryMedicatedGruelListResponse response = client.execute(request);
+        PhysiognomyRecognitionResponse response = client.execute(request);
         System.out.println(JsonUtil.toJson(response, true));
     }
+
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // FaceKeyPointRecognitionRequest request = new FaceKeyPointRecognitionRequest();
+    // // 图片数据
+    // request.setImageFile("填写图片URL");
+    // // 图片类型 1 base64 2 URL
+    // request.setImageType("2");
+    //
+    // // 图片数据
+    // // request.setImageFile(Base64Util.encode(FileUtils
+    // // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+    // // 图片类型 1 base64 2 URL
+    // // request.setImageType("1");
+    // // 发起请求，得到返回结果
+    // FaceKeyPointRecognitionResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // MouthShapeRecognitionRequest request = new MouthShapeRecognitionRequest();
+    // // 图片数据
+    // request.setImageFile("填写图片URL");
+    // // 图片类型 1 base64 2 URL
+    // request.setImageType("2");
+    //
+    // // 图片数据
+    // // request.setImageFile(Base64Util.encode(FileUtils
+    // // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+    // // 图片类型 1 base64 2 URL
+    // // request.setImageType("1");
+    // // 发起请求，得到返回结果
+    // MouthShapeRecognitionResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
+
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // NoseShapeRecognitionRequest request = new NoseShapeRecognitionRequest();
+    // // 图片数据
+    // request.setImageFile("填写图片URL");
+    // // 图片类型 1 base64 2 URL
+    // request.setImageType("2");
+    //
+    // // 图片数据
+    // // request.setImageFile(Base64Util.encode(FileUtils
+    // // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+    // // 图片类型 1 base64 2 URL
+    // // request.setImageType("1");
+    // // 发起请求，得到返回结果
+    // NoseShapeRecognitionResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
+
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // BrowShapeRecognitionRequest request = new BrowShapeRecognitionRequest();
+    // // 图片数据
+    // request.setImageFile("https://files.jiankangyouyi.com/images/2/65c54e555aaf437683e6d472f6d9cb4b.jpg");
+    // // 图片类型 1 base64 2 URL
+    // request.setImageType("2");
+    //
+    // // 图片数据
+    // // request.setImageFile(Base64Util.encode(FileUtils
+    // // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+    // // 图片类型 1 base64 2 URL
+    // // request.setImageType("1");
+    // // 发起请求，得到返回结果
+    // BrowShapeRecognitionResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
+
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // EyeShapeRecognitionRequest request = new EyeShapeRecognitionRequest();
+    // // 图片数据
+    // request.setImageFile("https://files.jiankangyouyi.com/images/2/65c54e555aaf437683e6d472f6d9cb4b.jpg");
+    // // 图片类型 1 base64 2 URL
+    // request.setImageType("2");
+    //
+    // // 图片数据
+    // // request.setImageFile(Base64Util.encode(FileUtils
+    // // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+    // // 图片类型 1 base64 2 URL
+    // // request.setImageType("1");
+    // // 发起请求，得到返回结果
+    // EyeShapeRecognitionResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
+
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // FaceShapeRecognitionRequest request = new FaceShapeRecognitionRequest();
+    // // 图片数据
+    // request.setImageFile("https://files.jiankangyouyi.com/images/2/65c54e555aaf437683e6d472f6d9cb4b.jpg");
+    // // 图片类型 1 base64 2 URL
+    // request.setImageType("2");
+    //
+    // // 图片数据
+    // // request.setImageFile(Base64Util.encode(FileUtils
+    // // .readFileToByteArray(new File("/Users/yangsongbo/Downloads/65c54e555aaf437683e6d472f6d9cb4b.jpg"))));
+    // // 图片类型 1 base64 2 URL
+    // // request.setImageType("1");
+    // // 发起请求，得到返回结果
+    // FaceShapeRecognitionResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
+
+    // public static void main(String[] args) {
+    // // 初始化client
+    // HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
+    // // 根据接口文档构建Request
+    // QaFollowUpQueryRequest request = new QaFollowUpQueryRequest();
+    // // 用户id
+    // request.setUserId("bxgsvdsjgg");
+    // // 上一轮用户的回复
+    // request.setLastReply("经常睡不着会有影响吗");
+    // // 用户发过来的信息类型 1.纯文本（默认） 2.音频的base64
+    // request.setUserDataType(1);
+    // // 音频类型 当userDataType=2时，此数据有意义：支持'pcm', 'wav', 'amr'
+    // request.setFormat("wav");
+    // // 采样率 8000 或者 16000
+    // request.setRate(16000);
+    // // 需要返回给用户的信息类型 1.纯文本（默认） 2.音频的base64
+    // request.setQuestionType(1);
+    // // 发起请求，得到返回结果
+    // QaFollowUpQueryResponse response = client.execute(request);
+    // System.out.println(JsonUtil.toJson(response, true));
+    // }
 
     // public static void main(String[] args) {
     // // 初始化client
@@ -311,4 +450,5 @@ public class Sample {
     // SportSubjectListResponse response = client.execute(request);
     // System.out.println(JsonUtil.toJson(response, true));
     // }
+
 }
