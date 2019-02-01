@@ -41,7 +41,7 @@ public class Api2Test {
 
         FoodImageQueryOsteoporosisRequest request = new FoodImageQueryOsteoporosisRequest();
         request.setImage(image);
-
+        // request.setFoodImageUrl("图片链接");
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 
@@ -61,6 +61,7 @@ public class Api2Test {
 
         FoodImageQueryStrokeRequest request = new FoodImageQueryStrokeRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
 
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -81,6 +82,7 @@ public class Api2Test {
 
         FoodImageQueryGoutRequest request = new FoodImageQueryGoutRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
 
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -101,6 +103,7 @@ public class Api2Test {
 
         FoodImageQueryDiabetesRequest request = new FoodImageQueryDiabetesRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
 
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -121,6 +124,7 @@ public class Api2Test {
 
         FoodImageQueryHypertensionRequest request = new FoodImageQueryHypertensionRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
 
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -141,6 +145,7 @@ public class Api2Test {
 
         FoodImageQueryCoronaryRequest request = new FoodImageQueryCoronaryRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
 
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -161,6 +166,7 @@ public class Api2Test {
 
         FoodImageQueryPregnantWomanRequest request = new FoodImageQueryPregnantWomanRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
 
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
@@ -180,6 +186,7 @@ public class Api2Test {
         String image = FileUtils.readFileToString(new File("C:\\Users\\17600\\Desktop\\1111.txt"), "UTF-8");
         FoodImageQueryHighBloodFatRequest request = new FoodImageQueryHighBloodFatRequest();
         request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
         FoodElementQueryResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
 
