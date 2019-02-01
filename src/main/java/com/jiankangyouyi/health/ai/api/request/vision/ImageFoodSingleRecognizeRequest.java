@@ -1,7 +1,7 @@
-package com.jiankangyouyi.health.ai.api.request;
+package com.jiankangyouyi.health.ai.api.request.vision;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
-import com.jiankangyouyi.health.ai.api.response.ImageFoodSingleRecognizeResponse;
+import com.jiankangyouyi.health.ai.api.response.vision.ImageFoodSingleRecognizeResponse;
 
 /**
  * 一图一物食物识别请求接口Bean

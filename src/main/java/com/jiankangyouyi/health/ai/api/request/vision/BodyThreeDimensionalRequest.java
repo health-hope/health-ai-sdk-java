@@ -1,10 +1,10 @@
-package com.jiankangyouyi.health.ai.api.request;
+package com.jiankangyouyi.health.ai.api.request.vision;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
-import com.jiankangyouyi.health.ai.api.response.BodyThreeDimensionalResponse;
+import com.jiankangyouyi.health.ai.api.response.vision.BodyThreeDimensionalResponse;
 
 /**
  * 人体三维重建识别

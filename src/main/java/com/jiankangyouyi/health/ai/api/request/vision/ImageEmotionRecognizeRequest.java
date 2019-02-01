@@ -1,7 +1,7 @@
-package com.jiankangyouyi.health.ai.api.request;
+package com.jiankangyouyi.health.ai.api.request.vision;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
-import com.jiankangyouyi.health.ai.api.response.ImageEmotionRecognizeResponse;
+import com.jiankangyouyi.health.ai.api.response.vision.ImageEmotionRecognizeResponse;
 
 /**
  * 表情识别请求接口

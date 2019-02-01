@@ -1,4 +1,4 @@
-package com.jiankangyouyi.health.ai.api.response;
+package com.jiankangyouyi.health.ai.api.response.vision;
 
 import java.math.BigDecimal;
 import java.util.List;

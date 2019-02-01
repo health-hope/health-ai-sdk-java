@@ -1,9 +1,9 @@
-package com.jiankangyouyi.health.ai.api.request;
+package com.jiankangyouyi.health.ai.api.request.vision;
 
 import java.util.List;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
-import com.jiankangyouyi.health.ai.api.response.FoodVolumeRecognitionResponse;
+import com.jiankangyouyi.health.ai.api.response.vision.FoodVolumeRecognitionResponse;
 
 
 /**
