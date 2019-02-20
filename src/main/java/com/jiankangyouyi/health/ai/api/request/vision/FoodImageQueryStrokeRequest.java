@@ -1,6 +1,7 @@
 package com.jiankangyouyi.health.ai.api.request.vision;
 
 import com.jiankangyouyi.health.ai.api.HealthAiRequest;
+import com.jiankangyouyi.health.ai.api.response.query.LabelTextSpeechQueryGeneralResponse;
 import com.jiankangyouyi.health.ai.api.response.vision.FoodElementQueryResponse;
 
 /**
@@ -29,6 +30,7 @@ public class FoodImageQueryStrokeRequest extends HealthAiRequest<FoodElementQuer
      */
     private String foodImageUrl;
 
+
     /**
      * 返回数量
      */
@@ -40,6 +42,7 @@ public class FoodImageQueryStrokeRequest extends HealthAiRequest<FoodElementQuer
     public String getApiUrl() {
         return API_URL;
     }
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
