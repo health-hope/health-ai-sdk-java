@@ -4,6 +4,9 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 
+group 'com.jiankangyouyi.health.ai.api'
+version '1.4'
+
 //环境变量 测试:test,生产:prod
 ext.environment = "test"
 
