@@ -3,7 +3,6 @@ package api;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
 import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
 import com.jiankangyouyi.health.ai.api.HealthAiClient;
-import com.jiankangyouyi.health.ai.api.request.vision.PhysiognomyRecognitionRequest;
 import com.jiankangyouyi.health.ai.api.response.vision.PhysiognomyRecognitionResponse;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
 
@@ -14,7 +13,7 @@ public class Sample {
     private static final Version VERSION = Version.VERSION_2_0;
     private static final String URL = "https://api2.jiankangyouyi.com";
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         // 初始化client
         HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, VERSION, URL);
         // 根据接口文档构建Request
@@ -32,7 +31,7 @@ public class Sample {
         // 发起请求，得到返回结果
         PhysiognomyRecognitionResponse response = client.execute(request);
         System.out.println(JsonUtil.toJson(response, true));
-    }
+    }*/
 
     // public static void main(String[] args) {
     // // 初始化client

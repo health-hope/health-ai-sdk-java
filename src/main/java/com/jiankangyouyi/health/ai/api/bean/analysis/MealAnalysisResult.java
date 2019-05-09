@@ -32,25 +32,36 @@ public class MealAnalysisResult {
      */
     private int standardPercentLower;
 
+    /**
+     * 比例
+     */
+    private int intakePercent;
+
     public MealAnalysisResult() {
         super();
     }
 
     public MealAnalysisResult(int userIntake, int standardIntakeUpper, int standardIntakeLower,
-        int standardPercentUpper, int standardPercentLower) {
+        int standardPercentUpper, int standardPercentLower, int intakePercent) {
         super();
         this.userIntake = userIntake;
         this.standardIntakeUpper = standardIntakeUpper;
         this.standardIntakeLower = standardIntakeLower;
         this.standardPercentUpper = standardPercentUpper;
         this.standardPercentLower = standardPercentLower;
+        this.intakePercent = intakePercent;
     }
 
     @Override
     public String toString() {
-        return "MealAnalysisResult [userIntake=" + userIntake + ", standardIntakeUpper=" + standardIntakeUpper
-            + ", standardIntakeLower=" + standardIntakeLower + ", standardPercentUpper=" + standardPercentUpper
-            + ", standardPercentLower=" + standardPercentLower + "]";
+        return "MealAnalysisResult{" +
+                "userIntake=" + userIntake +
+                ", standardIntakeUpper=" + standardIntakeUpper +
+                ", standardIntakeLower=" + standardIntakeLower +
+                ", standardPercentUpper=" + standardPercentUpper +
+                ", standardPercentLower=" + standardPercentLower +
+                ", intakePercent=" + intakePercent +
+                '}';
     }
 
     public int getUserIntake() {
@@ -91,5 +102,13 @@ public class MealAnalysisResult {
 
     public void setStandardPercentLower(int standardPercentLower) {
         this.standardPercentLower = standardPercentLower;
+    }
+
+    public int getIntakePercent() {
+        return intakePercent;
+    }
+
+    public void setIntakePercent(int intakePercent) {
+        this.intakePercent = intakePercent;
     }
 }

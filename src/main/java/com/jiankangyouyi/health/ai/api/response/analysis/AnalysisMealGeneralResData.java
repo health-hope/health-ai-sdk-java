@@ -2,6 +2,7 @@ package com.jiankangyouyi.health.ai.api.response.analysis;
 
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiankangyouyi.health.ai.api.HealthAiResponse;
 import com.jiankangyouyi.health.ai.api.bean.analysis.CompositionAnalysisResult;
 import com.jiankangyouyi.health.ai.api.bean.analysis.EnergyYieldingNutrientAnalysisResult;
@@ -21,46 +22,55 @@ public class AnalysisMealGeneralResData extends HealthAiResponse {
     /**
      * 用户摄入总量
      */
+    @JSONField(ordinal = 1)
     private int userTotalIntake;
 
     /**
      * 标准摄入总量
      */
+    @JSONField(ordinal = 2)
     private int standardTotalIntake;
 
     /**
      * 早餐分析
      */
+    @JSONField(ordinal = 3)
     private MealAnalysisResult breakfastAnalysis;
 
     /**
      * 午餐分析
      */
+    @JSONField(ordinal = 4)
     private MealAnalysisResult lunchAnalysis;
 
     /**
      * 晚餐分析
      */
+    @JSONField(ordinal = 5)
     private MealAnalysisResult supperAnalysis;
 
     /**
      * 脂肪分析
      */
+    @JSONField(ordinal = 6)
     private EnergyYieldingNutrientAnalysisResult fatAnalysis;
 
     /**
      * 蛋白质分析
      */
+    @JSONField(ordinal = 7)
     private EnergyYieldingNutrientAnalysisResult proteinAnalysis;
 
     /**
      * 碳水化合物分析
      */
+    @JSONField(ordinal = 8)
     private EnergyYieldingNutrientAnalysisResult carbohydrateAnalysis;
 
     /**
      * 营养素分析
      */
+    @JSONField(ordinal = 9)
     private List<CompositionAnalysisResult> compositionAnalysis;
 
     public int getUserTotalIntake() {
