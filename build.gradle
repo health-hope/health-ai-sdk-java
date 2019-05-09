@@ -1,6 +1,6 @@
 apply plugin: 'war'
 apply plugin: 'java'
-apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
 apply plugin: 'maven'
 
 
@@ -12,7 +12,7 @@ configurations.all {
 	    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
-tasks.withType(Compile){
+tasks.withType(JavaCompile){
     options.encoding = "UTF-8"
 }
 repositories {
