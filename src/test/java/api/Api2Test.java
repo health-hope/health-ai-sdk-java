@@ -192,5 +192,24 @@ public class Api2Test {
 
     }
 
+    /**
+     * 脂肪肝人群食物营养元素图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryAdviceFat() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com");
+        String image = FileUtils.readFileToString(new File("C:\\workspace\\health-ai-sdk-java\\src\\test\\java\\api\\data\\food_single_recognize_base64_image.txt"), "UTF-8");
+        FoodImageQueryFattyLiverRequest request = new FoodImageQueryFattyLiverRequest();
+        request.setImage(image);
+        // request.setFoodImageUrl("图片链接");
+        FoodElementQueryResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+
+    }
+
 
 }

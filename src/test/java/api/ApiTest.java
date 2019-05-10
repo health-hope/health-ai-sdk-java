@@ -2794,12 +2794,12 @@ public class ApiTest {
     public void queryGoutFoodByImage() throws IOException {
 
         HealthAiClient client =
-                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.hbox.jiankangyouyi.com/");
 
         String image =
                 FileUtils.readFileToString(new File(DATA_PATH_MY + "food_single_recognize_base64_image.txt"), "UTF-8");
 
-        FoodImageGoutRequest request = new FoodImageGoutRequest();
+        FoodImageOsteoporosisRequest request = new FoodImageOsteoporosisRequest();
         request.setImage(image);
         request.setCount(BigDecimal.valueOf(100));
         request.setTop(2);
