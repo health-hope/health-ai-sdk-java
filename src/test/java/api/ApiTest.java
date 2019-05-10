@@ -18,6 +18,7 @@ import com.jiankangyouyi.health.ai.api.request.evaluation.EvaluationResultLoadRe
 import com.jiankangyouyi.health.ai.api.request.qas.QaFollowUpQueryRequest;
 import com.jiankangyouyi.health.ai.api.request.qas.QasQueryAnswerRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryDiabetesRequest;
+import com.jiankangyouyi.health.ai.api.request.query.FoodImageGoutRequest;
 import com.jiankangyouyi.health.ai.api.request.query.FoodImageQueryHypertensionRequest;
 import com.jiankangyouyi.health.ai.api.request.query.*;
 import com.jiankangyouyi.health.ai.api.request.query.bean.BodyDataBean;
@@ -60,6 +61,7 @@ public class ApiTest {
     // "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCp9lo5wFz+35hb/YhjnD8Ua3BS7DU3sawZS2AsnjSMOK5YZOeg9difG7TRD0mBX0A3mnQ3QpDCQB58LcpKc+WzHO/VAeSMlmnFEZuDBfSn+Ctv7QpazWvClOSAiLf0pw4EWxHKkp8X9B7Qi+B+MW3u4XScTNeakJQjRpG1EyCAMZIJIUTtcSBHut6p6lZ40o87dX+x6G06C7X65UbiC6UGagKPs4/vY5ur5KFFyTpK3VaH4w2sySU9HIImiS33G5hSh+xrkM46YtVv96frWcqeHvEExuVfwoBUM8Yu+/jttpprc/7wWR/c/oSTNownHG1hewTz+nJ+9rVfH0nIx2FvAgMBAAECggEAY+WgcoFWJ5hUfP0vxRx5Fw9vHc4oGWwcs2FSTedPC3vlPZ9RZZIamKo4RQivM5NAs23dEP3XB9WYFXT0iX5FbFl9vb03EEr4MBSBSymc+30qSscQZv6GcAADrmitducZngXJFz/GstWRpxIQCRwUeWualqOzte10pKc9zShI2g9S+psmHeM4pvftmPl25MP01NwtNfW8/5aQi6uWvxrXyzAgUoGEJI3vPIhH0wcVDL69Xgyyb4m6ivW+DaRvWGWiWvXyhP5CrQBnPHRrhSXwZ+6PcGAN9Q5i5R/ui9wo+MGHdwa32ebjIKUxkNyNfBZjiM/PSeycY3o17GNdKrCEgQKBgQDfJlFcPMdaMAwQbvhDU4bcpL6xxhmkmxGqBY6IoqvGsZWNTrq89Uu1+hcZb4NBMwQ/jBHahhc2wFt7r0h4bQKju8qnvHGswQMtlaTq5CVU2Pb3Yamz9G/PAJeWN/bZoZZkA2tF1dMFkeLQIowIfkfbgizBOetmM/8U9yVdTs8PVwKBgQDC+5m6DjqBLFxrVVKglQi/4AZhw85x7E+yup1i43AXf8oeyVVlrZJsI1Fo0Yx44bLZOYfTbAzwotHfXY51p05sXtvNke15jOsw/evA87xsvvFFMd8NO0jAMKkVJLnOL0rngKmdSwVMYUbcpb1LFdm6w17nvGzmOXwOhlOAB0AnqQKBgEUhas0nax7uiZ5Bspmw87PBOe57D5CmFafVht2ff5XTiCA5xrIpT+Y1bxiLKl91fZhuPU20gtaMawr7N3lPVCUDVXn3cEPzm5dwp6G5QjNx77idweQlEspPRabc+ZVccOnVAVOmNXShSGHwge9Tp9FCF7lYxytnalvFYQbyFkWLAoGAJ1cqai7KwRtZPlLFzB6l2Ej0IK+oLLY4UmBytuwaxrMC7flDYLOHsofhuhtlk1I+irOf4xmO9tJzM/UldDmgih8NjEmgN4EmRwlEkvbakrpn5cUtMvc+M4Dd7KUvVBmYrGL6VgE3/XQ3HvfV3Jt5BcS7llgfRMhebnPNzywnVpkCgYEAgjZSHwzyD36qK5mq/DzA7EmtSwYckjvZ9F/1E6UVBbJ7kI6/PMW7uMV+rBS9JjkwCK6j7rlFeXnMd+qvOnX/qEYyT4sTc+JctOWr5MGtRevc6xVxOsEq3HRqRdb3ibnxWHVvBmY7FZuqXCEKa6q8MhByiAFuj93cLF1c/cltqU4=";
 
     private static String DATA_PATH = "/Users/yangsongbo/workspace2/health-ai-sdk-java/src/test/java/api/data/";
+    private static String DATA_PATH_MY = "C:\\workspace\\health-ai-sdk-java\\src\\test\\java\\api\\data\\";
 
     /**
      * 表情识别Test : base64 数据
@@ -2362,6 +2364,451 @@ public class ApiTest {
 
         PhysiognomyRecognitionResponse response = client.execute(request);
         System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+    }
+
+
+    /**
+     * 脂肪肝人群食物能不能吃文本标签查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFattyLiverLabelByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelTextQueryFattyLiverRequest request = new LabelTextQueryFattyLiverRequest();
+        request.setText("苹果是什么");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 1));
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    /**
+     * 肥胖人群能不能吃标签查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFatLabelByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelTextQueryFatRequest request = new LabelTextQueryFatRequest();
+        request.setText("苹果是什么");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 1));
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+
+
+
+
+
+    /**
+     * 脂肪肝人群食物能不能吃语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFattyLiverLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryFattyLiverRequest request = new LabelSpeechQueryFattyLiverRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 肥胖人群食物能不能吃语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFatLabelBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        LabelSpeechQueryFatRequest request = new LabelSpeechQueryFatRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+
+        LabelTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+
+
+    /**
+     * 脑卒中人群食物文本查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryStrokeFoodByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodTextQueryStrokeRequest request = new FoodTextQueryStrokeRequest();
+        request.setText("天然子");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setCount(BigDecimal.valueOf(200));
+        request.setAge(BigDecimal.valueOf(32));
+        request.setBirthday(null);
+        request.setGender("1");
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+    /**
+     * 骨质疏松人群食物文本查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryOsteoporosisFoodByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodTextQueryOsteoporosisRequest request = new FoodTextQueryOsteoporosisRequest();
+        request.setText("天然子");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setCount(BigDecimal.valueOf(200));
+        request.setAge(BigDecimal.valueOf(32));
+        request.setBirthday(null);
+        request.setGender("1");
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 痛风人群食物文本查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryGoutFoodByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodTextQueryGoutRequest request = new FoodTextQueryGoutRequest();
+        request.setText("天然子");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setCount(BigDecimal.valueOf(200));
+        request.setAge(BigDecimal.valueOf(32));
+        request.setBirthday(null);
+        request.setGender("1");
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 脂肪肝人群食物文本查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFattyLiverFoodByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodTextQueryFattyLiverRequest request = new FoodTextQueryFattyLiverRequest();
+        request.setText("天然子");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setCount(BigDecimal.valueOf(200));
+        request.setAge(BigDecimal.valueOf(32));
+        request.setBirthday(null);
+        request.setGender("1");
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 肥胖中人群食物文本查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFatFoodByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodTextQueryFatRequest request = new FoodTextQueryFatRequest();
+        request.setText("天然子");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setCount(BigDecimal.valueOf(200));
+        request.setAge(BigDecimal.valueOf(32));
+        request.setBirthday(null);
+        request.setGender("1");
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 冠心病人群食物文本查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryCoronaryHeartDiseaseFoodByText() throws IOException {
+
+        HealthAiClient client = new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0,
+                "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodTextQueryCoronaryHeartDiseaseRequest request = new FoodTextQueryCoronaryHeartDiseaseRequest();
+        request.setText("天然子");
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 3));
+        request.setCount(BigDecimal.valueOf(200));
+        request.setAge(BigDecimal.valueOf(32));
+        request.setBirthday(null);
+        request.setGender("1");
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        System.out.println(JsonUtil.toJson(response));
+    }
+
+
+
+
+
+
+
+    /**
+     * 脑卒中人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryStrokeFoodBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodSpeechQueryStrokeRequest request = new FoodSpeechQueryStrokeRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 骨质疏松人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryOsteoporosisFoodBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodSpeechQueryOsteoporosisRequest request = new FoodSpeechQueryOsteoporosisRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 痛风人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryGoutFoodBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodSpeechQueryGoutRequest request = new FoodSpeechQueryGoutRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 脂肪肝人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFattyLiverFoodBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodSpeechQueryFattyLiverRequest request = new FoodSpeechQueryFattyLiverRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+    /**
+     * 肥胖人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryFatFoodBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodSpeechQueryFatRequest request = new FoodSpeechQueryFatRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 冠心病人群食物语音查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryCoronaryHeartDiseaseFoodBySpeech() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api.hbox.jiankangyouyi.com/ego-gw");
+
+        FoodSpeechQueryCoronaryHeartDiseaseRequest request = new FoodSpeechQueryCoronaryHeartDiseaseRequest();
+        request.setFormat("amr");
+        request.setRate(16000);
+        request.setSpeech(Base64Util
+                .encode(FileUtils.readFileToByteArray(new File("C:\\Users\\Ashon\\Desktop\\16k-23850 (1).amr"))));
+        request.setHighlight(new HighlightBean("<highlight>", "</highlight>"));
+        request.setPageInfo(new PageInfo(1, 2));
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodTextSpeechQueryGeneralResponse response = client.execute(request);
+        System.out.println(JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        // System.out.println(JsonUtil.toJson(response));
+    }
+
+
+    /**
+     * 健康人群食物图像查询
+     *
+     * @throws IOException
+     */
+    @Test
+    public void queryGoutFoodByImage() throws IOException {
+
+        HealthAiClient client =
+                new DefaultHealthAiClient(APPID, PRIVATE_KEY, Version.VERSION_2_0, "https://api2.jiankangyouyi.com/");
+
+        String image =
+                FileUtils.readFileToString(new File(DATA_PATH_MY + "food_single_recognize_base64_image.txt"), "UTF-8");
+
+        FoodImageGoutRequest request = new FoodImageGoutRequest();
+        request.setImage(image);
+        request.setCount(BigDecimal.valueOf(100));
+        request.setTop(2);
+        request.setGender("1");
+        request.setAge(BigDecimal.valueOf(32));
+
+        FoodImageQueryGeneralResponse response = client.execute(request);
+        System.out.println("sss:" + JsonUtil.formatJson(JsonUtil.toJson(response, true)));
+        //System.out.println(JsonUtil.toJson(response));
     }
 
 }
