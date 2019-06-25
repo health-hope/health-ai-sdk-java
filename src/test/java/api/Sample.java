@@ -1,10 +1,6 @@
 package api;
 
-import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient;
-import com.jiankangyouyi.health.ai.api.DefaultHealthAiClient.Version;
-import com.jiankangyouyi.health.ai.api.HealthAiClient;
-import com.jiankangyouyi.health.ai.api.response.vision.PhysiognomyRecognitionResponse;
-import com.jiankangyouyi.health.ai.api.util.JsonUtil;
+import com.jiankangyouyi.health.ai.api.enums.Version;
 
 public class Sample {
 
