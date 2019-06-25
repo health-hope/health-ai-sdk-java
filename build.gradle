@@ -8,7 +8,7 @@ group 'com.jiankangyouyi.health.ai.api'
 version '2.0'
 
 //环境变量 测试:test,生产:prod
-ext.environment = "test"
+ext.environment = "prod"
 
 
 configurations.all {
