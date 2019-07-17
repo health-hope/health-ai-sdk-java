@@ -88,9 +88,15 @@ public abstract class AbstractHealthAiClient implements HealthAiClient {
 
         String result = this.execute(request, url);
 
-        ServiceResponse response = JsonUtil.fromJson(result, ServiceResponse.class);
+        ServiceResponse response;
+        try {
+            response = JsonUtil.fromJson(result, ServiceResponse.class);
+        } catch (Exception e) {
+            response = null;
+        }
+
         T trs = null;
-        if (response.getResData() != null && response.getResData().length() > 0) {
+        if (response != null && response.getResData() != null && response.getResData().length() > 0) {
             trs = JsonUtil.fromJson(response.getResData(), reqData.getResponseClass());
         }
 
