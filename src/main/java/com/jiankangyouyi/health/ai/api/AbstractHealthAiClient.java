@@ -1,7 +1,8 @@
 package com.jiankangyouyi.health.ai.api;
 
 
-import com.jiankangyouyi.health.ai.api.request.*;
+import com.jiankangyouyi.health.ai.api.request.AbstractHealthAiReqData;
+import com.jiankangyouyi.health.ai.api.request.ServiceRequest;
 import com.jiankangyouyi.health.ai.api.response.AbstractHealthAiResData;
 import com.jiankangyouyi.health.ai.api.response.HealthAiResponse;
 import com.jiankangyouyi.health.ai.api.response.ServiceResponse;
@@ -64,7 +65,7 @@ public abstract class AbstractHealthAiClient implements HealthAiClient {
     @Override
     public String execute(String reqDataJson, String url) {
 
-        ServiceJsonRequest request = new ServiceJsonRequest(appId, UUIDUtil.getJavaUUID(),
+        ServiceRequest request = new ServiceRequest(appId, UUIDUtil.getJavaUUID(),
                 version, sdf.format(new Timestamp(System.currentTimeMillis())), reqDataJson);
 
         return this.execute(request, url);
@@ -74,8 +75,8 @@ public abstract class AbstractHealthAiClient implements HealthAiClient {
     @Override
     public String execute(Map<String, Object> reqData, String url) {
 
-        ServiceMapRequest request = new ServiceMapRequest(appId, UUIDUtil.getJavaUUID(),
-                version, sdf.format(new Timestamp(System.currentTimeMillis())), reqData);
+        ServiceRequest request = new ServiceRequest(appId, UUIDUtil.getJavaUUID(),
+                version, sdf.format(new Timestamp(System.currentTimeMillis())), JsonUtil.toJson(reqData));
 
         return this.execute(request, url);
     }
@@ -83,8 +84,8 @@ public abstract class AbstractHealthAiClient implements HealthAiClient {
     @Override
     public <T extends AbstractHealthAiResData> HealthAiResponse<T> execute(AbstractHealthAiReqData<T> reqData, String url) {
 
-        ServiceBeanRequest request = new ServiceBeanRequest(appId, UUIDUtil.getJavaUUID(),
-                version, sdf.format(new Timestamp(System.currentTimeMillis())), reqData);
+        ServiceRequest request = new ServiceRequest(appId, UUIDUtil.getJavaUUID(),
+                version, sdf.format(new Timestamp(System.currentTimeMillis())), JsonUtil.toJson(reqData));
 
         String result = this.execute(request, url);
 

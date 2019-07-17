@@ -1,29 +1,102 @@
 package com.jiankangyouyi.health.ai.api.request;
 
 /**
+ * Api Request
+ *
  * @author yangsongbo
  */
-public interface ServiceRequest {
+public class ServiceRequest {
+    /**
+     * 应用ID
+     */
+    private String appId;
+
 
     /**
-     * 获取随机字符串
-     *
-     * @return 随机字符串
+     * 随机字符串
      */
-    String getNonceStr();
+    private String nonceStr;
+
 
     /**
-     * 获取时间
-     *
-     * @return 时间 yyyy-MM-dd HH:mm:ss
+     * 版本号
      */
-    String getTimestamp();
+    private String version;
 
     /**
-     * 设置签名
-     *
-     * @param sign 签名
+     * 请求时间
      */
-    void setSign(String sign);
+    private String timestamp;
+
+    /**
+     * 签名
+     */
+    private String sign;
+
+    /**
+     * 业务数据
+     */
+    private String reqData;
+
+    public ServiceRequest() {
+    }
+
+    public ServiceRequest(String appId, String nonceStr, String version, String timestamp, String reqData) {
+        this.appId = appId;
+        this.nonceStr = nonceStr;
+        this.version = version;
+        this.timestamp = timestamp;
+        this.reqData = reqData;
+    }
+
+
+    public String getNonceStr() {
+        return nonceStr;
+    }
+
+    public void setNonceStr(String nonceStr) {
+        this.nonceStr = nonceStr;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getReqData() {
+        return reqData;
+    }
+
+    public void setReqData(String reqData) {
+        this.reqData = reqData;
+    }
+
 
 }
