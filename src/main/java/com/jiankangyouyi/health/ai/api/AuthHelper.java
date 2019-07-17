@@ -33,6 +33,7 @@ public class AuthHelper {
         if (res == null || "".equals(res.trim())) {
             return null;
         }
+
         return JsonUtil.fromJson(res, AuthResponse.class);
     }
 

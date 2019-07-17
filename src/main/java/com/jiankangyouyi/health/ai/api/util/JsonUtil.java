@@ -95,7 +95,9 @@ public class JsonUtil {
                     break;
                 case ',':
                     sb.append(current);
-                    if (last != '\\' && jsonStr.charAt(i + 1) == '"') {
+                    if (last != '\\' && (
+                            jsonStr.charAt(i + 1) == '"' || jsonStr.charAt(i + 1) == '\\'
+                                    || (jsonStr.charAt(i + 1) == ' ' && jsonStr.charAt(i + 2) == '\\'))) {
                         sb.append('\n');
                         addIndentBlank(sb, indent);
                     }

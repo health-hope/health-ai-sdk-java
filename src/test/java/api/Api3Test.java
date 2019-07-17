@@ -35,9 +35,9 @@ public class Api3Test {
     }
 
 
-    private static final String JAVA_REQUEST_URL = "https://api.jiankangyouyi.com/ego-gw";
+    private static final String JAVA_REQUEST_URL = "https://api.hbox.jiankangyouyi.com/ego-gw";
 
-    private static final String PYTHON_REQUEST_URL = "https://api2.jiankangyouyi.com";
+    private static final String PYTHON_REQUEST_URL = "https://api2.hbox.jiankangyouyi.com";
 
 
     /**
@@ -53,6 +53,9 @@ public class Api3Test {
 
         String url = PYTHON_REQUEST_URL + "/v2/health/qas/query.do";
         execute(JsonUtil.toJson(reqData), url);
+
+        executeByMap(reqData, url);
+
     }
 
 
@@ -1134,6 +1137,8 @@ public class Api3Test {
 
         String url = PYTHON_REQUEST_URL + "/v2/human_body/key_point";
         execute(JsonUtil.toJson(reqData), url);
+
+        executeByMap(reqData, url);
     }
 
 
@@ -1170,6 +1175,9 @@ public class Api3Test {
 
         String url = PYTHON_REQUEST_URL + "/v2/face/face_shape/key_point";
         execute(JsonUtil.toJson(reqData), url);
+
+        executeByMap(reqData, url);
+
     }
 
 
@@ -1209,16 +1217,47 @@ public class Api3Test {
 
     private void execute(String reqDataJson, String url) {
 
-        HealthAiClient client1 =
-                new TokenHealthAiClient(APP_ID, API_KEY, Version.VERSION_2_0);
-
-        System.out.println("result by token : \n" + JsonUtil.formatJson(JsonUtil.toJson(client1.execute(reqDataJson, url))));
 
         HealthAiClient client2 =
                 new DefaultHealthAiClient(APP_ID, PRIVATE_KEY, Version.VERSION_2_0);
 
-        System.out.println("result by RSA : \n" + JsonUtil.formatJson(JsonUtil.toJson(client2.execute(reqDataJson, url))));
+        try {
+            System.out.println("result by RSA : \n" + JsonUtil.formatJson(client2.execute(reqDataJson, url)));
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
+        HealthAiClient client1 =
+                new TokenHealthAiClient(APP_ID, API_KEY, Version.VERSION_2_0);
+
+        try {
+            System.out.println("result by token : \n" + JsonUtil.formatJson(client1.execute(reqDataJson, url)));
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+
+    private void executeByMap(Map<String, Object> reqData, String url) {
+
+
+        HealthAiClient client2 =
+                new DefaultHealthAiClient(APP_ID, PRIVATE_KEY, Version.VERSION_2_0);
+
+        try {
+            System.out.println("result by RSA : \n" + JsonUtil.formatJson(client2.execute(reqData, url)));
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+        HealthAiClient client1 =
+                new TokenHealthAiClient(APP_ID, API_KEY, Version.VERSION_2_0);
+
+        try {
+            System.out.println("result by token : \n" + JsonUtil.formatJson(client1.execute(reqData, url)));
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
 

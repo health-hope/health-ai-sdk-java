@@ -5,14 +5,9 @@ import com.jiankangyouyi.health.ai.api.exception.AuthException;
 import com.jiankangyouyi.health.ai.api.request.ServiceRequest;
 import com.jiankangyouyi.health.ai.api.util.HttpClientUtil;
 import com.jiankangyouyi.health.ai.api.util.JsonUtil;
-import com.jiankangyouyi.health.ai.api.util.UUIDUtil;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -20,11 +15,12 @@ import java.util.Map;
  *
  * @author yangsongbo
  */
-public class TokenHealthAiClient implements HealthAiClient {
+public class TokenHealthAiClient extends AbstractHealthAiClient implements HealthAiClient {
 
-    private String appId;
+    /**
+     * API Key
+     */
     private String apiKey;
-    private String version;
 
     /**
      * token有效期
@@ -33,26 +29,23 @@ public class TokenHealthAiClient implements HealthAiClient {
 
     private String token;
 
-    private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE);
 
     public TokenHealthAiClient(String appId, String apiKey, Version version) {
-        this.appId = appId;
+        super.appId = appId;
         this.apiKey = apiKey;
-        this.version = version.getValue();
+        super.version = version.getValue();
     }
 
 
     @Override
-    public String execute(String reqDataJson, String url) {
+    protected String execute(ServiceRequest request, String url) {
 
         if (needAuth()) {
             createToken();
         }
 
-        ServiceRequest req = new ServiceRequest(appId, UUIDUtil.getJavaUUID(), version,
-                sdf.format(new Timestamp(System.currentTimeMillis())), reqDataJson);
-
-        String reqMessage = JsonUtil.toJson(req);
+        String reqMessage = JsonUtil.toJson(request);
+        System.out.println("请求数据：\n" + JsonUtil.formatJson(reqMessage));
 
         Map<String, String> header = new HashMap<>(1);
         header.put("token", this.token);
