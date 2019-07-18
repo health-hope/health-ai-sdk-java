@@ -1221,11 +1221,15 @@ public class Api3Test {
         HealthAiClient client2 =
                 new DefaultHealthAiClient(APP_ID, PRIVATE_KEY, Version.VERSION_2_0);
 
+
         try {
             System.out.println("result by RSA : \n" + JsonUtil.formatJson(client2.execute(reqDataJson, url)));
         } catch (Exception e) {
             System.err.println(e);
         }
+
+        System.out.println("request by RSA : \n" + client2.getLastRequestJson());
+
 
         HealthAiClient client1 =
                 new TokenHealthAiClient(APP_ID, API_KEY, Version.VERSION_2_0);
@@ -1235,6 +1239,9 @@ public class Api3Test {
         } catch (Exception e) {
             System.err.println(e);
         }
+
+        System.out.println("request by token : \n" + client1.getLastRequestJson());
+
     }
 
 

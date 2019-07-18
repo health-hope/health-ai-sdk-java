@@ -30,6 +30,9 @@ public class DefaultHealthAiClient extends AbstractHealthAiClient implements Hea
         request.setSign(sign);
 
         String reqMessage = JsonUtil.toJson(request);
+
+        //set last request json
+        super.setLastRequestJson(reqMessage);
         return HttpClientUtil.post(url, reqMessage, HttpClientUtil.CONTENT_TYPE_JSON);
     }
 

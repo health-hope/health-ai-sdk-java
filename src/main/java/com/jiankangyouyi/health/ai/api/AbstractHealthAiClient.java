@@ -32,6 +32,11 @@ public abstract class AbstractHealthAiClient implements HealthAiClient {
      */
     protected String version;
 
+    /**
+     * 最后一次的请求Json
+     */
+    private String lastRequestJson;
+
 
     private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE);
 
@@ -50,6 +55,15 @@ public abstract class AbstractHealthAiClient implements HealthAiClient {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    @Override
+    public String getLastRequestJson() {
+        return lastRequestJson;
+    }
+
+    public void setLastRequestJson(String lastRequestJson) {
+        this.lastRequestJson = lastRequestJson;
     }
 
     /**

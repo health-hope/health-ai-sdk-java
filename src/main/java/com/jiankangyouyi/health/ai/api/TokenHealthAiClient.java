@@ -45,7 +45,8 @@ public class TokenHealthAiClient extends AbstractHealthAiClient implements Healt
         }
 
         String reqMessage = JsonUtil.toJson(request);
-        System.out.println("请求数据：\n" + JsonUtil.formatJson(reqMessage));
+        //set last request json
+        super.setLastRequestJson(reqMessage);
 
         Map<String, String> header = new HashMap<>(1);
         header.put("token", this.token);

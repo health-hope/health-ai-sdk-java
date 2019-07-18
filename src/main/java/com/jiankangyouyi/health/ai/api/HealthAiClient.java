@@ -45,4 +45,11 @@ public interface HealthAiClient {
     <T extends AbstractHealthAiResData> HealthAiResponse<T> execute(AbstractHealthAiReqData<T> reqData, String url);
 
 
+    /**
+     * 获取最后一次的请求Json
+     *
+     * @return 最后一次的请求Json
+     */
+    String getLastRequestJson();
+
 }

@@ -10,7 +10,7 @@ public class HealthAiResponse<T extends AbstractHealthAiResData> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Api返回的Json串
+     * API返回的Json串
      */
     private String responseJson;
 
@@ -34,4 +34,5 @@ public class HealthAiResponse<T extends AbstractHealthAiResData> {
     public void setResData(T resData) {
         this.resData = resData;
     }
+
 }
