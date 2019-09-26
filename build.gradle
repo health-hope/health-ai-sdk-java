@@ -25,7 +25,7 @@ repositories {
 
 }
 dependencies {
-    compile('com.alibaba:fastjson:1.2.31')
+    compile('com.alibaba:fastjson:1.2.60')
     compile('org.apache.httpcomponents:httpclient:4.5.2')
 
 
