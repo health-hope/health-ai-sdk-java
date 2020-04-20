@@ -68,7 +68,7 @@ public class TokenHealthAiClient extends AbstractHealthAiClient implements Healt
             throw new AuthException("获取token为空");
         }
 
-        if (res.getResultCode() == null || res.getResultCode() != 0) {
+        if (res.getResultCode() == null || "0".equals(res.getResultCode())) {
             throw new AuthException("获取token返回错误，" +
                     "resultCode[" + res.getResultCode() + "],message[" + res.getMessage() + "]");
         }

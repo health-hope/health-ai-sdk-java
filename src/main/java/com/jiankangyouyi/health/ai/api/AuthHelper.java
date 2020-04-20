@@ -22,9 +22,9 @@ public class AuthHelper {
      */
     public static AuthResponse auth(String appId, String apiKey) {
 
-        String url = "https://api.jiankangyouyi.com/auth/token";
+        String url = "http://api.jiankangyouyi.com/v2/auth/token";
 
-        Map<String, Object> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>(2);
         params.put("appId", appId);
         params.put("apiKey", apiKey);
 
@@ -41,9 +41,9 @@ public class AuthHelper {
     public static class AuthResponse {
 
         /**
-         * 返回0表示成功，大于0表示失败
+         * 返回0表示成功，非0表示失败
          */
-        private Integer resultCode;
+        private String resultCode;
 
         /**
          * 接口处理时间，单位毫秒
@@ -65,11 +65,11 @@ public class AuthHelper {
          */
         private TokenData data;
 
-        public Integer getResultCode() {
+        public String getResultCode() {
             return resultCode;
         }
 
-        public void setResultCode(Integer resultCode) {
+        public void setResultCode(String resultCode) {
             this.resultCode = resultCode;
         }
 
